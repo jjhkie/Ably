@@ -20,6 +20,8 @@ final class MainViewController: TabmanViewController{
     
     ///SearchBar & MenuButton
     let topStackView = UIStackView()
+    var config = UIButton.Configuration.plain()
+    
     let menuBt = UIButton()
     let alertBt = UIButton()
     let basketBt = UIButton()
@@ -67,10 +69,10 @@ extension MainViewController{
         topStackView.isLayoutMarginsRelativeArrangement = true//StackView Margin Setting
         
         //Top Button Settings
+        config.baseForegroundColor = .black
         [menuBt,alertBt,basketBt].enumerated().forEach{
             $1.setImage(UIImage(systemName: TopButtonItem(rawValue: $0)!.imageTitle), for: .normal)
-            $1.imageView?.tintColor = .black
-            
+            $1.configuration = config
         }
     }
     
