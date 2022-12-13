@@ -12,7 +12,9 @@ import Pageboy
 
 
 
-final class MainViewController: TabmanViewController{
+final class MainViewController: TabmanViewController {
+
+    
     
     ///TopTabBar
     let topTabView = UIView()
@@ -26,14 +28,13 @@ final class MainViewController: TabmanViewController{
     let alertBt = UIButton()
     let basketBt = UIButton()
     let searchController = UISearchController(searchResultsController: nil)
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
         self.dataSource = self
-        
 
         //
         attribute()
@@ -74,6 +75,9 @@ extension MainViewController{
             $1.setImage(UIImage(systemName: TopButtonItem(rawValue: $0)!.imageTitle), for: .normal)
             $1.configuration = config
         }
+        
+      
+        
     }
     
     private func layout(){

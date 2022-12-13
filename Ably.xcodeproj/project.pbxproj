@@ -92,6 +92,22 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		B93487E3294172E4003211FF /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				B93E790E293DF6A00061201F /* TodayViewController.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		B93487E4294172FE003211FF /* ShoppingMall */ = {
+			isa = PBXGroup;
+			children = (
+				B93E7910293DF71E0061201F /* ShoppingMallViewController.swift */,
+			);
+			path = ShoppingMall;
+			sourceTree = "<group>";
+		};
 		B93E790A293DE8280061201F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,8 +119,8 @@
 		B93E790D293DF6830061201F /* Toptab */ = {
 			isa = PBXGroup;
 			children = (
-				B93E790E293DF6A00061201F /* TodayViewController.swift */,
-				B93E7910293DF71E0061201F /* ShoppingMallViewController.swift */,
+				B93487E3294172E4003211FF /* Today */,
+				B93487E4294172FE003211FF /* ShoppingMall */,
 			);
 			path = Toptab;
 			sourceTree = "<group>";
