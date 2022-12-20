@@ -67,8 +67,7 @@ func getLayout() -> UICollectionViewCompositionalLayout {
             section.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
             return section
         case 1:
-            let itemFractionalWidthFraction = 1.0 / 6.0
-            let groupFractionalHeightFraction = 1.0
+          
             let itemInset: CGFloat = 2.5
             
             // Item
@@ -94,8 +93,7 @@ func getLayout() -> UICollectionViewCompositionalLayout {
             section.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
             return section
         case 2:
-            let itemFractionalWidthFraction = 1.0
-            let groupFractionalHeightFraction = 1.0 / 4.0
+            
             let itemInset: CGFloat = 2.5
             
             // Item
@@ -164,8 +162,9 @@ extension TodayViewController{
         
         //collectionView
         collectionView.snp.makeConstraints{
-            $0.trailing.leading.equalToSuperview()
-            $0.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            //$0.trailing.leading.equalToSuperview()
+           //$0.top.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
     }

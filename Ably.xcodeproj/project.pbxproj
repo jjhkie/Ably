@@ -20,6 +20,10 @@
 		B95218F1293CA4C100018DAF /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218F0293CA4C100018DAF /* MarketViewController.swift */; };
 		B95218F6293CA4EB00018DAF /* ZzimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218F5293CA4EB00018DAF /* ZzimViewController.swift */; };
 		B95218F9293CA51C00018DAF /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218F8293CA51C00018DAF /* MypageViewController.swift */; };
+		B95BAB2029507D2E004D6306 /* UINavigationItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95BAB1F29507D2E004D6306 /* UINavigationItem+.swift */; };
+		B95BAB2229507E26004D6306 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95BAB2129507E26004D6306 /* UINavigationController+.swift */; };
+		B9670C3929514EDC00616BC5 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9670C3829514EDC00616BC5 /* MyPageCell.swift */; };
+		B9670C4529515DDE00616BC5 /* MyPageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9670C4429515DDE00616BC5 /* MyPageEnum.swift */; };
 		B96950AC2940292F000520A8 /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96950AB2940292F000520A8 /* enum.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +41,10 @@
 		B95218F0293CA4C100018DAF /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		B95218F5293CA4EB00018DAF /* ZzimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimViewController.swift; sourceTree = "<group>"; };
 		B95218F8293CA51C00018DAF /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
+		B95BAB1F29507D2E004D6306 /* UINavigationItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+.swift"; sourceTree = "<group>"; };
+		B95BAB2129507E26004D6306 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		B9670C3829514EDC00616BC5 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
+		B9670C4429515DDE00616BC5 /* MyPageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEnum.swift; sourceTree = "<group>"; };
 		B96950AB2940292F000520A8 /* enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,9 +93,9 @@
 				B95218ED293CA14300018DAF /* TabController.swift */,
 				B96950AD29402933000520A8 /* Utils */,
 				B95218E9293C8FE700018DAF /* Scene */,
-				B9231964293A08F400236B6D /* Assets.xcassets */,
 				B9231966293A08F400236B6D /* LaunchScreen.storyboard */,
 				B9231969293A08F400236B6D /* Info.plist */,
+				B9231964293A08F400236B6D /* Assets.xcassets */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -164,15 +172,27 @@
 		B95218FA293CA52000018DAF /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
+				B9670C4629515DE100616BC5 /* Utils */,
 				B95218F8293CA51C00018DAF /* MypageViewController.swift */,
+				B9670C3829514EDC00616BC5 /* MyPageCell.swift */,
 			);
 			path = Mypage;
+			sourceTree = "<group>";
+		};
+		B9670C4629515DE100616BC5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B9670C4429515DDE00616BC5 /* MyPageEnum.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		B96950AD29402933000520A8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				B96950AB2940292F000520A8 /* enum.swift */,
+				B95BAB1F29507D2E004D6306 /* UINavigationItem+.swift */,
+				B95BAB2129507E26004D6306 /* UINavigationController+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -258,10 +278,14 @@
 				B96950AC2940292F000520A8 /* enum.swift in Sources */,
 				B95218F6293CA4EB00018DAF /* ZzimViewController.swift in Sources */,
 				B923195C293A08F300236B6D /* AppDelegate.swift in Sources */,
+				B9670C4529515DDE00616BC5 /* MyPageEnum.swift in Sources */,
 				B95218F9293CA51C00018DAF /* MypageViewController.swift in Sources */,
 				B93E7911293DF71E0061201F /* ShoppingMallViewController.swift in Sources */,
+				B95BAB2229507E26004D6306 /* UINavigationController+.swift in Sources */,
 				B95218EE293CA14300018DAF /* TabController.swift in Sources */,
+				B9670C3929514EDC00616BC5 /* MyPageCell.swift in Sources */,
 				B93E790F293DF6A00061201F /* TodayViewController.swift in Sources */,
+				B95BAB2029507D2E004D6306 /* UINavigationItem+.swift in Sources */,
 				B95218F1293CA4C100018DAF /* MarketViewController.swift in Sources */,
 				B923195E293A08F300236B6D /* SceneDelegate.swift in Sources */,
 				B95218E8293C8FD500018DAF /* MainViewController.swift in Sources */,

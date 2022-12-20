@@ -14,8 +14,6 @@ import Pageboy
 
 final class MainViewController: TabmanViewController {
 
-    
-    
     ///TopTabBar
     let topTabView = UIView()
     private var viewController = [TodayViewController(), ShoppingMallViewController(),UIViewController(),UIViewController(),UIViewController(),UIViewController(),UIViewController(),UIViewController()]
@@ -50,10 +48,14 @@ extension MainViewController{
     }
     
     private func attribute(){
-        self.navigationController?.isNavigationBarHidden = true
+        //self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.topItem?.title = "title"
+       
         //TopTabBar Attribute()
         let bar = TMBar.ButtonBar()
         bar.layout.transitionStyle = .snap
+        bar.layout.alignment = .centerDistributed
         bar.buttons.customize{//Item 선택에 따른 color 설정
             $0.tintColor = .gray
             $0.selectedTintColor = .black
@@ -66,6 +68,7 @@ extension MainViewController{
         
         //TopStackView
         topStackView.axis = .horizontal
+        topStackView.backgroundColor = .white
         topStackView.layoutMargins = UIEdgeInsets(top: .zero, left: 5, bottom: .zero, right: 5)//StackView Margin Setting
         topStackView.isLayoutMarginsRelativeArrangement = true//StackView Margin Setting
         
@@ -81,12 +84,14 @@ extension MainViewController{
     }
     
     private func layout(){
-        ///MainView에 추가
+        
+        
+        ///StackView에 추가
         [menuBt,searchController.searchBar,alertBt,basketBt].forEach{
             topStackView.addArrangedSubview($0)
         }
         
-        ///StackView에 추가
+        ///MainView에 추가
         [topStackView,topTabView].forEach{
             view.addSubview($0)
         }
@@ -96,11 +101,12 @@ extension MainViewController{
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
-        
         topTabView.snp.makeConstraints{
             $0.top.equalTo(topStackView.snp.bottom)
             $0.trailing.leading.equalTo(view.safeAreaLayoutGuide)
+            //$0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+
     }
 }
 

@@ -10,8 +10,22 @@ import UIKit
 final class ShoppingMallViewController: UIViewController{
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+    }
+}
+
+
+extension ShoppingMallViewController{
+    
+    private func attribute(){
+        
+    }
+    
+    
+    private func layout(){
+        
     }
 }
