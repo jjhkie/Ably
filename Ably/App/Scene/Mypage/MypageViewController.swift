@@ -7,15 +7,18 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class MypageViewController: UIViewController{
 
-    
     let tableView = UITableView()
+    
+    let bag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        bind()
+        bind(MyPageViewModel())
         attribute()
         layout()
     }
@@ -23,13 +26,28 @@ final class MypageViewController: UIViewController{
 
 extension MypageViewController{
     
-    func bind(){
-        tableView.dataSource = self
+    func bind(_ VM: MyPageViewModel){
+        
+        let input = MyPageViewModel.Input()
+        
+        let output = VM.transform(input: input)
+        
+        
+        output.tableCellData
+            .drive(tableView.rx.items(cellIdentifier: "Cell",cellType: MyPageCell.self)){ row,data,cell in
+                
+                cell.setData(row,data)
+            }
+            .disposed(by:bag)
+        
+        tableView.backgroundColor = .white
+        tableView.delegate = self
     }
     
     func attribute(){
         //NavigationBar
         self.navigationController?.navigationBar.topItem?.title = "마이페이지"
+        self.navigationController?.navigationBar.topItem?.titleView?.tintColor = .black
         let menuButton = self.navigationItem.makeSymbolButton(self,
                                                                      action: Selector("pushToWrite"),
                                                                      symbolName: "text.justify")
@@ -46,7 +64,9 @@ extension MypageViewController{
         self.navigationItem.rightBarButtonItems = [basketButton,alertButton]
         
         //tableView
+        tableView.separatorStyle = .none // 밑줄 제거 
         tableView.register(MyPageCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(TableHeader.self, forHeaderFooterViewReuseIdentifier: "Header")
     }
     
     
@@ -55,22 +75,24 @@ extension MypageViewController{
             view.addSubview($0)
         }
         
+        //tableView Layout
         tableView.snp.makeConstraints{
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
 
-extension MypageViewController: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        MyPageEnum.allCases.count
-    }
+extension MypageViewController: UITableViewDelegate{
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if(indexPath.row == 0){
+//            return 100
+//        }
+//        return 60
+//    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",for: indexPath) as? MyPageCell else {return UITableViewCell()}
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header") as? TableHeader else{ return UIView()}
         
-        cell.setData(indexPath)
-        return cell
+        return view
     }
-    
 }
