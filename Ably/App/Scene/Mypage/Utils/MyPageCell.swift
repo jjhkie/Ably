@@ -19,6 +19,7 @@ final class MyPageCell: UITableViewCell{
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 }
 
 extension MyPageCell{
@@ -35,6 +36,7 @@ extension MyPageCell{
             layer.shadowRadius = 10
             var backgroundConfig = UIBackgroundConfiguration.listPlainCell()
             backgroundConfig.cornerRadius = 10
+            
             backgroundConfig.backgroundColor = .white
             backgroundConfig.backgroundInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
             backgroundConfiguration = backgroundConfig

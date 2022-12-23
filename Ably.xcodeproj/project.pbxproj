@@ -26,6 +26,8 @@
 		B9670C3929514EDC00616BC5 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9670C3829514EDC00616BC5 /* MyPageCell.swift */; };
 		B9670C4529515DDE00616BC5 /* MyPageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9670C4429515DDE00616BC5 /* MyPageEnum.swift */; };
 		B96950AC2940292F000520A8 /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96950AB2940292F000520A8 /* enum.swift */; };
+		B9CED5CB29553C9700FDD60C /* ZzimViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */; };
+		B9CED5CD29553E6100FDD60C /* ZzimModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CED5CC29553E6100FDD60C /* ZzimModel.swift */; };
 		B9FECC2F2953E3AF001AF759 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FECC2E2953E3AF001AF759 /* MyPageViewModel.swift */; };
 		B9FECC312953E5EE001AF759 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FECC302953E5EE001AF759 /* ViewModel.swift */; };
 		B9FECC342953E607001AF759 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B9FECC332953E607001AF759 /* RxCocoa */; };
@@ -54,6 +56,8 @@
 		B9670C3829514EDC00616BC5 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		B9670C4429515DDE00616BC5 /* MyPageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEnum.swift; sourceTree = "<group>"; };
 		B96950AB2940292F000520A8 /* enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enum.swift; sourceTree = "<group>"; };
+		B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimViewModel.swift; sourceTree = "<group>"; };
+		B9CED5CC29553E6100FDD60C /* ZzimModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimModel.swift; sourceTree = "<group>"; };
 		B9FECC2E2953E3AF001AF759 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		B9FECC302953E5EE001AF759 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		B9FECC392953EC3E001AF759 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				B95218F5293CA4EB00018DAF /* ZzimViewController.swift */,
+				B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */,
+				B9CED5CC29553E6100FDD60C /* ZzimModel.swift */,
 			);
 			path = Zzim;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B96950AC2940292F000520A8 /* enum.swift in Sources */,
+				B9CED5CD29553E6100FDD60C /* ZzimModel.swift in Sources */,
 				B95218F6293CA4EB00018DAF /* ZzimViewController.swift in Sources */,
 				B923195C293A08F300236B6D /* AppDelegate.swift in Sources */,
 				B9670C4529515DDE00616BC5 /* MyPageEnum.swift in Sources */,
@@ -305,6 +312,7 @@
 				B93E7911293DF71E0061201F /* ShoppingMallViewController.swift in Sources */,
 				B9FECC312953E5EE001AF759 /* ViewModel.swift in Sources */,
 				B95BAB2229507E26004D6306 /* UINavigationController+.swift in Sources */,
+				B9CED5CB29553C9700FDD60C /* ZzimViewModel.swift in Sources */,
 				B95218EE293CA14300018DAF /* TabController.swift in Sources */,
 				B9670C3929514EDC00616BC5 /* MyPageCell.swift in Sources */,
 				B93E790F293DF6A00061201F /* TodayViewController.swift in Sources */,

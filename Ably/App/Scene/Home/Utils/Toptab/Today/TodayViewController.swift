@@ -25,7 +25,7 @@ final class TodayViewController: UIViewController{
     }()
     
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +34,11 @@ final class TodayViewController: UIViewController{
         bind()
         attribute()
         layout()
-        }
+    }
 }
 
 func getLayout() -> UICollectionViewCompositionalLayout {
-
+    
     UICollectionViewCompositionalLayout { (section, env) -> NSCollectionLayoutSection? in
         switch section {
         case 0:
@@ -67,7 +67,7 @@ func getLayout() -> UICollectionViewCompositionalLayout {
             section.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
             return section
         case 1:
-          
+            
             let itemInset: CGFloat = 2.5
             
             // Item
@@ -164,7 +164,7 @@ extension TodayViewController{
         collectionView.snp.makeConstraints{
             $0.edges.equalTo(view.safeAreaLayoutGuide)
             //$0.trailing.leading.equalToSuperview()
-           //$0.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            //$0.top.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
     }

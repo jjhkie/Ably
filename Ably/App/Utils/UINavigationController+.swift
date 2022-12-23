@@ -10,6 +10,6 @@ import UIKit
 extension UINavigationController{
     func setcommonBar(){
         navigationBar.backgroundColor = .white
-        
+        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
 }

@@ -26,7 +26,7 @@ extension MarketViewController{
     func attribute(){
         //NavigationBar
         self.navigationController?.navigationBar.topItem?.title = "마켓"
-
+        self.navigationItem.leadingButton()
 
         //navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     }

@@ -23,4 +23,11 @@ extension UINavigationItem{
             
         return barButtonItem
     }
+    
+    func leadingButton(){
+        let menuButton = self.makeSymbolButton(self,
+                                               action: Selector("pushToWrite"),
+                                               symbolName: "text.justify")
+        self.leftBarButtonItem = menuButton
+    }
 }

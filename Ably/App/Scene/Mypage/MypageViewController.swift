@@ -35,7 +35,11 @@ extension MypageViewController{
         
         output.tableCellData
             .drive(tableView.rx.items(cellIdentifier: "Cell",cellType: MyPageCell.self)){ row,data,cell in
-                
+                if(row == 0){
+                    self.tableView.rowHeight = 100
+                }else{
+                    self.tableView.rowHeight = 60
+                }
                 cell.setData(row,data)
             }
             .disposed(by:bag)
@@ -47,7 +51,7 @@ extension MypageViewController{
     func attribute(){
         //NavigationBar
         self.navigationController?.navigationBar.topItem?.title = "마이페이지"
-        self.navigationController?.navigationBar.topItem?.titleView?.tintColor = .black
+        self.navigationController?.setcommonBar()
         let menuButton = self.navigationItem.makeSymbolButton(self,
                                                                      action: Selector("pushToWrite"),
                                                                      symbolName: "text.justify")
@@ -83,13 +87,6 @@ extension MypageViewController{
 }
 
 extension MypageViewController: UITableViewDelegate{
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if(indexPath.row == 0){
-//            return 100
-//        }
-//        return 60
-//    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header") as? TableHeader else{ return UIView()}
         
