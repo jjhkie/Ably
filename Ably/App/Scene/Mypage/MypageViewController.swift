@@ -32,7 +32,7 @@ extension MypageViewController{
         
         let output = VM.transform(input: input)
         
-        
+
         output.tableCellData
             .drive(tableView.rx.items(cellIdentifier: "Cell",cellType: MyPageCell.self)){ row,data,cell in
                 if(row == 0){

@@ -12,6 +12,9 @@
 		B9231965293A08F400236B6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9231964293A08F400236B6D /* Assets.xcassets */; };
 		B9231968293A08F400236B6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9231966293A08F400236B6D /* LaunchScreen.storyboard */; };
 		B931D1522952B422002B3F1D /* TableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B931D1512952B422002B3F1D /* TableHeader.swift */; };
+		B93A5F30295BCD8A005BFB5C /* ZzimHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A5F2F295BCD8A005BFB5C /* ZzimHeaderView.swift */; };
+		B93A5F33295BD0B3005BFB5C /* ZzimRoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A5F32295BD0B3005BFB5C /* ZzimRoundCell.swift */; };
+		B93B883B2959998200067F24 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = B93B883A2959998200067F24 /* RxDataSources */; };
 		B93E7909293DE4A00061201F /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = B93E7908293DE4A00061201F /* Tabman */; };
 		B93E790F293DF6A00061201F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93E790E293DF6A00061201F /* TodayViewController.swift */; };
 		B93E7911293DF71E0061201F /* ShoppingMallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93E7910293DF71E0061201F /* ShoppingMallViewController.swift */; };
@@ -44,6 +47,8 @@
 		B9231967293A08F400236B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9231969293A08F400236B6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B931D1512952B422002B3F1D /* TableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeader.swift; sourceTree = "<group>"; };
+		B93A5F2F295BCD8A005BFB5C /* ZzimHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimHeaderView.swift; sourceTree = "<group>"; };
+		B93A5F32295BD0B3005BFB5C /* ZzimRoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimRoundCell.swift; sourceTree = "<group>"; };
 		B93E790E293DF6A00061201F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		B93E7910293DF71E0061201F /* ShoppingMallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingMallViewController.swift; sourceTree = "<group>"; };
 		B95218E7293C8FD500018DAF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 				B9FECC342953E607001AF759 /* RxCocoa in Frameworks */,
 				B95218EC293C941600018DAF /* SnapKit in Frameworks */,
 				B9FECC382953E607001AF759 /* RxSwift in Frameworks */,
+				B93B883B2959998200067F24 /* RxDataSources in Frameworks */,
 				B9FECC362953E607001AF759 /* RxRelay in Frameworks */,
 				B93E7909293DE4A00061201F /* Tabman in Frameworks */,
 			);
@@ -134,6 +140,15 @@
 			path = ShoppingMall;
 			sourceTree = "<group>";
 		};
+		B93A5F31295BCE4C005BFB5C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B93A5F2F295BCD8A005BFB5C /* ZzimHeaderView.swift */,
+				B93A5F32295BD0B3005BFB5C /* ZzimRoundCell.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		B93E790A293DE8280061201F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +197,7 @@
 		B95218F7293CA4EE00018DAF /* Zzim */ = {
 			isa = PBXGroup;
 			children = (
+				B93A5F31295BCE4C005BFB5C /* Utils */,
 				B95218F5293CA4EB00018DAF /* ZzimViewController.swift */,
 				B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */,
 				B9CED5CC29553E6100FDD60C /* ZzimModel.swift */,
@@ -243,6 +259,7 @@
 				B9FECC332953E607001AF759 /* RxCocoa */,
 				B9FECC352953E607001AF759 /* RxRelay */,
 				B9FECC372953E607001AF759 /* RxSwift */,
+				B93B883A2959998200067F24 /* RxDataSources */,
 			);
 			productName = Ably;
 			productReference = B9231958293A08F300236B6D /* Ably.app */;
@@ -276,6 +293,7 @@
 				B95218EA293C941600018DAF /* XCRemoteSwiftPackageReference "SnapKit" */,
 				B93E7907293DE49F0061201F /* XCRemoteSwiftPackageReference "Tabman" */,
 				B9FECC322953E607001AF759 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				B93B88392959998200067F24 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = B9231959293A08F300236B6D /* Products */;
 			projectDirPath = "";
@@ -321,7 +339,9 @@
 				B95218F1293CA4C100018DAF /* MarketViewController.swift in Sources */,
 				B9FECC3A2953EC3E001AF759 /* MyPageModel.swift in Sources */,
 				B923195E293A08F300236B6D /* SceneDelegate.swift in Sources */,
+				B93A5F33295BD0B3005BFB5C /* ZzimRoundCell.swift in Sources */,
 				B95218E8293C8FD500018DAF /* MainViewController.swift in Sources */,
+				B93A5F30295BCD8A005BFB5C /* ZzimHeaderView.swift in Sources */,
 				B9FECC2F2953E3AF001AF759 /* MyPageViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,6 +552,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B93B88392959998200067F24 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		B93E7907293DE49F0061201F /* XCRemoteSwiftPackageReference "Tabman" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/uias/Tabman";
@@ -559,6 +587,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B93B883A2959998200067F24 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B93B88392959998200067F24 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
+		};
 		B93E7908293DE4A00061201F /* Tabman */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B93E7907293DE49F0061201F /* XCRemoteSwiftPackageReference "Tabman" */;
