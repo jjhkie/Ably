@@ -23,9 +23,11 @@ final class ZzimHeaderView: UICollectionReusableView{
 }
 
 extension ZzimHeaderView{
+    //텍스트를 받아와 titleLabel을 설정
     func setText(_ text: String){
         titleLabel.text = text
     }
+    
     private func attribute(){
         titleLabel.textColor = .label
         titleLabel.font = .systemFont(ofSize: 22, weight: .bold)

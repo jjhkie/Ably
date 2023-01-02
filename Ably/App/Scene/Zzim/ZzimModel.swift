@@ -26,6 +26,4 @@ extension ZzimModel: SectionModelType{
         self = original
         self.items = items
     }
-    
-    
 }

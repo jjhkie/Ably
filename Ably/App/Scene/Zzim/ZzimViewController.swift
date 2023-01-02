@@ -16,9 +16,6 @@ final class ZzimViewController: UIViewController{
     
     let bag = DisposeBag()
     
-
-    
-
     private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: zzimLayout())
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -29,11 +26,11 @@ final class ZzimViewController: UIViewController{
         view.contentInset = .zero
         view.backgroundColor = .clear
         view.clipsToBounds = true
-
+        
         view.register(ZzimRoundCell.self, forCellWithReuseIdentifier: "RoundCell")
         view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         view.register(ZzimHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
-
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -43,16 +40,48 @@ final class ZzimViewController: UIViewController{
         super.viewDidLoad()
         view.backgroundColor = .white
         
-
         bind(ZzimViewModel())
         attribute()
         layout()
-        
-
-        
     }
 }
 
+extension ZzimViewController{
+    func bind(_ VM: ZzimViewModel){
+        
+        let dataSource = dataSource()
+        
+        let input = ZzimViewModel.Input()
+        
+        let output = VM.transform(input: input)
+        
+        output.cellData
+            .drive(collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: bag)
+        
+    }
+    
+    private func attribute(){
+        //네비게이션 바 설정
+        self.navigationController?.setcommonBar()
+        self.navigationController?.navigationBar.topItem?.title = "찜"
+        
+        self.navigationController?.navigationItem.leadingButton()
+
+    }
+    
+    private func layout(){
+        [collectionView].forEach{
+            view.addSubview($0)
+        }
+        
+        collectionView.snp.makeConstraints{
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+}
+
+/// TODO __ Utils 에 따로 분리
 func zzimLayout() -> UICollectionViewCompositionalLayout{
     UICollectionViewCompositionalLayout{ (section, env) -> NSCollectionLayoutSection? in
         switch section{
@@ -79,6 +108,24 @@ func zzimLayout() -> UICollectionViewCompositionalLayout{
             
             
             return section
+            
+        case 1:
+            let itemSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1 / 2), heightDimension: .fractionalHeight(1))
+            
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+            
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(160))
+            
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5 )
+            
+            
+            return section
+            
         default:
             let itemFractionalWidthFraction = 1.0 / 5.0 // horizontal 5개의 셀
             let groupFractionalHeightFraction = 1.0 / 4.0 // vertical 4개의 셀
@@ -109,11 +156,12 @@ func zzimLayout() -> UICollectionViewCompositionalLayout{
     }
 }
 
+
+//TODO __ Utils 에 따로 분리
 extension ZzimViewController{
-    func bind(_ VM: ZzimViewModel){
-        
-        let dataSource = RxCollectionViewSectionedReloadDataSource<ZzimModel>(
-            configureCell: {dataSource, collectionView, indexPath, item in
+    func dataSource() -> RxCollectionViewSectionedReloadDataSource<ZzimModel>{
+        return RxCollectionViewSectionedReloadDataSource<ZzimModel>(
+            configureCell: { dataSource, collectionView, indexPath, item in
                 if(indexPath.section == 0){
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoundCell", for: indexPath) as! ZzimRoundCell
                     //cell.backgroundColor = .blue
@@ -121,8 +169,8 @@ extension ZzimViewController{
                     //content?.backgroundColor = .blue
                     cell.backgroundConfiguration = content
                     
-                    
                     return cell
+                    
                 }else{
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
                     cell.backgroundColor = .blue
@@ -131,7 +179,7 @@ extension ZzimViewController{
                     cell.backgroundConfiguration = content
                     return cell
                 }
-
+                
             }
             ,configureSupplementaryView: { (dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
                 switch kind{
@@ -139,7 +187,7 @@ extension ZzimViewController{
                     let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! ZzimHeaderView
                     var headerText = dataSource.sectionModels[indexPath.section].header
                     header.setText(headerText)
-            
+                    
                     return header
                     
                 default:
@@ -148,67 +196,7 @@ extension ZzimViewController{
                 
             }
         )
-        
-        let input = ZzimViewModel.Input()
-        
-        let output = VM.transform(input: input)
-        
-        output.cellData
-            .drive(collectionView.rx.items(dataSource: dataSource))
-            .disposed(by: bag)
-        
-    }
-    
-    private func attribute(){
-        //네비게이션 바 설정
-        self.navigationController?.setcommonBar()
-        self.navigationController?.navigationBar.topItem?.title = "찜"
-        
-        self.navigationController?.navigationItem.leadingButton()
-    }
-    
-    private func layout(){
-        [collectionView].forEach{
-            view.addSubview($0)
-        }
-        
-        collectionView.snp.makeConstraints{
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
-        }
     }
 }
 
 
-extension ZzimViewController: UICollectionViewDataSource{
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        switch indexPath.section{
-        case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-            
-            cell.backgroundColor = .black
-            return cell
-        case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-            
-            cell.backgroundColor = .blue
-            return cell
-        default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-            
-            cell.backgroundColor = .red
-            return cell
-        }
-
-    }
-    
-    
-}

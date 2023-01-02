@@ -15,7 +15,8 @@ final class ZzimViewModel:VM{
     var bag = DisposeBag()
     
     private let sections = [
-        ZzimModel(header: "서랍 목록", items: [MainData(message: "a"),MainData(message: "a"),MainData(message: "a")]),
+        ZzimModel(header: "서랍 목록", items: [MainData(message: "a")]),
+        ZzimModel(header: "a", items: [MainData(message: "a"),MainData(message: "a"),MainData(message: "a")]),
         ZzimModel(header: "a", items: [MainData(message: "a"),MainData(message: "a"),MainData(message: "a")])
     ]
     
