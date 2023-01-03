@@ -9,6 +9,7 @@ import UIKit
 
 
 enum MyPageEnum: CaseIterable{
+    case banner
     case benefit
     case center
     case list
@@ -20,6 +21,8 @@ enum MyPageEnum: CaseIterable{
     
     var contents: String{
         switch self{
+        case .banner:
+            return ""
         case .benefit:
             return "에이블리 회원만의 특별한 혜택 보러 가기"
         case .center:
@@ -41,6 +44,8 @@ enum MyPageEnum: CaseIterable{
     
     var leadingImage: UIImage?{
         switch self{
+        case .banner:
+            return UIImage(systemName: "pencil")
         case .benefit:
             return UIImage(systemName: "pencil")
         case .center:

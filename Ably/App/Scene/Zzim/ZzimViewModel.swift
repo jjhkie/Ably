@@ -14,23 +14,20 @@ import RxCocoa
 final class ZzimViewModel:VM{
     var bag = DisposeBag()
     
-    private let sections = [
-        ZzimModel(header: "서랍 목록", items: [MainData(message: "a")]),
-        ZzimModel(header: "a", items: [MainData(message: "a"),MainData(message: "a"),MainData(message: "a")]),
-        ZzimModel(header: "a", items: [MainData(message: "a"),MainData(message: "a"),MainData(message: "a")])
+    
+    private let sections: [ZzimModel] = [
+        .SignInButtonSection(titls: "서랍 목록", items: [.SignSectionItem(enabled: false)]),
+        .ZzimBoxSection(title: "", items: [
+            .BoxSectionItem(title: "기본 서랍", count: 0),
+            .BoxSectionItem(title: "만든 서랍", count: 0)])
     ]
     
     private let sectionSubject = BehaviorRelay(value: [ZzimModel]())
     
     init(){
         
-
+        
     }
-    
-
- 
-    
-
     
     struct Input{
         
@@ -39,7 +36,7 @@ final class ZzimViewModel:VM{
     struct Output{
         let cellData: Driver<[ZzimModel]>
     }
-
+    
     func transform(input: Input) -> Output {
         
         sectionSubject.accept(sections)

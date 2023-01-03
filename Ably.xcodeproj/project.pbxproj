@@ -11,6 +11,7 @@
 		B923195E293A08F300236B6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B923195D293A08F300236B6D /* SceneDelegate.swift */; };
 		B9231965293A08F400236B6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9231964293A08F400236B6D /* Assets.xcassets */; };
 		B9231968293A08F400236B6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9231966293A08F400236B6D /* LaunchScreen.storyboard */; };
+		B92ACAA22963B21D00C82616 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B92ACAA12963B21D00C82616 /* Then */; };
 		B931D1522952B422002B3F1D /* TableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B931D1512952B422002B3F1D /* TableHeader.swift */; };
 		B93A5F30295BCD8A005BFB5C /* ZzimHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A5F2F295BCD8A005BFB5C /* ZzimHeaderView.swift */; };
 		B93A5F33295BD0B3005BFB5C /* ZzimRoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A5F32295BD0B3005BFB5C /* ZzimRoundCell.swift */; };
@@ -29,6 +30,7 @@
 		B9670C3929514EDC00616BC5 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9670C3829514EDC00616BC5 /* MyPageCell.swift */; };
 		B9670C4529515DDE00616BC5 /* MyPageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9670C4429515DDE00616BC5 /* MyPageEnum.swift */; };
 		B96950AC2940292F000520A8 /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96950AB2940292F000520A8 /* enum.swift */; };
+		B9BE11C02962CA0500C6BFD4 /* ZzimBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BE11BF2962CA0500C6BFD4 /* ZzimBoxCell.swift */; };
 		B9CED5CB29553C9700FDD60C /* ZzimViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */; };
 		B9CED5CD29553E6100FDD60C /* ZzimModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CED5CC29553E6100FDD60C /* ZzimModel.swift */; };
 		B9FECC2F2953E3AF001AF759 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FECC2E2953E3AF001AF759 /* MyPageViewModel.swift */; };
@@ -61,6 +63,7 @@
 		B9670C3829514EDC00616BC5 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		B9670C4429515DDE00616BC5 /* MyPageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEnum.swift; sourceTree = "<group>"; };
 		B96950AB2940292F000520A8 /* enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enum.swift; sourceTree = "<group>"; };
+		B9BE11BF2962CA0500C6BFD4 /* ZzimBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimBoxCell.swift; sourceTree = "<group>"; };
 		B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimViewModel.swift; sourceTree = "<group>"; };
 		B9CED5CC29553E6100FDD60C /* ZzimModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimModel.swift; sourceTree = "<group>"; };
 		B9FECC2E2953E3AF001AF759 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 				B9FECC342953E607001AF759 /* RxCocoa in Frameworks */,
 				B95218EC293C941600018DAF /* SnapKit in Frameworks */,
 				B9FECC382953E607001AF759 /* RxSwift in Frameworks */,
+				B92ACAA22963B21D00C82616 /* Then in Frameworks */,
 				B93B883B2959998200067F24 /* RxDataSources in Frameworks */,
 				B9FECC362953E607001AF759 /* RxRelay in Frameworks */,
 				B93E7909293DE4A00061201F /* Tabman in Frameworks */,
@@ -145,6 +149,7 @@
 			children = (
 				B93A5F2F295BCD8A005BFB5C /* ZzimHeaderView.swift */,
 				B93A5F32295BD0B3005BFB5C /* ZzimRoundCell.swift */,
+				B9BE11BF2962CA0500C6BFD4 /* ZzimBoxCell.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				B9FECC352953E607001AF759 /* RxRelay */,
 				B9FECC372953E607001AF759 /* RxSwift */,
 				B93B883A2959998200067F24 /* RxDataSources */,
+				B92ACAA12963B21D00C82616 /* Then */,
 			);
 			productName = Ably;
 			productReference = B9231958293A08F300236B6D /* Ably.app */;
@@ -294,6 +300,7 @@
 				B93E7907293DE49F0061201F /* XCRemoteSwiftPackageReference "Tabman" */,
 				B9FECC322953E607001AF759 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B93B88392959998200067F24 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				B92ACAA02963B21D00C82616 /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = B9231959293A08F300236B6D /* Products */;
 			projectDirPath = "";
@@ -341,6 +348,7 @@
 				B923195E293A08F300236B6D /* SceneDelegate.swift in Sources */,
 				B93A5F33295BD0B3005BFB5C /* ZzimRoundCell.swift in Sources */,
 				B95218E8293C8FD500018DAF /* MainViewController.swift in Sources */,
+				B9BE11C02962CA0500C6BFD4 /* ZzimBoxCell.swift in Sources */,
 				B93A5F30295BCD8A005BFB5C /* ZzimHeaderView.swift in Sources */,
 				B9FECC2F2953E3AF001AF759 /* MyPageViewModel.swift in Sources */,
 			);
@@ -552,6 +560,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B92ACAA02963B21D00C82616 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		B93B88392959998200067F24 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
@@ -587,6 +603,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B92ACAA12963B21D00C82616 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B92ACAA02963B21D00C82616 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
 		B93B883A2959998200067F24 /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B93B88392959998200067F24 /* XCRemoteSwiftPackageReference "RxDataSources" */;

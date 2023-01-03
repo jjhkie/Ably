@@ -24,12 +24,12 @@ final class MyPageCell: UITableViewCell{
 
 extension MyPageCell{
     
-    func setData(_ row: Int,_ data: MyPageData ){
+    func setData(_ row: Int,_ data: MyData ){
         
         //TODO Cell Padding 값 주기
         
         //첫 번째 셀 설정
-        if(row == 0){
+        if(row == 1){
             layer.shadowColor = UIColor.black.cgColor
             layer.shadowOpacity = 0.5
             

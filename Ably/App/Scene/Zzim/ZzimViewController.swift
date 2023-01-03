@@ -28,7 +28,7 @@ final class ZzimViewController: UIViewController{
         view.clipsToBounds = true
         
         view.register(ZzimRoundCell.self, forCellWithReuseIdentifier: "RoundCell")
-        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        view.register(ZzimBoxCell.self, forCellWithReuseIdentifier: "BoxCell")
         view.register(ZzimHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -63,11 +63,12 @@ extension ZzimViewController{
     
     private func attribute(){
         //네비게이션 바 설정
-        self.navigationController?.setcommonBar()
+        //self.navigationController?.setcommonBar()
         self.navigationController?.navigationBar.topItem?.title = "찜"
-        
-        self.navigationController?.navigationItem.leadingButton()
-
+        [self.navigationItem].forEach{
+            $0.leadingButton()
+            $0.trailingButton("magnifyingglass")
+        }
     }
     
     private func layout(){
@@ -76,7 +77,7 @@ extension ZzimViewController{
         }
         
         collectionView.snp.makeConstraints{
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.edges.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
     }
 }
@@ -92,7 +93,7 @@ func zzimLayout() -> UICollectionViewCompositionalLayout{
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
             
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(120))
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(100))
             
             let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
             
@@ -162,7 +163,8 @@ extension ZzimViewController{
     func dataSource() -> RxCollectionViewSectionedReloadDataSource<ZzimModel>{
         return RxCollectionViewSectionedReloadDataSource<ZzimModel>(
             configureCell: { dataSource, collectionView, indexPath, item in
-                if(indexPath.section == 0){
+                switch dataSource[indexPath]{
+                case .SignSectionItem(_):
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoundCell", for: indexPath) as! ZzimRoundCell
                     //cell.backgroundColor = .blue
                     var content = cell.backgroundConfiguration
@@ -170,22 +172,43 @@ extension ZzimViewController{
                     cell.backgroundConfiguration = content
                     
                     return cell
-                    
-                }else{
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+                case let .BoxSectionItem(title, count):
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BoxCell", for: indexPath) as! ZzimBoxCell
+                    //dataSource.sectionModels
+                  
+                    cell.setData(title,count)
                     cell.backgroundColor = .blue
                     var content = cell.backgroundConfiguration
                     content?.backgroundColor = .blue
                     cell.backgroundConfiguration = content
                     return cell
                 }
+//                if(indexPath.section == 0){
+//                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoundCell", for: indexPath) as! ZzimRoundCell
+//                    //cell.backgroundColor = .blue
+//                    var content = cell.backgroundConfiguration
+//                    //content?.backgroundColor = .blue
+//                    cell.backgroundConfiguration = content
+//
+//                    return cell
+//
+//                }else{
+//                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BoxCell", for: indexPath) as! ZzimBoxCell
+//                    //dataSource.sectionModels
+//                    cell.setData(dataSource.sectionModels[indexPath.section].items[indexPath.row])
+//                    cell.backgroundColor = .blue
+//                    var content = cell.backgroundConfiguration
+//                    content?.backgroundColor = .blue
+//                    cell.backgroundConfiguration = content
+//                    return cell
+//                }
                 
             }
             ,configureSupplementaryView: { (dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
                 switch kind{
                 case UICollectionView.elementKindSectionHeader:
                     let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! ZzimHeaderView
-                    var headerText = dataSource.sectionModels[indexPath.section].header
+                    var headerText = dataSource.sectionModels[indexPath.section].title
                     header.setText(headerText)
                     
                     return header

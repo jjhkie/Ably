@@ -8,12 +8,10 @@
 import UIKit
 import SnapKit
 import RxSwift
+import Then
+import RxDataSources
 
 final class MypageViewController: UIViewController{
-
-    let tableView = UITableView()
-    
-    let bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,62 +20,83 @@ final class MypageViewController: UIViewController{
         attribute()
         layout()
     }
+    
+    private let bag = DisposeBag()
+    
+    private let tableView = UITableView().then{
+        $0.backgroundColor = .white
+        $0.separatorStyle = .none
+        $0.register(MyPageCell.self, forCellReuseIdentifier: "Line")
+        $0.register(TableHeader.self, forCellReuseIdentifier: "FirstLine")
+        //$0.register(TableHeader.self, forHeaderFooterViewReuseIdentifier: "Header")
+        
+    }
+    
 }
 
 extension MypageViewController{
-    
     func bind(_ VM: MyPageViewModel){
         
         let input = MyPageViewModel.Input()
         
         let output = VM.transform(input: input)
         
-
-        output.tableCellData
-            .drive(tableView.rx.items(cellIdentifier: "Cell",cellType: MyPageCell.self)){ row,data,cell in
-                if(row == 0){
-                    self.tableView.rowHeight = 100
+        let dataSource = RxTableViewSectionedReloadDataSource<MyPageData>(
+            configureCell: { dataSource, tableView, indexPath, item in
+                
+                if(indexPath.row == 0){
+                    let line = tableView.dequeueReusableCell(withIdentifier: "FirstLine", for: indexPath) as! TableHeader
+                    
+                    return line
                 }else{
-                    self.tableView.rowHeight = 60
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "Line", for: indexPath) as! MyPageCell
+                    cell.setData(indexPath.row, item)
+                    return cell
                 }
-                cell.setData(row,data)
+   
             }
-            .disposed(by:bag)
+        )
         
-        tableView.backgroundColor = .white
-        tableView.delegate = self
+//        let dataSource = RxTableViewSectionedAnimatedDataSource<MySection>(
+//              configureCell: { ds, tv, _, item in
+//                  let cell = tv.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "Cell")
+//                  cell.textLabel?.text = "Item \(item)"
+//
+//                  return cell
+//              },
+//              titleForHeaderInSection: { ds, index in
+//                  return ds.sectionModels[index].header
+//              }
+//          )
+
+//        output.tableCellData
+//            .drive(tableView.rx.items(cellIdentifier: "Line",cellType: MyPageCell.self)){ row,data,cell in
+//                if(row == 0){
+//                    self.tableView.rowHeight = 100
+//                }else{
+//                    self.tableView.rowHeight = 60
+//                }
+//                cell.setData(row,data)
+//            }
+//            .disposed(by:bag)
+        output.tableCellData
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: bag)
+        
     }
     
-    func attribute(){
+    private func attribute(){
         //NavigationBar
         self.navigationController?.navigationBar.topItem?.title = "마이페이지"
         self.navigationController?.setcommonBar()
-        let menuButton = self.navigationItem.makeSymbolButton(self,
-                                                                     action: Selector("pushToWrite"),
-                                                                     symbolName: "text.justify")
-        self.navigationItem.leftBarButtonItem = menuButton
+        self.navigationItem.leadingButton()
         
-        let alertButton = self.navigationItem.makeSymbolButton(self,
-                                                               action: Selector("abc"),
-                                                               symbolName: "bell")
-        
-        let basketButton = self.navigationItem.makeSymbolButton(self,
-                                                               action: Selector("abc"),
-                                                               symbolName: "basket")
-        
-        self.navigationItem.rightBarButtonItems = [basketButton,alertButton]
-        
-        //tableView
-        tableView.separatorStyle = .none // 밑줄 제거 
-        tableView.register(MyPageCell.self, forCellReuseIdentifier: "Cell")
-        tableView.register(TableHeader.self, forHeaderFooterViewReuseIdentifier: "Header")
+        self.navigationItem.trailingButton("bell")
     }
     
     
-    func layout(){
-        [tableView].forEach{
-            view.addSubview($0)
-        }
+    private func layout(){
+        view.addSubview(tableView)
         
         //tableView Layout
         tableView.snp.makeConstraints{
@@ -86,10 +105,3 @@ extension MypageViewController{
     }
 }
 
-extension MypageViewController: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header") as? TableHeader else{ return UIView()}
-        
-        return view
-    }
-}

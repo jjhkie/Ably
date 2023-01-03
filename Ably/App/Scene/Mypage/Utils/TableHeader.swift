@@ -8,19 +8,19 @@
 import UIKit
 import SnapKit
 
-final class TableHeader: UITableViewHeaderFooterView{
-    let allStack = UIStackView()
-    let textStack = UIStackView()
-    let buttonStack = UIStackView()
+final class TableHeader: UITableViewCell{
+    private let allStack = UIStackView()
+    private let textStack = UIStackView()
+    private let buttonStack = UIStackView()
     
-    let grayText = UILabel()
-    let blackText = UILabel()
+    private let grayText = UILabel()
+    private let blackText = UILabel()
     
-    let loginButton = UIButton()
-    let signupButton = UIButton()
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-        
+    private let loginButton = UIButton()
+    private let signupButton = UIButton()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         attribute()
         layout()
     }

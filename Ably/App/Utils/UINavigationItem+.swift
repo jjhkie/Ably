@@ -30,4 +30,16 @@ extension UINavigationItem{
                                                symbolName: "text.justify")
         self.leftBarButtonItem = menuButton
     }
+    
+    func trailingButton(_ text: String){
+        let basketButton = self.makeSymbolButton(self,
+                                                 action: Selector("abc"),
+                                                 symbolName: "basket")
+        
+        let secondButton = self.makeSymbolButton(self,
+                                                action: Selector("abc"),
+                                                symbolName: text)
+        
+        self.rightBarButtonItems = [basketButton,secondButton]
+    }
 }

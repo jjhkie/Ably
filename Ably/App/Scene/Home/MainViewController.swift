@@ -13,7 +13,7 @@ import Pageboy
 
 
 final class MainViewController: TabmanViewController {
-
+    
     ///TopTabBar
     let topTabView = UIView()
     private var viewController = [TodayViewController(), ShoppingMallViewController(),UIViewController(),UIViewController(),UIViewController(),UIViewController(),UIViewController(),UIViewController()]
@@ -26,14 +26,14 @@ final class MainViewController: TabmanViewController {
     let alertBt = UIButton()
     let basketBt = UIButton()
     let searchController = UISearchController(searchResultsController: nil)
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
         self.dataSource = self
-
+        
         //
         attribute()
         layout()
@@ -51,7 +51,7 @@ extension MainViewController{
         //self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.topItem?.title = "title"
-       
+        
         //TopTabBar Attribute()
         let bar = TMBar.ButtonBar()
         bar.layout.transitionStyle = .snap
@@ -79,7 +79,7 @@ extension MainViewController{
             $1.configuration = config
         }
         
-      
+        
         
     }
     
@@ -106,7 +106,7 @@ extension MainViewController{
             $0.trailing.leading.equalTo(view.safeAreaLayoutGuide)
             //$0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-
+        
     }
 }
 
