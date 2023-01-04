@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3395F29EC6B0F96A4D36839D /* Pods_Ably.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F5A80787214F16E2304384 /* Pods_Ably.framework */; };
 		B923195C293A08F300236B6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B923195B293A08F300236B6D /* AppDelegate.swift */; };
 		B923195E293A08F300236B6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B923195D293A08F300236B6D /* SceneDelegate.swift */; };
 		B9231965293A08F400236B6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9231964293A08F400236B6D /* Assets.xcassets */; };
@@ -16,7 +17,6 @@
 		B93A5F30295BCD8A005BFB5C /* ZzimHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A5F2F295BCD8A005BFB5C /* ZzimHeaderView.swift */; };
 		B93A5F33295BD0B3005BFB5C /* ZzimRoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A5F32295BD0B3005BFB5C /* ZzimRoundCell.swift */; };
 		B93B883B2959998200067F24 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = B93B883A2959998200067F24 /* RxDataSources */; };
-		B93E7909293DE4A00061201F /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = B93E7908293DE4A00061201F /* Tabman */; };
 		B93E790F293DF6A00061201F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93E790E293DF6A00061201F /* TodayViewController.swift */; };
 		B93E7911293DF71E0061201F /* ShoppingMallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93E7910293DF71E0061201F /* ShoppingMallViewController.swift */; };
 		B95218E8293C8FD500018DAF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218E7293C8FD500018DAF /* MainViewController.swift */; };
@@ -42,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52F5A80787214F16E2304384 /* Pods_Ably.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ably.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B37E54EFC8077CDE4EC46483 /* Pods-Ably.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ably.release.xcconfig"; path = "Target Support Files/Pods-Ably/Pods-Ably.release.xcconfig"; sourceTree = "<group>"; };
 		B9231958293A08F300236B6D /* Ably.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ably.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B923195B293A08F300236B6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B923195D293A08F300236B6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		B9FECC2E2953E3AF001AF759 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		B9FECC302953E5EE001AF759 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		B9FECC392953EC3E001AF759 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
+		ED6E82736FC3C54762B1FC9B /* Pods-Ably.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ably.debug.xcconfig"; path = "Target Support Files/Pods-Ably/Pods-Ably.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,18 +85,38 @@
 				B92ACAA22963B21D00C82616 /* Then in Frameworks */,
 				B93B883B2959998200067F24 /* RxDataSources in Frameworks */,
 				B9FECC362953E607001AF759 /* RxRelay in Frameworks */,
-				B93E7909293DE4A00061201F /* Tabman in Frameworks */,
+				3395F29EC6B0F96A4D36839D /* Pods_Ably.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76DE8D777101A05417C48F69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52F5A80787214F16E2304384 /* Pods_Ably.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A4B495129103A4FE7633CA32 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ED6E82736FC3C54762B1FC9B /* Pods-Ably.debug.xcconfig */,
+				B37E54EFC8077CDE4EC46483 /* Pods-Ably.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B923194F293A08F300236B6D = {
 			isa = PBXGroup;
 			children = (
 				B923195A293A08F300236B6D /* Ably */,
 				B9231959293A08F300236B6D /* Products */,
+				A4B495129103A4FE7633CA32 /* Pods */,
+				76DE8D777101A05417C48F69 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -249,9 +272,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B923196C293A08F400236B6D /* Build configuration list for PBXNativeTarget "Ably" */;
 			buildPhases = (
+				04459954A8AB4CA3C9C59783 /* [CP] Check Pods Manifest.lock */,
 				B9231954293A08F300236B6D /* Sources */,
 				B9231955293A08F300236B6D /* Frameworks */,
 				B9231956293A08F300236B6D /* Resources */,
+				C65714B32EC8A05DD9EB68CA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -260,7 +285,6 @@
 			name = Ably;
 			packageProductDependencies = (
 				B95218EB293C941600018DAF /* SnapKit */,
-				B93E7908293DE4A00061201F /* Tabman */,
 				B9FECC332953E607001AF759 /* RxCocoa */,
 				B9FECC352953E607001AF759 /* RxRelay */,
 				B9FECC372953E607001AF759 /* RxSwift */,
@@ -287,7 +311,7 @@
 				};
 			};
 			buildConfigurationList = B9231953293A08F300236B6D /* Build configuration list for PBXProject "Ably" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -297,7 +321,6 @@
 			mainGroup = B923194F293A08F300236B6D;
 			packageReferences = (
 				B95218EA293C941600018DAF /* XCRemoteSwiftPackageReference "SnapKit" */,
-				B93E7907293DE49F0061201F /* XCRemoteSwiftPackageReference "Tabman" */,
 				B9FECC322953E607001AF759 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B93B88392959998200067F24 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				B92ACAA02963B21D00C82616 /* XCRemoteSwiftPackageReference "Then" */,
@@ -322,6 +345,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04459954A8AB4CA3C9C59783 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ably-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C65714B32EC8A05DD9EB68CA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ably/Pods-Ably-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ably/Pods-Ably-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ably/Pods-Ably-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B9231954293A08F300236B6D /* Sources */ = {
@@ -484,6 +549,7 @@
 		};
 		B923196D293A08F400236B6D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED6E82736FC3C54762B1FC9B /* Pods-Ably.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -511,6 +577,7 @@
 		};
 		B923196E293A08F400236B6D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B37E54EFC8077CDE4EC46483 /* Pods-Ably.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -576,14 +643,6 @@
 				kind = branch;
 			};
 		};
-		B93E7907293DE49F0061201F /* XCRemoteSwiftPackageReference "Tabman" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/uias/Tabman";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 		B95218EA293C941600018DAF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -612,11 +671,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B93B88392959998200067F24 /* XCRemoteSwiftPackageReference "RxDataSources" */;
 			productName = RxDataSources;
-		};
-		B93E7908293DE4A00061201F /* Tabman */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B93E7907293DE49F0061201F /* XCRemoteSwiftPackageReference "Tabman" */;
-			productName = Tabman;
 		};
 		B95218EB293C941600018DAF /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

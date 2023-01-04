@@ -12,6 +12,7 @@ import RxDataSources
 import RxCocoa
 
 
+
 final class ZzimViewController: UIViewController{
     
     let bag = DisposeBag()
@@ -183,25 +184,7 @@ extension ZzimViewController{
                     cell.backgroundConfiguration = content
                     return cell
                 }
-//                if(indexPath.section == 0){
-//                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoundCell", for: indexPath) as! ZzimRoundCell
-//                    //cell.backgroundColor = .blue
-//                    var content = cell.backgroundConfiguration
-//                    //content?.backgroundColor = .blue
-//                    cell.backgroundConfiguration = content
-//
-//                    return cell
-//
-//                }else{
-//                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BoxCell", for: indexPath) as! ZzimBoxCell
-//                    //dataSource.sectionModels
-//                    cell.setData(dataSource.sectionModels[indexPath.section].items[indexPath.row])
-//                    cell.backgroundColor = .blue
-//                    var content = cell.backgroundConfiguration
-//                    content?.backgroundColor = .blue
-//                    cell.backgroundConfiguration = content
-//                    return cell
-//                }
+
                 
             }
             ,configureSupplementaryView: { (dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in

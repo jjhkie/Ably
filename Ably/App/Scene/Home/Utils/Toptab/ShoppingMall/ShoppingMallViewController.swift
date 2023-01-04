@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import XLPagerTabStrip
 
-final class ShoppingMallViewController: UIViewController{
+final class ShoppingMallViewController: UIViewController,IndicatorInfoProvider{
+    func indicatorInfo(for pagerTabStripController: XLPagerTabStrip.PagerTabStripViewController) -> XLPagerTabStrip.IndicatorInfo {
+        return IndicatorInfo(title: "쇼핑몰")
+    }
+    
     
     
     

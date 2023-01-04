@@ -7,17 +7,30 @@
 
 import UIKit
 import SnapKit
+import Then
 
 final class TableHeader: UITableViewCell{
     private let allStack = UIStackView()
     private let textStack = UIStackView()
     private let buttonStack = UIStackView()
     
-    private let grayText = UILabel()
-    private let blackText = UILabel()
+    private let grayText = UILabel().then{
+        $0.text = "에이블리 회원이라면"
+        $0.font = .systemFont(ofSize: 14, weight: .bold)
+        $0.textColor = .gray
+    }
+    private let blackText = UILabel().then{
+        $0.text = "누구나 무료배송!"
+        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.textColor = .black
+    }
     
-    private let loginButton = UIButton()
-    private let signupButton = UIButton()
+    private let loginButton = UIButton().then{
+        $0.setTitle("로그인", for: .normal)
+    }
+    private let signupButton = UIButton().then{
+        $0.setTitle("회원가입", for: .normal)
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -39,17 +52,6 @@ extension TableHeader{
         }
         textStack.axis = .vertical
         
-        //텍스트 설정
-        grayText.text = "에이블리 회원이라면"
-        grayText.font = .systemFont(ofSize: 14, weight: .bold)
-        grayText.textColor = .gray
-        
-        blackText.text = "누구나 무료배송!"
-        blackText.font = .systemFont(ofSize: 20, weight: .bold)
-        blackText.textColor = .black
-        
-        loginButton.setTitle("로그인", for: .normal)
-        signupButton.setTitle("회원가입", for: .normal)
         [loginButton,signupButton].forEach{
             $0.setTitleColor(UIColor.gray, for: .normal)
             $0.layer.cornerRadius = 20

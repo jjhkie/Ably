@@ -7,16 +7,13 @@
 
 import UIKit
 import SnapKit
-import Tabman
-import Pageboy
+import XLPagerTabStrip
 
 
 
-final class MainViewController: TabmanViewController {
-    
+final class MainViewController: ButtonBarPagerTabStripViewController {
     ///TopTabBar
     let topTabView = UIView()
-    private var viewController = [TodayViewController(), ShoppingMallViewController(),UIViewController(),UIViewController(),UIViewController(),UIViewController(),UIViewController(),UIViewController()]
     
     ///SearchBar & MenuButton
     let topStackView = UIStackView()
@@ -32,14 +29,19 @@ final class MainViewController: TabmanViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        self.dataSource = self
-        
+        configureButtonBar()
         //
         attribute()
         layout()
     }
     
+    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        return [TodayViewController(), ShoppingMallViewController()]
+    }
+    
 }
+
+
 
 extension MainViewController{
     
@@ -52,20 +54,7 @@ extension MainViewController{
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.topItem?.title = "title"
         
-        //TopTabBar Attribute()
-        let bar = TMBar.ButtonBar()
-        bar.layout.transitionStyle = .snap
-        bar.layout.alignment = .centerDistributed
-        bar.buttons.customize{//Item 선택에 따른 color 설정
-            $0.tintColor = .gray
-            $0.selectedTintColor = .black
-        }
-        bar.layout.contentInset = UIEdgeInsets(top: .zero, left: 10, bottom: .zero, right: 10)
-        //indicator Attribute()
-        bar.indicator.weight = .light
-        bar.indicator.tintColor = .black
-        addBar(bar, dataSource: self, at: .custom(view: topTabView, layout: nil))
-        
+
         //TopStackView
         topStackView.axis = .horizontal
         topStackView.backgroundColor = .white
@@ -78,10 +67,30 @@ extension MainViewController{
             $1.setImage(UIImage(systemName: TopButtonItem(rawValue: $0)!.imageTitle), for: .normal)
             $1.configuration = config
         }
-        
-        
-        
     }
+    //XLPagerTabStrip Setting
+    func configureButtonBar() {
+            settings.style.buttonBarBackgroundColor = .white
+            settings.style.buttonBarItemBackgroundColor = .white
+
+            settings.style.buttonBarItemFont = UIFont(name: "Helvetica", size: 17.0)!
+            settings.style.buttonBarItemTitleColor = .gray
+            
+            settings.style.buttonBarMinimumLineSpacing = 0
+            settings.style.buttonBarItemsShouldFillAvailableWidth = true
+            settings.style.buttonBarLeftContentInset = 0
+            settings.style.buttonBarRightContentInset = 0
+
+            settings.style.selectedBarHeight = 3.0
+            settings.style.selectedBarBackgroundColor = .purple
+            
+            // Changing item text color on swipe
+            changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+                guard changeCurrentIndex == true else { return }
+                oldCell?.label.textColor = .gray
+                newCell?.label.textColor = .purple
+            }
+        }
     
     private func layout(){
         
@@ -110,44 +119,4 @@ extension MainViewController{
     }
 }
 
-//TopBar
-extension MainViewController: PageboyViewControllerDataSource, TMBarDataSource{
-    func numberOfViewControllers(in pageboyViewController: Pageboy.PageboyViewController) -> Int {
-        return viewController.count
-    }
-    
-    func viewController(for pageboyViewController: Pageboy.PageboyViewController, at index: Pageboy.PageboyViewController.PageIndex) -> UIViewController? {
-        return viewController[index]
-    }
-    
-    func defaultPage(for pageboyViewController: Pageboy.PageboyViewController) -> Pageboy.PageboyViewController.Page? {
-        return nil
-    }
-    
-    func barItem(for bar: Tabman.TMBar, at index: Int) -> Tabman.TMBarItemable {
-        
-        switch index{
-        case 0:
-            return TMBarItem(title: "투데이")
-        case 1:
-            return TMBarItem(title: "쇼핑몰")
-        case 2:
-            return TMBarItem(title: "샥-출발")
-        case 3:
-            return TMBarItem(title: "브랜드")
-        case 4:
-            return TMBarItem(title: "뷰티")
-        case 5:
-            return TMBarItem(title: "폰케이스")
-        case 6:
-            return TMBarItem(title: "코디")
-        case 7:
-            return TMBarItem(title: "베스트")
-        case 8:
-            return TMBarItem(title: "핫딜")
-        default:
-            return TMBarItem(title: "page")
-        }
-    }
-}
 

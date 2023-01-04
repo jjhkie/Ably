@@ -7,15 +7,21 @@
 
 import UIKit
 import SnapKit
+import Then
 
 final class ZzimHeaderView: UICollectionReusableView{
     
-    private let titleLabel = UILabel()
     override init(frame: CGRect) {
         super.init(frame: frame)
         attribute()
         layout()
     }
+    
+    private let titleLabel = UILabel().then{
+        $0.textColor = .label
+        $0.font = .systemFont(ofSize: 22, weight: .bold)
+    }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -29,8 +35,7 @@ extension ZzimHeaderView{
     }
     
     private func attribute(){
-        titleLabel.textColor = .label
-        titleLabel.font = .systemFont(ofSize: 22, weight: .bold)
+       
     }
     
     private func layout(){

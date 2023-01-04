@@ -7,8 +7,13 @@
 
 import UIKit
 import SnapKit
+import XLPagerTabStrip
 
-final class TodayViewController: UIViewController{
+final class TodayViewController: UIViewController,IndicatorInfoProvider{
+    func indicatorInfo(for pagerTabStripController: XLPagerTabStrip.PagerTabStripViewController) -> XLPagerTabStrip.IndicatorInfo {
+        return IndicatorInfo(title: "투데이")
+    }
+    
     
     private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: getLayout())
