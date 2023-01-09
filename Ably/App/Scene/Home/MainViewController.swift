@@ -8,12 +8,12 @@
 import UIKit
 import SnapKit
 import XLPagerTabStrip
+import Then
 
 
 
 final class MainViewController: ButtonBarPagerTabStripViewController {
-    ///TopTabBar
-    let topTabView = UIView()
+
     
     ///SearchBar & MenuButton
     let topStackView = UIStackView()
@@ -26,22 +26,22 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     
     
     override func viewDidLoad() {
+        configureButtonBar()
+        
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        configureButtonBar()
-        //
         attribute()
         layout()
     }
     
+    
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        return [TodayViewController(), ShoppingMallViewController()]
+        return [TodayViewController(), ShoppingMallViewController(),BrandController(),BeautyController(),PhoneCaseController(),CodiController(),BestController(),HotDealController()]
     }
     
+    
 }
-
-
 
 extension MainViewController{
     
@@ -53,7 +53,7 @@ extension MainViewController{
         //self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.topItem?.title = "title"
-        
+        self.navigationController?.hidesBarsOnSwipe = true
 
         //TopStackView
         topStackView.axis = .horizontal
@@ -70,52 +70,22 @@ extension MainViewController{
     }
     //XLPagerTabStrip Setting
     func configureButtonBar() {
-            settings.style.buttonBarBackgroundColor = .white
-            settings.style.buttonBarItemBackgroundColor = .white
+        
+        
+        self.tabBarCustom()
 
-            settings.style.buttonBarItemFont = UIFont(name: "Helvetica", size: 17.0)!
-            settings.style.buttonBarItemTitleColor = .gray
-            
-            settings.style.buttonBarMinimumLineSpacing = 0
-            settings.style.buttonBarItemsShouldFillAvailableWidth = true
-            settings.style.buttonBarLeftContentInset = 0
-            settings.style.buttonBarRightContentInset = 0
-
-            settings.style.selectedBarHeight = 3.0
-            settings.style.selectedBarBackgroundColor = .purple
-            
-            // Changing item text color on swipe
-            changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
-                guard changeCurrentIndex == true else { return }
-                oldCell?.label.textColor = .gray
-                newCell?.label.textColor = .purple
-            }
         }
     
     private func layout(){
         
+        //TabBar Container Auto Layout
+        self.containerLayout()
         
-        ///StackView에 추가
-        [menuBt,searchController.searchBar,alertBt,basketBt].forEach{
-            topStackView.addArrangedSubview($0)
-        }
-        
-        ///MainView에 추가
-        [topStackView,topTabView].forEach{
-            view.addSubview($0)
-        }
-        
-        /// Settings
-        topStackView.snp.makeConstraints{
+        buttonBarView.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview().inset(5)
+            $0.height.equalTo(40)
         }
-        topTabView.snp.makeConstraints{
-            $0.top.equalTo(topStackView.snp.bottom)
-            $0.trailing.leading.equalTo(view.safeAreaLayoutGuide)
-            //$0.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-        
     }
 }
 

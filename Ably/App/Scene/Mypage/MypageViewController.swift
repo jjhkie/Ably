@@ -26,9 +26,8 @@ final class MypageViewController: UIViewController{
     private let tableView = UITableView().then{
         $0.backgroundColor = .white
         $0.separatorStyle = .none
-        $0.register(MyPageCell.self, forCellReuseIdentifier: "Line")
-        $0.register(TableHeader.self, forCellReuseIdentifier: "FirstLine")
-        //$0.register(TableHeader.self, forHeaderFooterViewReuseIdentifier: "Header")
+        $0.register(CellReusable.myPageHeader)
+        $0.register(CellReusable.myPageCell)
         
     }
     
@@ -45,43 +44,36 @@ extension MypageViewController{
             configureCell: { dataSource, tableView, indexPath, item in
                 
                 if(indexPath.row == 0){
-                    let line = tableView.dequeueReusableCell(withIdentifier: "FirstLine", for: indexPath) as! TableHeader
+                    guard let line = tableView.dequeue(CellReusable.myPageHeader) else {return UITableViewCell()}
+                    line.selectionStyle = .none
                     
                     return line
                 }else{
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "Line", for: indexPath) as! MyPageCell
-                    cell.setData(indexPath.row, item)
+
+                    guard let cell = tableView.dequeue(CellReusable.myPageCell) else { return UITableViewCell()}
+                    cell.selectionStyle = .gray
+                    cell.setData(MyPageEnum.allCases[indexPath.row])
                     return cell
                 }
    
             }
         )
         
-//        let dataSource = RxTableViewSectionedAnimatedDataSource<MySection>(
-//              configureCell: { ds, tv, _, item in
-//                  let cell = tv.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "Cell")
-//                  cell.textLabel?.text = "Item \(item)"
-//
-//                  return cell
-//              },
-//              titleForHeaderInSection: { ds, index in
-//                  return ds.sectionModels[index].header
-//              }
-//          )
-
-//        output.tableCellData
-//            .drive(tableView.rx.items(cellIdentifier: "Line",cellType: MyPageCell.self)){ row,data,cell in
-//                if(row == 0){
-//                    self.tableView.rowHeight = 100
-//                }else{
-//                    self.tableView.rowHeight = 60
-//                }
-//                cell.setData(row,data)
-//            }
-//            .disposed(by:bag)
         output.tableCellData
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
+        
+        tableView.rx.setDelegate(self)
+            .disposed(by: bag)
+        
+        tableView.rx.itemSelected
+            .bind(onNext: {
+                self.show(MyPageEnum.allCases[$0.row].showController!, sender: true)
+                print(MyPageEnum.allCases[$0.row])
+            })
+            .disposed(by: bag)
+
+            
         
     }
     

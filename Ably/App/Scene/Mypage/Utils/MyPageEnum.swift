@@ -64,4 +64,29 @@ enum MyPageEnum: CaseIterable{
             return UIImage(systemName: "eraser")
         }
     }
+    
+    var showController: UIViewController?{
+        switch self{
+            
+        case .banner:
+            return nil
+        case .benefit:
+            return BenefitController()
+        case .center:
+            return BenefitController()
+        case .list:
+            return BenefitController()
+        case .privacy:
+            return BenefitController()
+        case .service:
+            return BenefitController()
+        case .laboratory:
+            return BenefitController()
+        case .openlicense:
+            return BenefitController()
+        case .version:
+            return BenefitController()
+        }
+    }
+    
 }
