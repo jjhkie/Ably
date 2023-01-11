@@ -8,8 +8,9 @@
 import UIKit
 
 extension UINavigationController{
-    func setcommonBar(){
+    func setcommonBar(_ title: String){
         navigationBar.backgroundColor = .white
         navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
+        navigationBar.topItem?.title = title
     }
 }

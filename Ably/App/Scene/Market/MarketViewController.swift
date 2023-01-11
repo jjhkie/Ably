@@ -25,7 +25,8 @@ extension MarketViewController{
     
     func attribute(){
         //NavigationBar
-        self.navigationController?.navigationBar.topItem?.title = "마켓"
+        navigationController?.setcommonBar("마켓")
+        self.title = "마켓"
         self.navigationItem.leadingButton()
         self.navigationItem.trailingButton("magnifyingglass")
 

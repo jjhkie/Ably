@@ -1,14 +1,12 @@
 //
-//  BenefitController.swift
+//  LaboratoryController.swift
 //  Ably
 //
-//  Created by 김진혁 on 2023/01/09.
+//  Created by 김진혁 on 2023/01/11.
 //
 
 import UIKit
-
-
-final class BenefitController : UIViewController{
+final class LaboratoryController : UIViewController{
 
     
     override func viewDidLoad() {
@@ -19,12 +17,11 @@ final class BenefitController : UIViewController{
     }
 }
 
-extension BenefitController{
+extension LaboratoryController{
     
     private func attribute(){
         self.navigationController?.setcommonBar("")
-        self.title = "회원혜택"
-        
+        self.title = "실험실"
     }
     
     
@@ -32,3 +29,4 @@ extension BenefitController{
         
     }
 }
+

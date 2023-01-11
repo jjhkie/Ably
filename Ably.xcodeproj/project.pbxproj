@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3395F29EC6B0F96A4D36839D /* Pods_Ably.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F5A80787214F16E2304384 /* Pods_Ably.framework */; };
+		B914D9DF296E4C0A0035B5EF /* CenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B914D9DE296E4C0A0035B5EF /* CenterController.swift */; };
+		B914D9E1296E4C550035B5EF /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B914D9E0296E4C550035B5EF /* ListController.swift */; };
+		B914D9E3296E4C680035B5EF /* PrivacyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B914D9E2296E4C680035B5EF /* PrivacyController.swift */; };
+		B914D9E5296E4C7E0035B5EF /* ServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B914D9E4296E4C7E0035B5EF /* ServiceController.swift */; };
+		B914D9E7296E4C920035B5EF /* LaboratoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B914D9E6296E4C920035B5EF /* LaboratoryController.swift */; };
+		B914D9E9296E4CB00035B5EF /* OpenLicenseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B914D9E8296E4CB00035B5EF /* OpenLicenseController.swift */; };
 		B923195C293A08F300236B6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B923195B293A08F300236B6D /* AppDelegate.swift */; };
 		B923195E293A08F300236B6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B923195D293A08F300236B6D /* SceneDelegate.swift */; };
 		B9231965293A08F400236B6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9231964293A08F400236B6D /* Assets.xcassets */; };
@@ -56,6 +62,12 @@
 /* Begin PBXFileReference section */
 		52F5A80787214F16E2304384 /* Pods_Ably.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ably.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B37E54EFC8077CDE4EC46483 /* Pods-Ably.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ably.release.xcconfig"; path = "Target Support Files/Pods-Ably/Pods-Ably.release.xcconfig"; sourceTree = "<group>"; };
+		B914D9DE296E4C0A0035B5EF /* CenterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterController.swift; sourceTree = "<group>"; };
+		B914D9E0296E4C550035B5EF /* ListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListController.swift; sourceTree = "<group>"; };
+		B914D9E2296E4C680035B5EF /* PrivacyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyController.swift; sourceTree = "<group>"; };
+		B914D9E4296E4C7E0035B5EF /* ServiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceController.swift; sourceTree = "<group>"; };
+		B914D9E6296E4C920035B5EF /* LaboratoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaboratoryController.swift; sourceTree = "<group>"; };
+		B914D9E8296E4CB00035B5EF /* OpenLicenseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLicenseController.swift; sourceTree = "<group>"; };
 		B9231958293A08F300236B6D /* Ably.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ably.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B923195B293A08F300236B6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B923195D293A08F300236B6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +190,12 @@
 			isa = PBXGroup;
 			children = (
 				B930F458296BEA6A005493C8 /* BenefitController.swift */,
+				B914D9DE296E4C0A0035B5EF /* CenterController.swift */,
+				B914D9E0296E4C550035B5EF /* ListController.swift */,
+				B914D9E2296E4C680035B5EF /* PrivacyController.swift */,
+				B914D9E4296E4C7E0035B5EF /* ServiceController.swift */,
+				B914D9E6296E4C920035B5EF /* LaboratoryController.swift */,
+				B914D9E8296E4CB00035B5EF /* OpenLicenseController.swift */,
 			);
 			path = SubScene;
 			sourceTree = "<group>";
@@ -491,11 +509,14 @@
 				B923195C293A08F300236B6D /* AppDelegate.swift in Sources */,
 				B9670C4529515DDE00616BC5 /* MyPageEnum.swift in Sources */,
 				B946E14A2967B47300BF71F3 /* HotDealController.swift in Sources */,
+				B914D9E1296E4C550035B5EF /* ListController.swift in Sources */,
 				B95218F9293CA51C00018DAF /* MypageViewController.swift in Sources */,
+				B914D9E3296E4C680035B5EF /* PrivacyController.swift in Sources */,
 				B946E1452967B3E300BF71F3 /* CodiController.swift in Sources */,
 				B946E1402967A9D300BF71F3 /* PhoneCaseController.swift in Sources */,
 				B93E7911293DF71E0061201F /* ShoppingMallViewController.swift in Sources */,
 				B9FECC312953E5EE001AF759 /* ViewModel.swift in Sources */,
+				B914D9E9296E4CB00035B5EF /* OpenLicenseController.swift in Sources */,
 				B95BAB2229507E26004D6306 /* UINavigationController+.swift in Sources */,
 				B9CED5CB29553C9700FDD60C /* ZzimViewModel.swift in Sources */,
 				B95218EE293CA14300018DAF /* TabController.swift in Sources */,
@@ -503,13 +524,16 @@
 				B946E13A2967A4BE00BF71F3 /* BrandController.swift in Sources */,
 				B9670C3929514EDC00616BC5 /* MyPageCell.swift in Sources */,
 				B946E13D2967A99500BF71F3 /* BeautyController.swift in Sources */,
+				B914D9E7296E4C920035B5EF /* LaboratoryController.swift in Sources */,
 				B93E790F293DF6A00061201F /* TodayViewController.swift in Sources */,
 				B930F459296BEA6A005493C8 /* BenefitController.swift in Sources */,
 				B95BAB2029507D2E004D6306 /* UINavigationItem+.swift in Sources */,
 				B931D1522952B422002B3F1D /* TableHeader.swift in Sources */,
+				B914D9DF296E4C0A0035B5EF /* CenterController.swift in Sources */,
 				B946E1432967ADAF00BF71F3 /* ButtonBarPagerTab+.swift in Sources */,
 				B95218F1293CA4C100018DAF /* MarketViewController.swift in Sources */,
 				B9FECC3A2953EC3E001AF759 /* MyPageModel.swift in Sources */,
+				B914D9E5296E4C7E0035B5EF /* ServiceController.swift in Sources */,
 				B923195E293A08F300236B6D /* SceneDelegate.swift in Sources */,
 				B93A5F33295BD0B3005BFB5C /* ZzimRoundCell.swift in Sources */,
 				B95218E8293C8FD500018DAF /* MainViewController.swift in Sources */,

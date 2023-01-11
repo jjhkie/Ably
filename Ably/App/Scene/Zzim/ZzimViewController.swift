@@ -65,7 +65,8 @@ extension ZzimViewController{
     private func attribute(){
         //네비게이션 바 설정
         //self.navigationController?.setcommonBar()
-        self.navigationController?.navigationBar.topItem?.title = "찜"
+        navigationController?.setcommonBar("찜")
+        self.title = "찜"
         [self.navigationItem].forEach{
             $0.leadingButton()
             $0.trailingButton("magnifyingglass")

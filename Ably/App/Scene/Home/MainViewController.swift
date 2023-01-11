@@ -52,7 +52,7 @@ extension MainViewController{
     private func attribute(){
         //self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.topItem?.title = "title"
+        self.navigationController?.setcommonBar("title")
         self.navigationController?.hidesBarsOnSwipe = true
 
         //TopStackView

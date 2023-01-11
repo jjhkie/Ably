@@ -73,17 +73,17 @@ enum MyPageEnum: CaseIterable{
         case .benefit:
             return BenefitController()
         case .center:
-            return BenefitController()
+            return CenterController()
         case .list:
-            return BenefitController()
+            return ListController()
         case .privacy:
-            return BenefitController()
+            return PrivacyController()
         case .service:
-            return BenefitController()
+            return ServiceController()
         case .laboratory:
-            return BenefitController()
+            return LaboratoryController()
         case .openlicense:
-            return BenefitController()
+            return OpenLicenseController()
         case .version:
             return BenefitController()
         }
