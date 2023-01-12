@@ -10,7 +10,10 @@ import ReusableKit
 //ReusableKit Cell 정리 및 편의성 
 enum CellReusable{
     
+    //Market
+    static let marketCell = ReusableCell<MarketCell>()
     //MyPage
     static let myPageHeader = ReusableCell<TableHeader>()
     static let myPageCell = ReusableCell<MyPageCell>()
+    
 }

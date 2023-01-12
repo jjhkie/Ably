@@ -25,7 +25,7 @@ final class MyPageViewModel: VM{
     
     
     init(){
-//        self.tableData = (0..<MyPageEnum.allCases.count).map{MyPageData(title: MyPageEnum.allCases[$0].contents, image: MyPageEnum.allCases[$0].leadingImage!)}
+
         
         self.tableData = [MyPageData(header: "", items: (0..<MyPageEnum.allCases.count).map{MyData(title: MyPageEnum.allCases[$0].contents, image: MyPageEnum.allCases[$0].leadingImage!)})]
     }
