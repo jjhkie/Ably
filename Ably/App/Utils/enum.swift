@@ -9,6 +9,7 @@ import UIKit
 enum TabBarItem: CaseIterable{
     case home
     case market
+    case syag
     case zzim
     case mypage
     
@@ -19,10 +20,13 @@ enum TabBarItem: CaseIterable{
             return "홈"
         case .market:
             return "마켓"
+        case .syag:
+            return "샥-출발"
         case .zzim:
             return "찜"
         case .mypage:
             return "마이페이지"
+
         }
     }
     
@@ -33,10 +37,13 @@ enum TabBarItem: CaseIterable{
             return (UIImage(systemName: "house"), UIImage(systemName: "house.fill"))
         case .market:
             return (UIImage(systemName: "window.awning"), UIImage(systemName: "window.awning"))
+        case .syag:
+            return (UIImage(systemName: "person"), UIImage(systemName: "person.fill"))
         case .zzim:
             return (UIImage(systemName: "heart"), UIImage(systemName: "heart.fill"))
         case .mypage:
             return (UIImage(systemName: "person"), UIImage(systemName: "person.fill"))
+
         }
     }
     
@@ -47,10 +54,13 @@ enum TabBarItem: CaseIterable{
             return UINavigationController(rootViewController: MainViewController())
         case .market:
             return UINavigationController(rootViewController: MarketViewController())
+        case .syag:
+            return UINavigationController(rootViewController: SyagController())
         case .zzim:
             return UINavigationController(rootViewController: ZzimViewController())
         case .mypage:
             return UINavigationController(rootViewController: MypageViewController())
+
         }
     }
 }

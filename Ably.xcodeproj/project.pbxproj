@@ -27,6 +27,7 @@
 		B930F459296BEA6A005493C8 /* BenefitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B930F458296BEA6A005493C8 /* BenefitController.swift */; };
 		B930F45C296BF4F1005493C8 /* MyPageTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B930F45B296BF4F1005493C8 /* MyPageTableDelegate.swift */; };
 		B931D1522952B422002B3F1D /* TableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B931D1512952B422002B3F1D /* TableHeader.swift */; };
+		B932A30F2973EA82007D22C1 /* SyagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B932A30E2973EA82007D22C1 /* SyagController.swift */; };
 		B93A5F30295BCD8A005BFB5C /* ZzimHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A5F2F295BCD8A005BFB5C /* ZzimHeaderView.swift */; };
 		B93A5F33295BD0B3005BFB5C /* ZzimRoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A5F32295BD0B3005BFB5C /* ZzimRoundCell.swift */; };
 		B93B883B2959998200067F24 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = B93B883A2959998200067F24 /* RxDataSources */; };
@@ -82,6 +83,7 @@
 		B930F458296BEA6A005493C8 /* BenefitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitController.swift; sourceTree = "<group>"; };
 		B930F45B296BF4F1005493C8 /* MyPageTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableDelegate.swift; sourceTree = "<group>"; };
 		B931D1512952B422002B3F1D /* TableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeader.swift; sourceTree = "<group>"; };
+		B932A30E2973EA82007D22C1 /* SyagController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyagController.swift; sourceTree = "<group>"; };
 		B93A5F2F295BCD8A005BFB5C /* ZzimHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimHeaderView.swift; sourceTree = "<group>"; };
 		B93A5F32295BD0B3005BFB5C /* ZzimRoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimRoundCell.swift; sourceTree = "<group>"; };
 		B93E790E293DF6A00061201F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,14 @@
 			path = SubScene;
 			sourceTree = "<group>";
 		};
+		B932A3102973EA87007D22C1 /* Syag */ = {
+			isa = PBXGroup;
+			children = (
+				B932A30E2973EA82007D22C1 /* SyagController.swift */,
+			);
+			path = Syag;
+			sourceTree = "<group>";
+		};
 		B93487E3294172E4003211FF /* Today */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +324,7 @@
 			children = (
 				B95218EF293CA4AE00018DAF /* Home */,
 				B95218F2293CA4CF00018DAF /* Market */,
+				B932A3102973EA87007D22C1 /* Syag */,
 				B95218F7293CA4EE00018DAF /* Zzim */,
 				B95218FA293CA52000018DAF /* Mypage */,
 			);
@@ -536,6 +547,7 @@
 				B9CED5CB29553C9700FDD60C /* ZzimViewModel.swift in Sources */,
 				B9243342296F91C1006B7DE8 /* MarketViewModel.swift in Sources */,
 				B95218EE293CA14300018DAF /* TabController.swift in Sources */,
+				B932A30F2973EA82007D22C1 /* SyagController.swift in Sources */,
 				B946E1482967B44A00BF71F3 /* BestController.swift in Sources */,
 				B946E13A2967A4BE00BF71F3 /* BrandController.swift in Sources */,
 				B9670C3929514EDC00616BC5 /* MyPageCell.swift in Sources */,

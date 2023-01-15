@@ -9,11 +9,17 @@ import UIKit
 import SnapKit
 import XLPagerTabStrip
 
+protocol ChangeTopTab: AnyObject {
+    func changTab()
+}
+
+
 final class TodayViewController: UIViewController,IndicatorInfoProvider{
     func indicatorInfo(for pagerTabStripController: XLPagerTabStrip.PagerTabStripViewController) -> XLPagerTabStrip.IndicatorInfo {
         return IndicatorInfo(title: "투데이")
     }
     
+    weak var delegate: ChangeTopTab?
     
     private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: getLayout())
@@ -34,8 +40,7 @@ final class TodayViewController: UIViewController,IndicatorInfoProvider{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.collectionView.dataSource = self
+        self.delegate =
         bind()
         attribute()
         layout()
@@ -191,4 +196,10 @@ extension TodayViewController: UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         3
     }
+}
+extension TodayViewController: UICollectionViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.delegate?.changTab()
+    }
+
 }
