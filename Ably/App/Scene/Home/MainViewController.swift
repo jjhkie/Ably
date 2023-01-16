@@ -14,6 +14,10 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     
     private let menuBar = UIStackView()
     private let rankingBar = UIStackView()
+    
+    
+    var scrollDifference: Double = 0.0
+    var contentHeight = 50
 
     override func viewDidLoad() {
         self.tabBarCustom()
@@ -34,7 +38,10 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
         print("hey")
     }
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        return [TodayViewController(), ShoppingMallViewController(),BrandController(),BeautyController(),PhoneCaseController(),CodiController(),BestController(),HotDealController()]
+        
+        let todayCo = TodayViewController(nibName: nil  , bundle:nil)
+        todayCo.delegate = self
+        return [todayCo, ShoppingMallViewController(),BrandController(),BeautyController(),PhoneCaseController(),CodiController(),BestController(),HotDealController()]
     }
     
     override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
@@ -44,7 +51,6 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         super.collectionView(collectionView, didSelectItemAt: indexPath)
-        collectionView.delegate = self
         print(indexPath)
     }
     override var scrollPercentage: CGFloat{
@@ -66,10 +72,13 @@ extension MainViewController{
     
     private func attribute(){
         navigationController?.isNavigationBarHidden = true
-        
+       
+     
         //remove
         menuBar.backgroundColor = .blue
         rankingBar.backgroundColor = .red
+        
+      
         
 
     }
@@ -78,10 +87,12 @@ extension MainViewController{
         
         //TabBar Container Auto Layout
         self.containerLayout()
+        
+        
         [menuBar,rankingBar].forEach{
             view.addSubview($0)
         }
-        
+
         menuBar.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
@@ -89,25 +100,46 @@ extension MainViewController{
         }
         
         rankingBar.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(50)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(contentHeight)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50)
         }
         
         buttonBarView.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(100)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(contentHeight * 2)
             $0.leading.trailing.equalToSuperview().inset(5)
             $0.height.equalTo(20)
         }
     }
 }
 
-
-extension MainViewController: ChangeTopTab{
-    func changTab() {
-        print("dddddd")
+extension MainViewController: ChangeTopBarDelegate{
+    
+    func changeTopSetting(_ scrollValue: Double) {
+        if(scrollValue > scrollDifference && scrollValue - scrollDifference > 10){
+            UIView.animate(withDuration: 1.0, delay: 0,options: .curveEaseOut, animations: {
+                self.rankingBar.snp.updateConstraints{
+                    $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(0)
+                }
+                self.rankingBar.superview?.layoutIfNeeded()
+                self.buttonBarView.snp.updateConstraints{
+                    $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(0)
+                }
+                self.buttonBarView.superview?.layoutIfNeeded()
+            })
+        }else if (scrollValue < scrollDifference && scrollDifference - scrollValue > 10){
+            UIView.animate(withDuration: 1.0, delay: 0,options: .curveEaseOut, animations: { [self] in
+                self.rankingBar.snp.updateConstraints{
+                    $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(contentHeight)
+                }
+                self.rankingBar.superview?.layoutIfNeeded()
+                self.buttonBarView.snp.updateConstraints{
+                    $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(contentHeight * 2)
+                }
+                self.buttonBarView.superview?.layoutIfNeeded()
+            })
+        }
+        scrollDifference = scrollValue
+        print("aaa")
     }
-    
-    
 }
-
