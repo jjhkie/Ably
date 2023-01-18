@@ -40,6 +40,7 @@
 		B946E1452967B3E300BF71F3 /* CodiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946E1442967B3E300BF71F3 /* CodiController.swift */; };
 		B946E1482967B44A00BF71F3 /* BestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946E1472967B44A00BF71F3 /* BestController.swift */; };
 		B946E14A2967B47300BF71F3 /* HotDealController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946E1492967B47300BF71F3 /* HotDealController.swift */; };
+		B94CB27B2977878700AE81BA /* RxCollectionViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94CB27A2977878700AE81BA /* RxCollectionViewDelegateProxy.swift */; };
 		B95218E8293C8FD500018DAF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218E7293C8FD500018DAF /* MainViewController.swift */; };
 		B95218EC293C941600018DAF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B95218EB293C941600018DAF /* SnapKit */; };
 		B95218EE293CA14300018DAF /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218ED293CA14300018DAF /* TabController.swift */; };
@@ -95,6 +96,7 @@
 		B946E1442967B3E300BF71F3 /* CodiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodiController.swift; sourceTree = "<group>"; };
 		B946E1472967B44A00BF71F3 /* BestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestController.swift; sourceTree = "<group>"; };
 		B946E1492967B47300BF71F3 /* HotDealController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotDealController.swift; sourceTree = "<group>"; };
+		B94CB27A2977878700AE81BA /* RxCollectionViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxCollectionViewDelegateProxy.swift; sourceTree = "<group>"; };
 		B95218E7293C8FD500018DAF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B95218ED293CA14300018DAF /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		B95218F0293CA4C100018DAF /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				B93E790D293DF6830061201F /* Toptab */,
+				B94CB27A2977878700AE81BA /* RxCollectionViewDelegateProxy.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 			files = (
 				B96950AC2940292F000520A8 /* enum.swift in Sources */,
 				B9CED5CD29553E6100FDD60C /* ZzimModel.swift in Sources */,
+				B94CB27B2977878700AE81BA /* RxCollectionViewDelegateProxy.swift in Sources */,
 				B9243344296F9307006B7DE8 /* MarketCell.swift in Sources */,
 				B95218F6293CA4EB00018DAF /* ZzimViewController.swift in Sources */,
 				B923195C293A08F300236B6D /* AppDelegate.swift in Sources */,

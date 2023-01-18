@@ -8,6 +8,9 @@
 import UIKit
 import SnapKit
 import XLPagerTabStrip
+import Then
+import RxSwift
+import RxCocoa
 
 protocol ChangeTopBarDelegate: AnyObject{
     func changeTopSetting(_ scrollValue: Double )
@@ -17,6 +20,8 @@ final class TodayViewController: UIViewController,IndicatorInfoProvider{
     func indicatorInfo(for pagerTabStripController: XLPagerTabStrip.PagerTabStripViewController) -> XLPagerTabStrip.IndicatorInfo {
         return IndicatorInfo(title: "투데이")
     }
+    
+    var bag = DisposeBag()
     
     weak var delegate: ChangeTopBarDelegate?
     
@@ -48,7 +53,7 @@ final class TodayViewController: UIViewController,IndicatorInfoProvider{
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
-        collectionView.delegate = self
+        //collectionView.delegate = self
         bind()
         attribute()
         layout()
@@ -164,12 +169,17 @@ func getLayout() -> UICollectionViewCompositionalLayout {
 extension TodayViewController{
     
     func bind(){
-        
-    }
+        collectionView.rx.scrollDid.asObservable()
+            .bind(onNext: {_ in
+                print("rxDouble")
+            })
+            .disposed(by: bag)
+            
+            
+        }
     
     private func attribute(){
         //CollectionView
-        
         
     }
     
@@ -205,10 +215,22 @@ extension TodayViewController: UICollectionViewDataSource{
         3
     }
 }
+//
+//extension TodayViewController: UICollectionViewDelegate{
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        print(scrollView.contentOffset.y)
+//        self.delegate?.changeTopSetting(scrollView.contentOffset.y)
+//    }
+//}
 
-extension TodayViewController: UICollectionViewDelegate{
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
-        self.delegate?.changeTopSetting(scrollView.contentOffset.y)
+extension Reactive where Base: UICollectionView{
+    var rxDelegate: DelegateProxy<UICollectionView, UICollectionViewDelegate>{
+        return RxCollectionViewDelegateProxy.proxy(for: self.base)
+    }
+    
+    var scrollDid: Observable<Double>{
+        return rxDelegate.sentMessage(#selector(TodayViewController.scrollViewDidScroll(_:))).map{value in
+            value as? Double ?? 0
+        }
     }
 }

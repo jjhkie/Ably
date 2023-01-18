@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 import XLPagerTabStrip
 import Then
+import RxSwift
+import RxCocoa
 
 final class MainViewController: ButtonBarPagerTabStripViewController {
     
@@ -92,7 +94,7 @@ extension MainViewController{
         [menuBar,rankingBar].forEach{
             view.addSubview($0)
         }
-
+        
         menuBar.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
@@ -100,16 +102,17 @@ extension MainViewController{
         }
         
         rankingBar.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(contentHeight)
+            $0.top.equalTo(menuBar.snp.top).offset(contentHeight)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50)
         }
         
         buttonBarView.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(contentHeight * 2)
+            $0.top.equalTo(rankingBar.snp.top).offset(contentHeight)
             $0.leading.trailing.equalToSuperview().inset(5)
             $0.height.equalTo(20)
         }
+        self.view.bringSubviewToFront(buttonBarView)
     }
 }
 
@@ -117,24 +120,24 @@ extension MainViewController: ChangeTopBarDelegate{
     
     func changeTopSetting(_ scrollValue: Double) {
         if(scrollValue > scrollDifference && scrollValue - scrollDifference > 10){
-            UIView.animate(withDuration: 1.0, delay: 0,options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.1, delay: 0,options: .curveEaseOut, animations: {
                 self.rankingBar.snp.updateConstraints{
-                    $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(0)
+                    $0.top.equalTo(self.menuBar.snp.top).offset(0)
                 }
                 self.rankingBar.superview?.layoutIfNeeded()
                 self.buttonBarView.snp.updateConstraints{
-                    $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(0)
+                    $0.top.equalTo(self.rankingBar.snp.top).offset(0)
                 }
                 self.buttonBarView.superview?.layoutIfNeeded()
             })
         }else if (scrollValue < scrollDifference && scrollDifference - scrollValue > 10){
-            UIView.animate(withDuration: 1.0, delay: 0,options: .curveEaseOut, animations: { [self] in
+            UIView.animate(withDuration: 0.1, delay: 0,options: .curveEaseOut, animations: { [self] in
                 self.rankingBar.snp.updateConstraints{
-                    $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(contentHeight)
+                    $0.top.equalTo(self.menuBar.snp.top).offset(contentHeight)
                 }
                 self.rankingBar.superview?.layoutIfNeeded()
                 self.buttonBarView.snp.updateConstraints{
-                    $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(contentHeight * 2)
+                    $0.top.equalTo(self.rankingBar.snp.top).offset(contentHeight)
                 }
                 self.buttonBarView.superview?.layoutIfNeeded()
             })
@@ -142,4 +145,13 @@ extension MainViewController: ChangeTopBarDelegate{
         scrollDifference = scrollValue
         print("aaa")
     }
+}
+
+extension Reactive where Base: UICollectionView{
+    var delegate : DelegateProxy<UICollectionView, UICollectionViewDelegate>{
+        return RxCollectionViewDelegateProxy.proxy(for: self.base)
+    }
+    
+    
+   
 }
