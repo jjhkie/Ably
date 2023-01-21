@@ -52,6 +52,8 @@
 		B9670C3929514EDC00616BC5 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9670C3829514EDC00616BC5 /* MyPageCell.swift */; };
 		B9670C4529515DDE00616BC5 /* MyPageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9670C4429515DDE00616BC5 /* MyPageEnum.swift */; };
 		B96950AC2940292F000520A8 /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96950AB2940292F000520A8 /* enum.swift */; };
+		B9720993297BD3AF0050B169 /* TodayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9720992297BD3AF0050B169 /* TodayModel.swift */; };
+		B9720995297BDD810050B169 /* TodayVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9720994297BDD810050B169 /* TodayVIewModel.swift */; };
 		B9BE11C02962CA0500C6BFD4 /* ZzimBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BE11BF2962CA0500C6BFD4 /* ZzimBoxCell.swift */; };
 		B9CED5CB29553C9700FDD60C /* ZzimViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */; };
 		B9CED5CD29553E6100FDD60C /* ZzimModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CED5CC29553E6100FDD60C /* ZzimModel.swift */; };
@@ -107,6 +109,8 @@
 		B9670C3829514EDC00616BC5 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		B9670C4429515DDE00616BC5 /* MyPageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEnum.swift; sourceTree = "<group>"; };
 		B96950AB2940292F000520A8 /* enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enum.swift; sourceTree = "<group>"; };
+		B9720992297BD3AF0050B169 /* TodayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayModel.swift; sourceTree = "<group>"; };
+		B9720994297BDD810050B169 /* TodayVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayVIewModel.swift; sourceTree = "<group>"; };
 		B9BE11BF2962CA0500C6BFD4 /* ZzimBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimBoxCell.swift; sourceTree = "<group>"; };
 		B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimViewModel.swift; sourceTree = "<group>"; };
 		B9CED5CC29553E6100FDD60C /* ZzimModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimModel.swift; sourceTree = "<group>"; };
@@ -228,6 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				B93E790E293DF6A00061201F /* TodayViewController.swift */,
+				B9720994297BDD810050B169 /* TodayVIewModel.swift */,
+				B9720992297BD3AF0050B169 /* TodayModel.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -538,6 +544,7 @@
 				B95218F6293CA4EB00018DAF /* ZzimViewController.swift in Sources */,
 				B923195C293A08F300236B6D /* AppDelegate.swift in Sources */,
 				B9670C4529515DDE00616BC5 /* MyPageEnum.swift in Sources */,
+				B9720995297BDD810050B169 /* TodayVIewModel.swift in Sources */,
 				B946E14A2967B47300BF71F3 /* HotDealController.swift in Sources */,
 				B914D9E1296E4C550035B5EF /* ListController.swift in Sources */,
 				B95218F9293CA51C00018DAF /* MypageViewController.swift in Sources */,
@@ -572,6 +579,7 @@
 				B9BE11C02962CA0500C6BFD4 /* ZzimBoxCell.swift in Sources */,
 				B930F457296BD718005493C8 /* CellEnum.swift in Sources */,
 				B93A5F30295BCD8A005BFB5C /* ZzimHeaderView.swift in Sources */,
+				B9720993297BD3AF0050B169 /* TodayModel.swift in Sources */,
 				B9FECC2F2953E3AF001AF759 /* MyPageViewModel.swift in Sources */,
 				B930F45C296BF4F1005493C8 /* MyPageTableDelegate.swift in Sources */,
 			);

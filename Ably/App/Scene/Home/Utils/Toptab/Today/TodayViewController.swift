@@ -11,6 +11,7 @@ import XLPagerTabStrip
 import Then
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 protocol ChangeTopBarDelegate: AnyObject{
     func changeTopSetting(_ scrollValue: Double )
@@ -47,13 +48,9 @@ final class TodayViewController: UIViewController,IndicatorInfoProvider{
         return view
     }()
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
-        //collectionView.delegate = self
         bind()
         attribute()
         layout()
@@ -169,7 +166,9 @@ func getLayout() -> UICollectionViewCompositionalLayout {
 extension TodayViewController{
     
     func bind(){
-        collectionView.rx.scrollDid.asObservable()
+        
+        
+        collectionView.rx.todayScrollDid.asObservable()
             .bind(onNext: {_ in
                 print("rxDouble")
             })
@@ -215,22 +214,46 @@ extension TodayViewController: UICollectionViewDataSource{
         3
     }
 }
-//
-//extension TodayViewController: UICollectionViewDelegate{
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        print(scrollView.contentOffset.y)
-//        self.delegate?.changeTopSetting(scrollView.contentOffset.y)
-//    }
-//}
 
 extension Reactive where Base: UICollectionView{
-    var rxDelegate: DelegateProxy<UICollectionView, UICollectionViewDelegate>{
+    var rxDelegate : DelegateProxy<UICollectionView, UICollectionViewDelegate>{
         return RxCollectionViewDelegateProxy.proxy(for: self.base)
     }
     
-    var scrollDid: Observable<Double>{
-        return rxDelegate.sentMessage(#selector(TodayViewController.scrollViewDidScroll(_:))).map{value in
-            value as? Double ?? 0
-        }
+    
+    var todayScrollDid: Observable<Double>{
+        return rxDelegate.methodInvoked(#selector(UICollectionViewDelegate.scrollViewDidScroll(_:)))
+            .map{
+                return $0 as? Double ?? 0.0
+            }
+    }
+}
+
+extension TodayViewController{
+    func todayDataSource() ->
+    RxCollectionViewSectionedReloadDataSource<TodayModel>{
+        return RxCollectionViewSectionedReloadDataSource<TodayModel>(
+            configureCell: {dataSource, collectionView, indexPath, item in
+                switch dataSource[indexPath]{
+                case .NewYearSaleItem(image: let image):
+                    <#code#>
+                case .PagerViewItem(image: let image):
+                    <#code#>
+                case .MenuViewItem(image: let image, title: let title):
+                    <#code#>
+                case .FirstOrderBenefitsItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
+                    <#code#>
+                case .RecommendProductItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
+                    <#code#>
+                case .HotTenItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName, totalSale: let totalSale):
+                    <#code#>
+                case .SyagRecommendProductItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
+                    <#code#>
+                case .PlusItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName, totalSale: let totalSale):
+                    <#code#>
+
+                }
+                
+            })
     }
 }

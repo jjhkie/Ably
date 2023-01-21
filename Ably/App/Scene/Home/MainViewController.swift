@@ -16,6 +16,7 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     
     private let menuBar = UIStackView()
     private let rankingBar = UIStackView()
+    private let bag = DisposeBag()
     
     
     var scrollDifference: Double = 0.0
@@ -30,39 +31,12 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
         attribute()
         layout()
     }
-    //TabStrip 함수 적용 TODO REMOVE
-    override func pageOffsetForChild(at index: Int) -> CGFloat {
-        print("ing")
-        return CGFloat(index) * containerView.bounds.width
-    }
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        super.scrollViewDidScroll(scrollView)
-        print("hey")
-    }
+
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
         let todayCo = TodayViewController(nibName: nil  , bundle:nil)
-        todayCo.delegate = self
+
         return [todayCo, ShoppingMallViewController(),BrandController(),BeautyController(),PhoneCaseController(),CodiController(),BestController(),HotDealController()]
-    }
-    
-    override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        super.scrollViewDidEndScrollingAnimation(scrollView)
-        print("abc")
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        super.collectionView(collectionView, didSelectItemAt: indexPath)
-        print(indexPath)
-    }
-    override var scrollPercentage: CGFloat{
-        containerView.contentOffset.y = 0.0
-        print("ad")
-        return super.scrollPercentage
-    }
-    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        super.scrollViewWillBeginDragging(scrollView)
-        print("dragging")
     }
 }
 
@@ -147,11 +121,4 @@ extension MainViewController: ChangeTopBarDelegate{
     }
 }
 
-extension Reactive where Base: UICollectionView{
-    var delegate : DelegateProxy<UICollectionView, UICollectionViewDelegate>{
-        return RxCollectionViewDelegateProxy.proxy(for: self.base)
-    }
-    
-    
-   
-}
+
