@@ -65,7 +65,7 @@ extension ZzimViewController{
     private func attribute(){
         //네비게이션 바 설정
         //self.navigationController?.setcommonBar()
-        navigationController?.setcommonBar("찜")
+        //navigationController?.setcommonBar()
         self.title = "찜"
         [self.navigationItem].forEach{
             $0.leadingButton()
@@ -185,8 +185,6 @@ extension ZzimViewController{
                     cell.backgroundConfiguration = content
                     return cell
                 }
-
-                
             }
             ,configureSupplementaryView: { (dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
                 switch kind{

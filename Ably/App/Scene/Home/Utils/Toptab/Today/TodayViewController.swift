@@ -228,32 +228,32 @@ extension Reactive where Base: UICollectionView{
             }
     }
 }
-
-extension TodayViewController{
-    func todayDataSource() ->
-    RxCollectionViewSectionedReloadDataSource<TodayModel>{
-        return RxCollectionViewSectionedReloadDataSource<TodayModel>(
-            configureCell: {dataSource, collectionView, indexPath, item in
-                switch dataSource[indexPath]{
-                case .NewYearSaleItem(image: let image):
-                    <#code#>
-                case .PagerViewItem(image: let image):
-                    <#code#>
-                case .MenuViewItem(image: let image, title: let title):
-                    <#code#>
-                case .FirstOrderBenefitsItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
-                    <#code#>
-                case .RecommendProductItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
-                    <#code#>
-                case .HotTenItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName, totalSale: let totalSale):
-                    <#code#>
-                case .SyagRecommendProductItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
-                    <#code#>
-                case .PlusItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName, totalSale: let totalSale):
-                    <#code#>
-
-                }
-                
-            })
-    }
-}
+//
+//extension TodayViewController{
+//    func todayDataSource() ->
+//    RxCollectionViewSectionedReloadDataSource<TodayModel>{
+//        return RxCollectionViewSectionedReloadDataSource<TodayModel>(
+//            configureCell: {dataSource, collectionView, indexPath, item in
+//                switch dataSource[indexPath]{
+//                case .NewYearSaleItem(image: let image):
+//                    <#code#>
+//                case .PagerViewItem(image: let image):
+//                    <#code#>
+//                case .MenuViewItem(image: let image, title: let title):
+//                    <#code#>
+//                case .FirstOrderBenefitsItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
+//                    <#code#>
+//                case .RecommendProductItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
+//                    <#code#>
+//                case .HotTenItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName, totalSale: let totalSale):
+//                    <#code#>
+//                case .SyagRecommendProductItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
+//                    <#code#>
+//                case .PlusItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName, totalSale: let totalSale):
+//                    <#code#>
+//
+//                }
+//
+//            })
+//    }
+//}

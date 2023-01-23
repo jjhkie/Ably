@@ -21,7 +21,7 @@ final class ListController : UIViewController{
 extension ListController{
     
     private func attribute(){
-        self.navigationController?.setcommonBar("")
+        //self.navigationController?.setcommonBar()
         self.title = "공지사항"
     }
     

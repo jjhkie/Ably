@@ -13,6 +13,8 @@ import RxDataSources
 
 final class MypageViewController: UIViewController{
     
+    private let bag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -21,14 +23,12 @@ final class MypageViewController: UIViewController{
         layout()
     }
     
-    private let bag = DisposeBag()
-    
     private let tableView = UITableView().then{
         $0.backgroundColor = .white
         $0.separatorStyle = .none
         $0.register(CellReusable.myPageHeader)
         $0.register(CellReusable.myPageCell)
-        
+
     }
     
 }
@@ -43,21 +43,32 @@ extension MypageViewController{
         let dataSource = RxTableViewSectionedReloadDataSource<MyPageData>(
             configureCell: { dataSource, tableView, indexPath, item in
                 
-                if(indexPath.row == 0){
-                    guard let line = tableView.dequeue(CellReusable.myPageHeader) else {return UITableViewCell()}
-                    line.selectionStyle = .none
-                    
-                    return line
+                print(indexPath.section)
+                if(indexPath.section == 0){
+                    if(indexPath.row == 0){
+                        guard let line = tableView.dequeue(CellReusable.myPageHeader) else {return UITableViewCell()}
+                        line.selectionStyle = .none
+                        return line
+                    }else{
+                        guard let cell = tableView.dequeue(CellReusable.myPageCell) else { return UITableViewCell()}
+                        cell.selectionStyle = .gray
+                        cell.setData(dataSource.sectionModels[indexPath.section].items[indexPath.row])
+                        return cell
+                    }
                 }else{
-
                     guard let cell = tableView.dequeue(CellReusable.myPageCell) else { return UITableViewCell()}
                     cell.selectionStyle = .gray
-                    cell.setData(MyPageEnum.allCases[indexPath.row])
+                    cell.setData(dataSource.sectionModels[indexPath.section].items[indexPath.row])
                     return cell
                 }
-   
             }
         )
+        
+        dataSource.titleForHeaderInSection = { dataSource, index in
+            return dataSource.sectionModels[index].header
+        }
+        
+        
         
         output.tableCellData
             .drive(tableView.rx.items(dataSource: dataSource))
@@ -79,11 +90,17 @@ extension MypageViewController{
     
     private func attribute(){
         //NavigationBar
-        self.navigationController?.setcommonBar("")
+        self.navigationController?.setcommonBar()
         self.title = "마이페이지"
         self.navigationItem.leadingButton()
         
         self.navigationItem.trailingButton("bell")
+        
+        //let footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1))
+        //footer.backgroundColor = .gray
+        
+        //tableView.tableFooterView = footer
+        
     }
     
     

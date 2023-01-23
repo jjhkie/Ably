@@ -31,7 +31,7 @@ extension SyagController{
         self.navigationItem.leadingButton()
         self.navigationItem.trailingButton("magnifyingglass")
 
-        navigationController?.setcommonBar("샥-출발")
+        navigationController?.setcommonBar()
     }
     
     private func layout(){

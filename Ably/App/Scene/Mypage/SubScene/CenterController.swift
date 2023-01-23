@@ -23,7 +23,7 @@ final class CenterController : UIViewController{
 extension CenterController{
     
     private func attribute(){
-        self.navigationController?.setcommonBar("")
+        self.navigationController?.setcommonBar()
         self.title = "고객센터"
     }
     

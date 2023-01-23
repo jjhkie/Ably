@@ -25,9 +25,12 @@ final class MyPageViewModel: VM{
     
     
     init(){
-
         
-        self.tableData = [MyPageData(header: "", items: (0..<MyPageEnum.allCases.count).map{MyData(title: MyPageEnum.allCases[$0].contents, image: MyPageEnum.allCases[$0].leadingImage!)})]
+        self.tableData = [
+            MyPageData(header: "", items: (0..<2).map{MyData(title: MyPageEnum.allCases[$0].contents, image: MyPageEnum.allCases[$0].leadingImage!)}),
+            MyPageData(header: "추천", items: (2..<4).map{MyData(title: MyPageEnum.allCases[$0].contents, image: MyPageEnum.allCases[$0].leadingImage!)}),
+            MyPageData(header: "도움말", items: (4..<MyPageEnum.allCases.count).map{MyData(title: MyPageEnum.allCases[$0].contents, image: MyPageEnum.allCases[$0].leadingImage!)}),
+        ]
     }
     func transform(input: Input) -> Output {
         let cellData = Observable.just(tableData)

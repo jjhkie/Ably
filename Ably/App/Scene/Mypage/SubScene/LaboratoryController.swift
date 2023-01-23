@@ -20,7 +20,7 @@ final class LaboratoryController : UIViewController{
 extension LaboratoryController{
     
     private func attribute(){
-        self.navigationController?.setcommonBar("")
+        self.navigationController?.setcommonBar()
         self.title = "실험실"
     }
     

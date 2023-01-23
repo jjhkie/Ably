@@ -13,18 +13,16 @@ final class BenefitController : UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .white
         attribute()
         layout()
     }
 }
 
 extension BenefitController{
-    
     private func attribute(){
-        self.navigationController?.setcommonBar("")
+        self.navigationController?.setcommonBar()
         self.title = "회원혜택"
-        
     }
     
     

@@ -23,18 +23,15 @@ final class MyPageCell: UITableViewCell{
 
 extension MyPageCell{
     
-    func setData(_ data: MyPageEnum){
-        
-
+    func setData(_ data: MyData){
         //셀의 공통된 설정
-        
         var content = defaultContentConfiguration()
-        content.text = data.contents
+        content.text = data.title
         content.textProperties.color = .black
-        content.image = data.leadingImage
+        content.image = data.image
         
         //첫 번째 셀 설정
-        if(data == MyPageEnum.benefit){
+        if(data.title == "에이블리 회원만의 특별한 혜택 보러 가기"){
             content.textProperties.font = .systemFont(ofSize: 14,weight: .bold)
             
             layer.shadowColor = UIColor.black.cgColor
@@ -58,7 +55,7 @@ extension MyPageCell{
            // self.accessoryType = .disclosureIndicator
             self.accessoryView = checkmark
             
-        }else if(data == MyPageEnum.version){
+        }else if(data.title == "버전 정보"){
             //TODO // 최신버전 Text 추가하기 
             content.imageProperties.tintColor = .gray
         }else{

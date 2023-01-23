@@ -11,11 +11,12 @@ import UIKit
 enum MyPageEnum: CaseIterable{
     case banner
     case benefit
+    case laboratory
+    case vote
     case center
     case list
     case privacy
     case service
-    case laboratory
     case openlicense
     case version
     
@@ -25,6 +26,10 @@ enum MyPageEnum: CaseIterable{
             return ""
         case .benefit:
             return "에이블리 회원만의 특별한 혜택 보러 가기"
+        case .laboratory:
+            return "실험실"
+        case .vote:
+            return "고민 투표, 골라줘"
         case .center:
             return "고객센터"
         case .list:
@@ -33,8 +38,7 @@ enum MyPageEnum: CaseIterable{
             return "개인정보 처리방침"
         case .service:
             return "서비스 이용 약관"
-        case .laboratory:
-            return "실험실"
+
         case .openlicense:
             return "오픈소스라이센스"
         case .version:
@@ -48,6 +52,10 @@ enum MyPageEnum: CaseIterable{
             return UIImage(systemName: "pencil")
         case .benefit:
             return UIImage(systemName: "pencil")
+        case .laboratory:
+            return UIImage(systemName: "eraser")
+        case .vote:
+            return UIImage(systemName: "eraser")
         case .center:
             return UIImage(systemName: "eraser")
         case .list:
@@ -56,8 +64,7 @@ enum MyPageEnum: CaseIterable{
             return UIImage(systemName: "eraser")
         case .service:
             return UIImage(systemName: "pencil")
-        case .laboratory:
-            return UIImage(systemName: "eraser")
+
         case .openlicense:
             return UIImage(systemName: "pencil")
         case .version:
@@ -72,6 +79,10 @@ enum MyPageEnum: CaseIterable{
             return nil
         case .benefit:
             return BenefitController()
+        case .laboratory:
+            return LaboratoryController()
+        case .vote:
+            return LaboratoryController()
         case .center:
             return CenterController()
         case .list:
@@ -80,8 +91,7 @@ enum MyPageEnum: CaseIterable{
             return PrivacyController()
         case .service:
             return ServiceController()
-        case .laboratory:
-            return LaboratoryController()
+
         case .openlicense:
             return OpenLicenseController()
         case .version:
