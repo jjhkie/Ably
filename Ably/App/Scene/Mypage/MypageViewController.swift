@@ -42,8 +42,6 @@ extension MypageViewController{
         
         let dataSource = RxTableViewSectionedReloadDataSource<MyPageData>(
             configureCell: { dataSource, tableView, indexPath, item in
-                
-                print(indexPath.section)
                 if(indexPath.section == 0){
                     if(indexPath.row == 0){
                         guard let line = tableView.dequeue(CellReusable.myPageHeader) else {return UITableViewCell()}
@@ -65,7 +63,8 @@ extension MypageViewController{
         )
         
         dataSource.titleForHeaderInSection = { dataSource, index in
-            return dataSource.sectionModels[index].header
+            return MyPageEnum.allCases[index].description
+                
         }
         
         
@@ -79,8 +78,9 @@ extension MypageViewController{
         
         tableView.rx.itemSelected
             .bind(onNext: {
-                self.show(MyPageEnum.allCases[$0.row].showController!, sender: true)
-                print(MyPageEnum.allCases[$0.row])
+                self.show(MyPageEnum.allCases[$0.section].showController[$0.row]!, sender: true)
+//                self.show(MyPageEnum.allCases[$0.row].showController!, sender: true)
+//                print(MyPageEnum.allCases[$0.row])
             })
             .disposed(by: bag)
 

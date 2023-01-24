@@ -9,6 +9,7 @@ import RxSwift
 import RxCocoa
 
 
+
 final class MyPageViewModel: VM{
 
     struct Input{
@@ -22,16 +23,18 @@ final class MyPageViewModel: VM{
     var bag = DisposeBag()
     
     var tableData: [MyPageData]
+    //var tableDatas: [MyData]
     
     
     init(){
-        
-        self.tableData = [
-            MyPageData(header: "", items: (0..<2).map{MyData(title: MyPageEnum.allCases[$0].contents, image: MyPageEnum.allCases[$0].leadingImage!)}),
-            MyPageData(header: "추천", items: (2..<4).map{MyData(title: MyPageEnum.allCases[$0].contents, image: MyPageEnum.allCases[$0].leadingImage!)}),
-            MyPageData(header: "도움말", items: (4..<MyPageEnum.allCases.count).map{MyData(title: MyPageEnum.allCases[$0].contents, image: MyPageEnum.allCases[$0].leadingImage!)}),
-        ]
+        self.tableData = (0..<MyPageEnum.allCases.count).map{count in
+            MyPageData(header: MyPageEnum.allCases[count].description ?? "", items: (0..<MyPageEnum.allCases[count].contents.count).map{value in
+                MyData(title: MyPageEnum.allCases[count].contents[value], image: MyPageEnum.allCases[count].leadingImage[value]!)
+            })
+        }
     }
+
+    
     func transform(input: Input) -> Output {
         let cellData = Observable.just(tableData)
         
