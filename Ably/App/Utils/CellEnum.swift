@@ -6,9 +6,12 @@
 //
 
 import ReusableKit
+import UIKit
 
 //ReusableKit Cell 정리 및 편의성 
 enum CellReusable{
+    
+    static let commonCell = ReusableCell<UITableViewCell>()
     //Main
     //static let mainCell = ReusableCell<
     
@@ -22,5 +25,6 @@ enum CellReusable{
     //MyPage
     static let myPageHeader = ReusableCell<TableHeader>()
     static let myPageCell = ReusableCell<MyPageCell>()
+    
     
 }

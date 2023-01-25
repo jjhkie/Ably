@@ -15,6 +15,14 @@ final class MypageViewController: UIViewController{
     
     private let bag = DisposeBag()
     
+    private let tableView = UITableView().then{
+        $0.backgroundColor = .white
+        $0.separatorStyle = .none
+        $0.register(CellReusable.myPageHeader)
+        $0.register(CellReusable.myPageCell)
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -23,13 +31,7 @@ final class MypageViewController: UIViewController{
         layout()
     }
     
-    private let tableView = UITableView().then{
-        $0.backgroundColor = .white
-        $0.separatorStyle = .none
-        $0.register(CellReusable.myPageHeader)
-        $0.register(CellReusable.myPageCell)
 
-    }
     
 }
 

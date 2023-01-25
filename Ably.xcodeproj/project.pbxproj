@@ -33,6 +33,7 @@
 		B93B883B2959998200067F24 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = B93B883A2959998200067F24 /* RxDataSources */; };
 		B93E790F293DF6A00061201F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93E790E293DF6A00061201F /* TodayViewController.swift */; };
 		B93E7911293DF71E0061201F /* ShoppingMallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93E7910293DF71E0061201F /* ShoppingMallViewController.swift */; };
+		B9437C382980B0570039761C /* LaboratoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9437C372980B0570039761C /* LaboratoryViewModel.swift */; };
 		B946E13A2967A4BE00BF71F3 /* BrandController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946E1392967A4BE00BF71F3 /* BrandController.swift */; };
 		B946E13D2967A99500BF71F3 /* BeautyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946E13C2967A99500BF71F3 /* BeautyController.swift */; };
 		B946E1402967A9D300BF71F3 /* PhoneCaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946E13F2967A9D300BF71F3 /* PhoneCaseController.swift */; };
@@ -91,6 +92,7 @@
 		B93A5F32295BD0B3005BFB5C /* ZzimRoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimRoundCell.swift; sourceTree = "<group>"; };
 		B93E790E293DF6A00061201F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		B93E7910293DF71E0061201F /* ShoppingMallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingMallViewController.swift; sourceTree = "<group>"; };
+		B9437C372980B0570039761C /* LaboratoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaboratoryViewModel.swift; sourceTree = "<group>"; };
 		B946E1392967A4BE00BF71F3 /* BrandController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandController.swift; sourceTree = "<group>"; };
 		B946E13C2967A99500BF71F3 /* BeautyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautyController.swift; sourceTree = "<group>"; };
 		B946E13F2967A9D300BF71F3 /* PhoneCaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCaseController.swift; sourceTree = "<group>"; };
@@ -214,7 +216,7 @@
 				B914D9E0296E4C550035B5EF /* ListController.swift */,
 				B914D9E2296E4C680035B5EF /* PrivacyController.swift */,
 				B914D9E4296E4C7E0035B5EF /* ServiceController.swift */,
-				B914D9E6296E4C920035B5EF /* LaboratoryController.swift */,
+				B9437C362980B0470039761C /* Laboratory */,
 				B914D9E8296E4CB00035B5EF /* OpenLicenseController.swift */,
 			);
 			path = SubScene;
@@ -278,6 +280,15 @@
 				B946E14C2967B49C00BF71F3 /* HotDeal */,
 			);
 			path = Toptab;
+			sourceTree = "<group>";
+		};
+		B9437C362980B0470039761C /* Laboratory */ = {
+			isa = PBXGroup;
+			children = (
+				B914D9E6296E4C920035B5EF /* LaboratoryController.swift */,
+				B9437C372980B0570039761C /* LaboratoryViewModel.swift */,
+			);
+			path = Laboratory;
 			sourceTree = "<group>";
 		};
 		B946E13B2967A50800BF71F3 /* Brand */ = {
@@ -580,6 +591,7 @@
 				B930F457296BD718005493C8 /* CellEnum.swift in Sources */,
 				B93A5F30295BCD8A005BFB5C /* ZzimHeaderView.swift in Sources */,
 				B9720993297BD3AF0050B169 /* TodayModel.swift in Sources */,
+				B9437C382980B0570039761C /* LaboratoryViewModel.swift in Sources */,
 				B9FECC2F2953E3AF001AF759 /* MyPageViewModel.swift in Sources */,
 				B930F45C296BF4F1005493C8 /* MyPageTableDelegate.swift in Sources */,
 			);
