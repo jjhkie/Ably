@@ -11,12 +11,26 @@ import XLPagerTabStrip
 import Then
 import RxSwift
 import RxCocoa
+import FSPagerView
 
 final class MainViewController: ButtonBarPagerTabStripViewController {
     
     private let menuBar = UIStackView()
     private let rankingBar = UIStackView()
     private let bag = DisposeBag()
+    
+    ///FSPagerVIew
+    private let pagerView = FSPagerView().then{
+        $0.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
+        $0.itemSize = FSPagerView.automaticSize
+    }
+    
+    private let pageControl = FSPageControl().then{
+        $0.numberOfPages = 7
+        $0.contentHorizontalAlignment = .right
+        $0.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        //$0.contentInset
+    }
     
     
     var scrollDifference: Double = 0.0
@@ -49,7 +63,6 @@ extension MainViewController{
     private func attribute(){
         navigationController?.isNavigationBarHidden = true
        
-     
         //remove
         menuBar.backgroundColor = .blue
         rankingBar.backgroundColor = .red

@@ -14,10 +14,17 @@ final class MarketViewController: UIViewController{
     
     let bag = DisposeBag()
     
+    private let segmentControl = UISegmentedControl().then{
+        
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        
+    }
+    
     private let tableView = UITableView().then{
         $0.backgroundColor = .white
         $0.register(CellReusable.marketCell)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,13 +60,27 @@ extension MarketViewController{
         self.navigationItem.leadingButton()
         self.navigationItem.trailingButton("magnifyingglass")
 
+        
+        //segmentControl
+        
+        self.segmentControl.insertSegment(withTitle: "랭킹", at: 0, animated: true)
+        self.segmentControl.insertSegment(withTitle: "즐겨찾기", at: 1, animated: false)
+        self.segmentControl.selectedSegmentIndex = 0
+    
     }
     
     func layout(){
-        view.addSubview(tableView)
+        [segmentControl,tableView].forEach{
+            view.addSubview($0)
+        }
+        segmentControl.snp.makeConstraints{
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
         
         tableView.snp.makeConstraints{
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(segmentControl.snp.bottom)
+            $0.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
+
