@@ -12,10 +12,16 @@ import RxCocoa
 final class MarketViewModel:VM{
     var bag = DisposeBag()
     
-    var tableData: [String]
+    var tableData: [marketItem]
 
     init(){
-        tableData = ["a","aa","aaa"]
+        tableData = [marketItem(title: "아뜨랑스", tag: ["러블리","오피스룩"], subscribeCount: 610000),
+                     marketItem(title: "아뜨랑스", tag: ["러블리","오피스룩"], subscribeCount: 610000),
+                     marketItem(title: "아뜨랑스", tag: ["러블리","오피스룩"], subscribeCount: 610000),
+                     marketItem(title: "아뜨랑스", tag: ["러블리","오피스룩"], subscribeCount: 610000),
+                     marketItem(title: "아뜨랑스", tag: ["러블리","오피스룩"], subscribeCount: 610000),
+                     marketItem(title: "아뜨랑스", tag: ["러블리","오피스룩"], subscribeCount: 610000)]
+
     }
 
     struct Input {
@@ -23,7 +29,7 @@ final class MarketViewModel:VM{
     }
     
     struct Output {
-        let tableCellData: Driver<[String]>
+        let tableCellData: Driver<[marketItem]>
     }
     
     

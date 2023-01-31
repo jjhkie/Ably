@@ -22,12 +22,14 @@ final class MarketViewController: UIViewController{
     
     private let tableView = UITableView().then{
         $0.backgroundColor = .white
+        $0.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         $0.register(CellReusable.marketCell)
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         bind(MarketViewModel())
         attribute()
         layout()
@@ -43,9 +45,9 @@ extension MarketViewController{
         let output = VM.transform(input: input)
         
         output.tableCellData
-            .drive(tableView.rx.items){b,a,index in
+            .drive(tableView.rx.items){tableView,index,data in
                 let cell = self.tableView.dequeue(CellReusable.marketCell)
-                
+                cell?.setData(data, index)
                 return cell!
             }
             .disposed(by: bag)
@@ -66,6 +68,8 @@ extension MarketViewController{
         self.segmentControl.insertSegment(withTitle: "랭킹", at: 0, animated: true)
         self.segmentControl.insertSegment(withTitle: "즐겨찾기", at: 1, animated: false)
         self.segmentControl.selectedSegmentIndex = 0
+        self.segmentControl.backgroundColor = .white
+        
     
     }
     
@@ -74,7 +78,8 @@ extension MarketViewController{
             view.addSubview($0)
         }
         segmentControl.snp.makeConstraints{
-            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(50)
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
         
         tableView.snp.makeConstraints{

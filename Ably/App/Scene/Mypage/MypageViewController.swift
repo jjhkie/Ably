@@ -81,8 +81,6 @@ extension MypageViewController{
         tableView.rx.itemSelected
             .bind(onNext: {
                 self.show(MyPageEnum.allCases[$0.section].showController[$0.row]!, sender: true)
-//                self.show(MyPageEnum.allCases[$0.row].showController!, sender: true)
-//                print(MyPageEnum.allCases[$0.row])
             })
             .disposed(by: bag)
 
@@ -95,13 +93,8 @@ extension MypageViewController{
         self.navigationController?.setcommonBar()
         self.title = "마이페이지"
         self.navigationItem.leadingButton()
-        
         self.navigationItem.trailingButton("bell")
         
-        //let footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1))
-        //footer.backgroundColor = .gray
-        
-        //tableView.tableFooterView = footer
         
     }
     
