@@ -14,7 +14,7 @@ final class MarketViewController: UIViewController{
     
     let bag = DisposeBag()
     
-    private let segmentControl = UISegmentedControl().then{
+    private let segmentControl = UISegmentedControl(items: ["랭킹","즐겨찾기"]).then{
         
         $0.translatesAutoresizingMaskIntoConstraints = false
         
@@ -27,12 +27,29 @@ final class MarketViewController: UIViewController{
     }
     
     
+    private let testView = UIView().then{
+        $0.backgroundColor = .red
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         bind(MarketViewModel())
         attribute()
         layout()
+    }
+    
+    
+    var shouldHideFirstView: Bool? {
+      didSet {
+        guard let shouldHideFirstView = self.shouldHideFirstView else { return }
+        self.testView.isHidden = shouldHideFirstView
+        self.tableView.isHidden = !self.testView.isHidden
+      }
+    }
+    
+    @objc private func didChangeValue(segment: UISegmentedControl){
+        self.shouldHideFirstView = segment.selectedSegmentIndex != 0
     }
 }
 
@@ -52,6 +69,9 @@ extension MarketViewController{
             }
             .disposed(by: bag)
         
+        tableView.rx.setDelegate(self)
+            .disposed(by: bag)
+        
         
     }
     
@@ -65,16 +85,25 @@ extension MarketViewController{
         
         //segmentControl
         
-        self.segmentControl.insertSegment(withTitle: "랭킹", at: 0, animated: true)
-        self.segmentControl.insertSegment(withTitle: "즐겨찾기", at: 1, animated: false)
+        //self.segmentControl.insertSegment(withTitle: "랭킹", at: 0, animated: true)
+        //self.segmentControl.insertSegment(withTitle: "즐겨찾기", at: 1, animated: false)
+        
         self.segmentControl.selectedSegmentIndex = 0
+        
         self.segmentControl.backgroundColor = .white
         
-    
+        self.segmentControl.addTarget(self, action: #selector(didChangeValue(segment:)), for: .valueChanged)
+
+        
+                                          
+                                          
+        //tableView
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 300
     }
     
     func layout(){
-        [segmentControl,tableView].forEach{
+        [segmentControl,tableView,testView].forEach{
             view.addSubview($0)
         }
         segmentControl.snp.makeConstraints{
@@ -86,6 +115,14 @@ extension MarketViewController{
             $0.top.equalTo(segmentControl.snp.bottom)
             $0.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
         }
+        
+        testView.snp.makeConstraints{
+            $0.top.equalTo(segmentControl.snp.bottom)
+            $0.trailing.leading.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(300)
+            
+        }
     }
+                                          
 }
 

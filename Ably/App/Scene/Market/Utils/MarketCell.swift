@@ -11,18 +11,49 @@ import Then
 
 final class MarketCell:UITableViewCell{
     
-    let rankingText = UILabel()
+    static let imageViewSize = 50.0
     
-    let profileImage = UIImageView().then{
-        $0.backgroundColor = .black
+    let marketInfoView = UIStackView().then{
+        $0.axis = .vertical
     }
     
+    let buttonInfoView = UIStackView().then{
+        $0.axis = .horizontal
+    }
+    
+    //랭킹 텍스트
+    let rankingText = UILabel()
+    
+    //프로필 이미지
+    let profileImage = UIImageView().then{
+        $0.backgroundColor = .black
+        $0.contentMode = .scaleAspectFill
+        $0.layer.masksToBounds = true
+        $0.layer.cornerRadius = CGFloat(imageViewSize / 2.0)
+    }
+    
+    //마켓 이름
     let marketTitle = UILabel().then{
         $0.textColor = .black
     }
     
+    // 마켓 태그
     let marketTag = UILabel().then{
         $0.textColor = .black
+    }
+    
+    // 우측 버튼
+    let favoriteButton = UIButton().then{
+        $0.setTitle("더보기", for: .normal) //title넣기\
+
+        $0.setTitleColor(.black, for: .normal)
+        $0.imageView?.contentMode = .scaleToFill
+        $0.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        //$0.contentHorizontalAlignment = .center
+        $0.semanticContentAttribute = .forceLeftToRight //<- 중요
+        
+        $0.imageEdgeInsets = .init(top: 0, left:0, bottom: 30, right: 20) //<- 중요
+                
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -41,37 +72,67 @@ final class MarketCell:UITableViewCell{
 extension MarketCell{
     
     func setData(_ data: marketItem,_ index: Int){
+        ///Ranking Text
+        if(index < 3){
+            rankingText.textColor = .red
+        }
         rankingText.text = "\(index + 1)"
+        
         marketTitle.text = data.title
-        marketTag.text = data.tag.joined()
+        
+        var tagString = ""
+        for tag in data.tag{
+            tagString.isEmpty ? tagString.append("#\(tag)") :  tagString.append(" #\(tag)")
+            
+        }
+        marketTag.text = tagString
+        marketTag.textColor = .gray
+        marketTag.font = .systemFont(ofSize: 12, weight: .bold)
     }
     
     private func attribute(){
         
-        //accessoryView 설정
-        let image = UIImage(systemName: "star")
-        let checkmark  = UIImageView(frame:CGRect(x:0, y:0, width:self.frame.size.height, height:self.frame.size.height))
-        checkmark.image = image
-        checkmark.tintColor = .red
-        self.accessoryView = checkmark
+
+        favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+
     }
     
     private func layout(){
-        [rankingText,profileImage, marketTitle,marketTag].forEach{
+        
+        //스택 [텍스트 뷰 추가]
+        [marketTitle,marketTag].forEach{
+            marketInfoView.addArrangedSubview($0)
+        }
+
+        //뷰 추가
+        [rankingText,profileImage, marketInfoView, favoriteButton].forEach{
             contentView.addSubview($0)
         }
         
         rankingText.snp.makeConstraints{
-            $0.leading.top.equalTo(contentView.safeAreaLayoutGuide)
+            $0.centerY.equalTo(contentView.safeAreaLayoutGuide)
+            $0.leading.equalTo(contentView.safeAreaLayoutGuide).inset(10)
         }
         
-//        marketTitle.snp.makeConstraints{
-//            $0.trailing.leading.top.equalToSuperview()
-//        }
-//        marketTag.snp.makeConstraints{
-//            $0.leading.equalTo(marketTitle.snp.leading)
-//            $0.top.equalTo(marketTitle.snp.bottom)
-//        }
+        profileImage.snp.makeConstraints{
+            $0.centerY.equalTo(contentView.safeAreaLayoutGuide)
+            $0.leading.equalTo(rankingText.snp.trailing).offset(15)
+            $0.trailing.equalTo(marketInfoView.snp.leading).offset(-15)
+            $0.width.equalTo(MarketCell.imageViewSize)
+            $0.height.equalTo(MarketCell.imageViewSize)
+        }
+        
+        marketInfoView.snp.makeConstraints{
+            $0.top.equalTo(profileImage.snp.top)
+            $0.bottom.equalTo(profileImage.snp.bottom)
+            $0.leading.equalTo(profileImage.snp.trailing)
+        }
+        
+        favoriteButton.snp.makeConstraints{
+            $0.trailing.equalTo(contentView.safeAreaLayoutGuide)
+            $0.centerY.equalTo(contentView.safeAreaLayoutGuide)
+        }
+
 
     }
 }

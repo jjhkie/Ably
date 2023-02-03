@@ -12,4 +12,8 @@ extension UINavigationController{
         navigationBar.backgroundColor = .white
         navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
+    
+    func pushCollectionView(){
+        self.pushViewController(CollectionController(), animated: true)
+    }
 }

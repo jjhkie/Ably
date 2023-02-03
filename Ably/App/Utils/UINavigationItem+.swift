@@ -42,4 +42,7 @@ extension UINavigationItem{
         
         self.rightBarButtonItems = [basketButton,secondButton]
     }
+    
+    @objc private func collectionViewPush(_ sender: Any){
+    }
 }

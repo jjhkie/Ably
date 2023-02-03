@@ -48,8 +48,10 @@
 		B95218F1293CA4C100018DAF /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218F0293CA4C100018DAF /* MarketViewController.swift */; };
 		B95218F6293CA4EB00018DAF /* ZzimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218F5293CA4EB00018DAF /* ZzimViewController.swift */; };
 		B95218F9293CA51C00018DAF /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218F8293CA51C00018DAF /* MypageViewController.swift */; };
+		B957AF79298B95F4005A2987 /* MarketTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957AF78298B95F4005A2987 /* MarketTableDelegate.swift */; };
 		B95BAB2029507D2E004D6306 /* UINavigationItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95BAB1F29507D2E004D6306 /* UINavigationItem+.swift */; };
 		B95BAB2229507E26004D6306 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95BAB2129507E26004D6306 /* UINavigationController+.swift */; };
+		B95F09BA298CC284006F3B11 /* CollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F09B9298CC284006F3B11 /* CollectionController.swift */; };
 		B9670C3929514EDC00616BC5 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9670C3829514EDC00616BC5 /* MyPageCell.swift */; };
 		B9670C4529515DDE00616BC5 /* MyPageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9670C4429515DDE00616BC5 /* MyPageEnum.swift */; };
 		B968E6542988DA7300209AF3 /* MarketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B968E6532988DA7300209AF3 /* MarketModel.swift */; };
@@ -107,8 +109,10 @@
 		B95218F0293CA4C100018DAF /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		B95218F5293CA4EB00018DAF /* ZzimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimViewController.swift; sourceTree = "<group>"; };
 		B95218F8293CA51C00018DAF /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
+		B957AF78298B95F4005A2987 /* MarketTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketTableDelegate.swift; sourceTree = "<group>"; };
 		B95BAB1F29507D2E004D6306 /* UINavigationItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+.swift"; sourceTree = "<group>"; };
 		B95BAB2129507E26004D6306 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		B95F09B9298CC284006F3B11 /* CollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionController.swift; sourceTree = "<group>"; };
 		B9670C3829514EDC00616BC5 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		B9670C4429515DDE00616BC5 /* MyPageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEnum.swift; sourceTree = "<group>"; };
 		B968E6532988DA7300209AF3 /* MarketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketModel.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				B9243343296F9307006B7DE8 /* MarketCell.swift */,
+				B957AF78298B95F4005A2987 /* MarketTableDelegate.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 				B932A3102973EA87007D22C1 /* Syag */,
 				B95218F7293CA4EE00018DAF /* Zzim */,
 				B95218FA293CA52000018DAF /* Mypage */,
+				B95F09BB298CC28A006F3B11 /* Menu */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -394,6 +400,14 @@
 				B9FECC392953EC3E001AF759 /* MyPageModel.swift */,
 			);
 			path = Mypage;
+			sourceTree = "<group>";
+		};
+		B95F09BB298CC28A006F3B11 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				B95F09B9298CC284006F3B11 /* CollectionController.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		B9670C4629515DE100616BC5 /* Utils */ = {
@@ -594,8 +608,10 @@
 				B9BE11C02962CA0500C6BFD4 /* ZzimBoxCell.swift in Sources */,
 				B930F457296BD718005493C8 /* CellEnum.swift in Sources */,
 				B93A5F30295BCD8A005BFB5C /* ZzimHeaderView.swift in Sources */,
+				B957AF79298B95F4005A2987 /* MarketTableDelegate.swift in Sources */,
 				B9720993297BD3AF0050B169 /* TodayModel.swift in Sources */,
 				B9437C382980B0570039761C /* LaboratoryViewModel.swift in Sources */,
+				B95F09BA298CC284006F3B11 /* CollectionController.swift in Sources */,
 				B9FECC2F2953E3AF001AF759 /* MyPageViewModel.swift in Sources */,
 				B930F45C296BF4F1005493C8 /* MyPageTableDelegate.swift in Sources */,
 			);
