@@ -10,6 +10,7 @@ import SnapKit
 import RxSwift
 import RxDataSources
 import RxCocoa
+import Then
 
 
 
@@ -17,29 +18,28 @@ final class ZzimViewController: UIViewController{
     
     let bag = DisposeBag()
     
-    private lazy var collectionView: UICollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: zzimLayout())
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isScrollEnabled = true
-        view.showsHorizontalScrollIndicator = false
-        view.showsVerticalScrollIndicator = true
-        view.scrollIndicatorInsets = UIEdgeInsets(top: -2, left: 0, bottom: 0, right: 4)
-        view.contentInset = .zero
-        view.backgroundColor = .clear
-        view.clipsToBounds = true
+    private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: zzimLayout()).then{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.isScrollEnabled = true
+        $0.showsHorizontalScrollIndicator = false
+        $0.showsVerticalScrollIndicator = true
+        $0.scrollIndicatorInsets = UIEdgeInsets(top: -2, left: 0, bottom: 0, right: 4)
+        $0.contentInset = .zero
+        $0.backgroundColor = .clear
+        $0.clipsToBounds = true
         
-        view.register(ZzimRoundCell.self, forCellWithReuseIdentifier: "RoundCell")
-        view.register(ZzimBoxCell.self, forCellWithReuseIdentifier: "BoxCell")
-        view.register(ZzimHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
+        $0.register(ZzimRoundCell.self, forCellWithReuseIdentifier: "RoundCell")
+        $0.register(ZzimBoxCell.self, forCellWithReuseIdentifier: "BoxCell")
+        $0.register(ZzimHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         
         bind(ZzimViewModel())
         attribute()
@@ -66,11 +66,10 @@ extension ZzimViewController{
         //네비게이션 바 설정
         //self.navigationController?.setcommonBar()
         //navigationController?.setcommonBar()
-        self.title = "찜"
-        [self.navigationItem].forEach{
-            $0.leadingButton()
-            $0.trailingButton("magnifyingglass")
-        }
+        navigationController?.setCommonBar("찜")
+            navigationController?.leadingButton()
+            navigationController?.trailingButton("magnifyingglass")
+
     }
     
     private func layout(){
@@ -83,82 +82,6 @@ extension ZzimViewController{
         }
     }
 }
-
-/// TODO __ Utils 에 따로 분리
-func zzimLayout() -> UICollectionViewCompositionalLayout{
-    UICollectionViewCompositionalLayout{ (section, env) -> NSCollectionLayoutSection? in
-        switch section{
-        case 0:
-            let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-            
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(100))
-            
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-            
-            let header = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(30.0)),
-                elementKind: UICollectionView.elementKindSectionHeader,
-                alignment: .top
-            )
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.boundarySupplementaryItems = [header]
-            section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5 )
-            
-            
-            return section
-            
-        case 1:
-            let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1 / 2), heightDimension: .fractionalHeight(1))
-            
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(160))
-            
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5 )
-            
-            
-            return section
-            
-        default:
-            let itemFractionalWidthFraction = 1.0 / 5.0 // horizontal 5개의 셀
-            let groupFractionalHeightFraction = 1.0 / 4.0 // vertical 4개의 셀
-            let itemInset: CGFloat = 2.5
-            
-            // Item
-            let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(itemFractionalWidthFraction),
-                heightDimension: .fractionalHeight(1)
-            )
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
-            
-            // Group
-            let groupSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(groupFractionalHeightFraction)
-            )
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            
-            // Section
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
-            return section
-            
-        }
-        
-    }
-}
-
 
 //TODO __ Utils 에 따로 분리
 extension ZzimViewController{

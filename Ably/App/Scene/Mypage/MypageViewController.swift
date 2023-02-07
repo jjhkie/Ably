@@ -90,10 +90,9 @@ extension MypageViewController{
     
     private func attribute(){
         //NavigationBar
-        self.navigationController?.setcommonBar()
-        self.title = "마이페이지"
-        self.navigationItem.leadingButton()
-        self.navigationItem.trailingButton("bell")
+        navigationController?.setCommonBar("마이페이지")
+        navigationController?.leadingButton()
+        navigationController?.trailingButton("bell")
         
         
     }

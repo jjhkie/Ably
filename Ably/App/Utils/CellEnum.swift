@@ -13,7 +13,6 @@ enum CellReusable{
     
     static let commonCell = ReusableCell<UITableViewCell>()
     //Main
-    //static let mainCell = ReusableCell<
     
     //Market
     static let marketCell = ReusableCell<MarketCell>()

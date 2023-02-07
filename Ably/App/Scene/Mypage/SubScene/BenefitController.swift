@@ -21,8 +21,7 @@ final class BenefitController : UIViewController{
 
 extension BenefitController{
     private func attribute(){
-        self.navigationController?.setcommonBar()
-        self.title = "회원혜택"
+        self.navigationController?.setCommonBar("회원혜택")
     }
     
     

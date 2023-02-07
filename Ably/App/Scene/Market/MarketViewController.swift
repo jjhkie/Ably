@@ -26,10 +26,25 @@ final class MarketViewController: UIViewController{
         $0.register(CellReusable.marketCell)
     }
     
-    
-    private let testView = UIView().then{
-        $0.backgroundColor = .red
+    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: favoriteLayout()).then{
+        $0.isHidden = true
+        $0.isScrollEnabled = true
+        $0.showsHorizontalScrollIndicator = false
+        $0.showsVerticalScrollIndicator = true
+        $0.scrollIndicatorInsets = UIEdgeInsets(top: -2, left: 0, bottom: 0, right: 4)
+        $0.contentInset = .zero
+        $0.backgroundColor = .clear
+        $0.clipsToBounds = true
+        $0.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    private let testDataSource: [TestSection] = [
+        .first((1...1).map(String.init).map(TestSection.FirstItem.init(value:))),
+        .second((1...3).map(String.init).map(TestSection.SecondItem.init(value: )))
+    ]
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,22 +52,48 @@ final class MarketViewController: UIViewController{
         bind(MarketViewModel())
         attribute()
         layout()
+        
+        collectionView.dataSource = self
     }
-    
     
     var shouldHideFirstView: Bool? {
       didSet {
         guard let shouldHideFirstView = self.shouldHideFirstView else { return }
-        self.testView.isHidden = shouldHideFirstView
-        self.tableView.isHidden = !self.testView.isHidden
+        self.tableView.isHidden = shouldHideFirstView
+        self.collectionView.isHidden = !self.tableView.isHidden
       }
-    }
-    
-    @objc private func didChangeValue(segment: UISegmentedControl){
-        self.shouldHideFirstView = segment.selectedSegmentIndex != 0
     }
 }
 
+//Remove
+extension MarketViewController:UICollectionViewDataSource{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        self.testDataSource.count
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch self.testDataSource[section]{
+            
+        case let .first(items):
+            return items.count
+        case let .second(items):
+            return items.count
+        case .third(_):
+            return 0
+        case .fourth(_):
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! UICollectionViewCell
+        
+        cell.backgroundColor = .blue
+            return cell
+        
+    }
+    
+    
+}
 
 extension MarketViewController{
     func bind(_ VM: MarketViewModel){
@@ -72,38 +113,52 @@ extension MarketViewController{
         tableView.rx.setDelegate(self)
             .disposed(by: bag)
         
-        
+    }
+    
+    //버튼 만들기
+    func testMakeButton(_ target: Any?, action: Selector, symbolName: String) -> UIBarButtonItem {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: symbolName), for: .normal)
+        button.addTarget(target, action: action, for: .touchUpInside)
+        button.tintColor = .black
+            
+        let barButtonItem = UIBarButtonItem(customView: button)
+        barButtonItem.customView?.translatesAutoresizingMaskIntoConstraints = false
+        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
+            
+        return barButtonItem
+    }
+    
+    @objc private func testPush(){
+        self.navigationController?.pushViewController(CollectionController(), animated: true)
     }
     
     func attribute(){
         //NavigationBar
-        navigationController?.setcommonBar()
-        self.title = "마켓"
-        self.navigationItem.leadingButton()
-        self.navigationItem.trailingButton("magnifyingglass")
+        navigationController?.navigationBar.topItem?.title = "마켓"
+        let menuButton = self.testMakeButton(self,
+                                               action: Selector("testPush"),
+                                               symbolName: "text.justify")
+        
+        navigationController?.navigationBar.topItem?.leftBarButtonItem = menuButton
+        
+        //segMentControl
+        segmentControl.selectedSegmentIndex = 0
+        segmentControl.backgroundColor = .white
+        segmentControl.addTarget(self, action: #selector(didChangeValue(segment:)), for: .valueChanged)
 
-        
-        //segmentControl
-        
-        //self.segmentControl.insertSegment(withTitle: "랭킹", at: 0, animated: true)
-        //self.segmentControl.insertSegment(withTitle: "즐겨찾기", at: 1, animated: false)
-        
-        self.segmentControl.selectedSegmentIndex = 0
-        
-        self.segmentControl.backgroundColor = .white
-        
-        self.segmentControl.addTarget(self, action: #selector(didChangeValue(segment:)), for: .valueChanged)
-
-        
-                                          
-                                          
         //tableView
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 300
     }
     
+    @objc private func didChangeValue(segment: UISegmentedControl){
+        self.shouldHideFirstView = segment.selectedSegmentIndex != 0
+    }
+    
     func layout(){
-        [segmentControl,tableView,testView].forEach{
+        [segmentControl,tableView,collectionView].forEach{
             view.addSubview($0)
         }
         segmentControl.snp.makeConstraints{
@@ -116,13 +171,10 @@ extension MarketViewController{
             $0.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         
-        testView.snp.makeConstraints{
+        collectionView.snp.makeConstraints{
             $0.top.equalTo(segmentControl.snp.bottom)
-            $0.trailing.leading.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(300)
-            
+            $0.trailing.leading.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
-                                          
 }
 

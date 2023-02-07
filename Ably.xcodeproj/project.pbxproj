@@ -56,8 +56,11 @@
 		B9670C4529515DDE00616BC5 /* MyPageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9670C4429515DDE00616BC5 /* MyPageEnum.swift */; };
 		B968E6542988DA7300209AF3 /* MarketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B968E6532988DA7300209AF3 /* MarketModel.swift */; };
 		B96950AC2940292F000520A8 /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96950AB2940292F000520A8 /* enum.swift */; };
+		B96CFB8C298E424500AD16F4 /* CompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CFB8B298E424500AD16F4 /* CompositionalLayout.swift */; };
 		B9720993297BD3AF0050B169 /* TodayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9720992297BD3AF0050B169 /* TodayModel.swift */; };
 		B9720995297BDD810050B169 /* TodayVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9720994297BDD810050B169 /* TodayVIewModel.swift */; };
+		B972C2B9298F9457006F03B8 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B972C2B8298F9457006F03B8 /* UIButton+.swift */; };
+		B972C2BB298FB1FB006F03B8 /* SyagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B972C2BA298FB1FB006F03B8 /* SyagModel.swift */; };
 		B9BE11C02962CA0500C6BFD4 /* ZzimBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BE11BF2962CA0500C6BFD4 /* ZzimBoxCell.swift */; };
 		B9CED5CB29553C9700FDD60C /* ZzimViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */; };
 		B9CED5CD29553E6100FDD60C /* ZzimModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CED5CC29553E6100FDD60C /* ZzimModel.swift */; };
@@ -117,8 +120,11 @@
 		B9670C4429515DDE00616BC5 /* MyPageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEnum.swift; sourceTree = "<group>"; };
 		B968E6532988DA7300209AF3 /* MarketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketModel.swift; sourceTree = "<group>"; };
 		B96950AB2940292F000520A8 /* enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enum.swift; sourceTree = "<group>"; };
+		B96CFB8B298E424500AD16F4 /* CompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionalLayout.swift; sourceTree = "<group>"; };
 		B9720992297BD3AF0050B169 /* TodayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayModel.swift; sourceTree = "<group>"; };
 		B9720994297BDD810050B169 /* TodayVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayVIewModel.swift; sourceTree = "<group>"; };
+		B972C2B8298F9457006F03B8 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		B972C2BA298FB1FB006F03B8 /* SyagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyagModel.swift; sourceTree = "<group>"; };
 		B9BE11BF2962CA0500C6BFD4 /* ZzimBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimBoxCell.swift; sourceTree = "<group>"; };
 		B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimViewModel.swift; sourceTree = "<group>"; };
 		B9CED5CC29553E6100FDD60C /* ZzimModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimModel.swift; sourceTree = "<group>"; };
@@ -233,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				B932A30E2973EA82007D22C1 /* SyagController.swift */,
+				B972C2BA298FB1FB006F03B8 /* SyagModel.swift */,
 			);
 			path = Syag;
 			sourceTree = "<group>";
@@ -430,6 +437,8 @@
 				B946E1422967ADAF00BF71F3 /* ButtonBarPagerTab+.swift */,
 				B9FECC302953E5EE001AF759 /* ViewModel.swift */,
 				B930F456296BD718005493C8 /* CellEnum.swift */,
+				B96CFB8B298E424500AD16F4 /* CompositionalLayout.swift */,
+				B972C2B8298F9457006F03B8 /* UIButton+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -569,6 +578,7 @@
 				B9CED5CD29553E6100FDD60C /* ZzimModel.swift in Sources */,
 				B94CB27B2977878700AE81BA /* RxCollectionViewDelegateProxy.swift in Sources */,
 				B9243344296F9307006B7DE8 /* MarketCell.swift in Sources */,
+				B972C2B9298F9457006F03B8 /* UIButton+.swift in Sources */,
 				B95218F6293CA4EB00018DAF /* ZzimViewController.swift in Sources */,
 				B923195C293A08F300236B6D /* AppDelegate.swift in Sources */,
 				B9670C4529515DDE00616BC5 /* MyPageEnum.swift in Sources */,
@@ -585,6 +595,7 @@
 				B95BAB2229507E26004D6306 /* UINavigationController+.swift in Sources */,
 				B9CED5CB29553C9700FDD60C /* ZzimViewModel.swift in Sources */,
 				B9243342296F91C1006B7DE8 /* MarketViewModel.swift in Sources */,
+				B96CFB8C298E424500AD16F4 /* CompositionalLayout.swift in Sources */,
 				B95218EE293CA14300018DAF /* TabController.swift in Sources */,
 				B932A30F2973EA82007D22C1 /* SyagController.swift in Sources */,
 				B946E1482967B44A00BF71F3 /* BestController.swift in Sources */,
@@ -602,6 +613,7 @@
 				B95218F1293CA4C100018DAF /* MarketViewController.swift in Sources */,
 				B9FECC3A2953EC3E001AF759 /* MyPageModel.swift in Sources */,
 				B914D9E5296E4C7E0035B5EF /* ServiceController.swift in Sources */,
+				B972C2BB298FB1FB006F03B8 /* SyagModel.swift in Sources */,
 				B923195E293A08F300236B6D /* SceneDelegate.swift in Sources */,
 				B93A5F33295BD0B3005BFB5C /* ZzimRoundCell.swift in Sources */,
 				B95218E8293C8FD500018DAF /* MainViewController.swift in Sources */,

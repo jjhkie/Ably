@@ -20,8 +20,7 @@ final class OpenLicenseController : UIViewController{
 extension OpenLicenseController{
     
     private func attribute(){
-        self.navigationController?.setcommonBar()
-        self.title = "오픈소스 라이선스"
+        self.navigationController?.setCommonBar("오픈소스 라이선스")
     }
     
     

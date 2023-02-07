@@ -83,3 +83,27 @@ enum TopButtonItem: Int{
         }
     }
 }
+
+//Remove - Test
+enum TestSection{
+    case first([FirstItem])
+    case second([SecondItem])
+    case third([ThirdItem])
+    case fourth([FourthItem])
+    
+    struct FirstItem{
+        let value: String
+    }
+    
+    struct SecondItem{
+        let value: String
+    }
+    
+    struct ThirdItem{
+        let value: String
+    }
+    
+    struct FourthItem{
+        let value: String
+    }
+}

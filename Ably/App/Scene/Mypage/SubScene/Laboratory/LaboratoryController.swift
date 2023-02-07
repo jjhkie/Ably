@@ -78,9 +78,8 @@ extension LaboratoryController{
     }
     
     private func attribute(){
-        self.navigationController?.setcommonBar()
-        self.title = "실험실"
-        self.navigationItem.trailingButton("bell")
+        self.navigationController?.setCommonBar("실험실")
+        self.navigationController?.trailingButton("bell")
     }
     
     

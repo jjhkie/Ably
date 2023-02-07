@@ -44,16 +44,7 @@ final class MarketCell:UITableViewCell{
     
     // 우측 버튼
     let favoriteButton = UIButton().then{
-        $0.setTitle("더보기", for: .normal) //title넣기\
-
-        $0.setTitleColor(.black, for: .normal)
-        $0.imageView?.contentMode = .scaleToFill
-        $0.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        //$0.contentHorizontalAlignment = .center
-        $0.semanticContentAttribute = .forceLeftToRight //<- 중요
-        
-        $0.imageEdgeInsets = .init(top: 0, left:0, bottom: 30, right: 20) //<- 중요
-                
+        $0.configuration = .buttonStyle(style: .favorite)        
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -91,10 +82,6 @@ extension MarketCell{
     }
     
     private func attribute(){
-        
-
-        favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
-
     }
     
     private func layout(){
