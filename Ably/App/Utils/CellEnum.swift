@@ -12,6 +12,7 @@ import UIKit
 enum CellReusable{
     
     static let commonCell = ReusableCell<UITableViewCell>()
+    static let commonCollectionCell = ReusableCell<UICollectionViewCell>()
     //Main
     
     //Market

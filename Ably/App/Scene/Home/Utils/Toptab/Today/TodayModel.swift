@@ -9,14 +9,14 @@ import UIKit
 import RxDataSources
 
 enum TodayModel{
-    case NewYearSection(title: String?, items: [TodayItemData])
-    case PagerViewSection(title: String?,items: [TodayItemData])
-    case MenuViewSection(title: String?,items: [TodayItemData])
-    case FirstOrderBenefitsSection(title: String?, items: [TodayItemData])
-    case RecommendProductSection(title: String?, items: [TodayItemData])
-    case HotTenSection(title: String?,items: [TodayItemData])
-    case SyagRecommendProductSection(title: String?, items: [TodayItemData])
-    case PlusSection(title: String?,items: [TodayItemData])
+    case NewYearSection(title: String, items: [TodayItemData])
+    case PagerViewSection(title: String,items: [TodayItemData])
+    case MenuViewSection(title: String,items: [TodayItemData])
+    case FirstOrderBenefitsSection(title: String, items: [TodayItemData])
+    case RecommendProductSection(title: String, items: [TodayItemData])
+    case HotTenSection(title: String,items: [TodayItemData])
+    case SyagRecommendProductSection(title: String, items: [TodayItemData])
+    case PlusSection(title: String,items: [TodayItemData])
 }
 
 enum TodayItemData{
@@ -55,7 +55,7 @@ extension TodayModel: SectionModelType{
         }
     }
     
-    var title: String?{
+    var title: String{
         switch self{
             
         case .NewYearSection(title: let title, items: _):

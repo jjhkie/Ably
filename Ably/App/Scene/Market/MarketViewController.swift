@@ -115,33 +115,14 @@ extension MarketViewController{
         
     }
     
-    //버튼 만들기
-    func testMakeButton(_ target: Any?, action: Selector, symbolName: String) -> UIBarButtonItem {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: symbolName), for: .normal)
-        button.addTarget(target, action: action, for: .touchUpInside)
-        button.tintColor = .black
-            
-        let barButtonItem = UIBarButtonItem(customView: button)
-        barButtonItem.customView?.translatesAutoresizingMaskIntoConstraints = false
-        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
-            
-        return barButtonItem
-    }
-    
-    @objc private func testPush(){
-        self.navigationController?.pushViewController(CollectionController(), animated: true)
-    }
+
     
     func attribute(){
         //NavigationBar
-        navigationController?.navigationBar.topItem?.title = "마켓"
-        let menuButton = self.testMakeButton(self,
-                                               action: Selector("testPush"),
-                                               symbolName: "text.justify")
+        navigationController?.setCommonBar("마켓")
+        navigationController?.trailingButton("abc")
+        title = "마켓"
         
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = menuButton
         
         //segMentControl
         segmentControl.selectedSegmentIndex = 0

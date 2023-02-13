@@ -39,7 +39,7 @@ final class ZzimViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .clear
+        view.backgroundColor = .white
         
         bind(ZzimViewModel())
         attribute()
@@ -67,7 +67,7 @@ extension ZzimViewController{
         //self.navigationController?.setcommonBar()
         //navigationController?.setcommonBar()
         navigationController?.setCommonBar("찜")
-            navigationController?.leadingButton()
+
             navigationController?.trailingButton("magnifyingglass")
 
     }
@@ -113,7 +113,7 @@ extension ZzimViewController{
                 switch kind{
                 case UICollectionView.elementKindSectionHeader:
                     let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! ZzimHeaderView
-                    var headerText = dataSource.sectionModels[indexPath.section].title
+                    let headerText = dataSource.sectionModels[indexPath.section].title
                     header.setText(headerText)
                     
                     return header

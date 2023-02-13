@@ -91,7 +91,7 @@ extension MypageViewController{
     private func attribute(){
         //NavigationBar
         navigationController?.setCommonBar("마이페이지")
-        navigationController?.leadingButton()
+      
         navigationController?.trailingButton("bell")
         
         

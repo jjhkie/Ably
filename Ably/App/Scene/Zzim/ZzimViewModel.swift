@@ -16,7 +16,7 @@ final class ZzimViewModel:VM{
     
     
     private let sections: [ZzimModel] = [
-        .SignInButtonSection(titls: "서랍 목록", items: [.SignSectionItem(enabled: false)]),
+        .SignInButtonSection(title: "서랍 목록", items: [.SignSectionItem(enabled: false)]),
         .ZzimBoxSection(title: "", items: [
             .BoxSectionItem(title: "기본 서랍", count: 0),
             .BoxSectionItem(title: "만든 서랍", count: 0)])

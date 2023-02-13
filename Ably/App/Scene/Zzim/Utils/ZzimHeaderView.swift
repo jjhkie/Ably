@@ -18,7 +18,7 @@ final class ZzimHeaderView: UICollectionReusableView{
     }
     
     private let titleLabel = UILabel().then{
-        $0.textColor = .label
+        $0.textColor = .black
         $0.font = .systemFont(ofSize: 22, weight: .bold)
     }
 

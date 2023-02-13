@@ -13,6 +13,20 @@ final class CollectionController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+        self.hidesBottomBarWhenPushed = true
+        view.backgroundColor = .white
+        
+        attribute()
+        layout()
+    }
+}
+
+extension CollectionController{
+    private func attribute(){
+        title = "모아보기"
+    }
+    
+    private func layout(){
+        
     }
 }

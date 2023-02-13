@@ -15,8 +15,45 @@ import FSPagerView
 
 final class MainViewController: ButtonBarPagerTabStripViewController {
     
-    private let menuBar = UIStackView()
-    private let rankingBar = UIStackView()
+    private let menuBar = UIStackView().then{
+        $0.axis = .horizontal
+    }
+    
+    private let menuButton = UIButton().then{
+        $0.configuration = .buttonStyle(style: .image(title: "text.justify"))
+    }
+    
+    private let searchController = UISearchBar().then{
+        $0.placeholder = "밸런타인 준비했나요?"
+    }
+    
+    private let alertButton = UIButton().then{
+        $0.configuration = .buttonStyle(style: .image(title: "bell"))
+    }
+    
+    private let basketButton = UIButton().then{
+        $0.configuration = .buttonStyle(style: .image(title:"basket"))
+    }
+    
+    
+    private let rankingBar = UIStackView().then{
+        $0.axis = .horizontal
+        $0.distribution = .fill
+        $0.alignment = .center
+        $0.spacing = 10
+    }
+    
+    private let popularLabel = UILabel().then{
+        $0.text = "인기"
+        
+        $0.layer.cornerRadius = 10
+    }
+    private let rankingLabel = UILabel().then{
+        $0.text = " 1 룩북"
+    }
+    private let totalRanking = UILabel().then{
+        $0.text = "전체랭킹 >"
+    }
     private let bag = DisposeBag()
     
     ///FSPagerVIew
@@ -40,8 +77,9 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
         self.tabBarCustom()
 
         super.viewDidLoad()
-        view.backgroundColor = .white
         
+        view.backgroundColor = .white
+        bind()
         attribute()
         layout()
     }
@@ -57,18 +95,26 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
 extension MainViewController{
 
     func bind(){
-        
+        //menuButton 클릭 시 화면 이동
+        menuButton.rx.tap
+            .bind{
+                //self.navigationController?.show(CollectionController(), sender: nil)
+                let vc = CollectionController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: bag)
     }
     
     private func attribute(){
         navigationController?.isNavigationBarHidden = true
-       
-        //remove
-        menuBar.backgroundColor = .blue
-        rankingBar.backgroundColor = .red
-        
-      
-        
+        rankingBar.layoutMargins = UIEdgeInsets(top: .zero, left: 10, bottom: .zero, right: 10)
+        rankingBar.isLayoutMarginsRelativeArrangement = true
+        popularLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        totalRanking.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        rankingLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        popularLabel.backgroundColor = .black
+        popularLabel.textColor = .white
 
     }
     
@@ -77,6 +123,13 @@ extension MainViewController{
         //TabBar Container Auto Layout
         self.containerLayout()
         
+        [menuButton,searchController,alertButton,basketButton].forEach{
+            menuBar.addArrangedSubview($0)
+        }
+        
+        [popularLabel,rankingLabel,totalRanking].forEach{
+            rankingBar.addArrangedSubview($0)
+        }
         
         [menuBar,rankingBar].forEach{
             view.addSubview($0)

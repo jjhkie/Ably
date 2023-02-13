@@ -44,7 +44,7 @@ final class MarketCell:UITableViewCell{
     
     // 우측 버튼
     let favoriteButton = UIButton().then{
-        $0.configuration = .buttonStyle(style: .favorite)        
+        $0.configuration = .buttonStyle(style: .favorite)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -104,7 +104,7 @@ extension MarketCell{
         profileImage.snp.makeConstraints{
             $0.centerY.equalTo(contentView.safeAreaLayoutGuide)
             $0.leading.equalTo(rankingText.snp.trailing).offset(15)
-            $0.trailing.equalTo(marketInfoView.snp.leading).offset(-15)
+
             $0.width.equalTo(MarketCell.imageViewSize)
             $0.height.equalTo(MarketCell.imageViewSize)
         }

@@ -9,7 +9,7 @@ import UIKit
 import RxDataSources
 
 enum ZzimModel{
-    case SignInButtonSection(titls: String, items: [MainData])
+    case SignInButtonSection(title: String, items: [MainData])
     case ZzimBoxSection(title: String, items: [MainData])
 }
 
@@ -20,11 +20,9 @@ enum MainData{
 
 extension ZzimModel: SectionModelType{
     
-    typealias Item = MainData
-    
     var items: [MainData] {
         switch self{
-        case .SignInButtonSection(titls: _, items: let items):
+        case .SignInButtonSection(title: _, items: let items):
             return items.map{ $0 }
         case .ZzimBoxSection(title: _, items: let items):
             return items.map{ $0 }
@@ -33,7 +31,7 @@ extension ZzimModel: SectionModelType{
     
     var title: String{
         switch self{
-        case .SignInButtonSection(titls: let title, items: _):
+        case .SignInButtonSection(title: let title, items: _):
             return title
         case .ZzimBoxSection(title: let title, items: _):
             return title
@@ -42,8 +40,8 @@ extension ZzimModel: SectionModelType{
     
     init(original: ZzimModel, items: [MainData]) {
         switch original{
-        case let .SignInButtonSection(titls: title, items: _):
-            self = .SignInButtonSection(titls: title, items: items)
+        case let .SignInButtonSection(title: title, items: _):
+            self = .SignInButtonSection(title: title, items: items)
         case let .ZzimBoxSection(title: title, items: _):
             self = .ZzimBoxSection(title: title, items: items)
         }
