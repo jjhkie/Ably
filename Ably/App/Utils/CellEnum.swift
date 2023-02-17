@@ -27,4 +27,7 @@ enum CellReusable{
     static let myPageCell = ReusableCell<MyPageCell>()
     
     
+    //Detail
+    static let MarketInfoCell = ReusableCell<MarketInfoCell>()
+    
 }

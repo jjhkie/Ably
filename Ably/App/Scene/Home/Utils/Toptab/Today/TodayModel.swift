@@ -34,7 +34,7 @@ extension TodayModel: SectionModelType{
     
     typealias Item = TodayItemData
     
-    var items: [TodayItemData] {
+    var items: [Item] {
         switch self{
         case .NewYearSection(title: _ ,items: let items):
             return items.map{$0}
@@ -77,9 +77,8 @@ extension TodayModel: SectionModelType{
         }
     }
     
-    init(original: TodayModel, items: [TodayItemData]) {
+    init(original: TodayModel, items: [Item]) {
         switch original{
-            
         case let .NewYearSection(title: title, items: _):
             self = .NewYearSection(title: title, items: items)
         case let .PagerViewSection(title: title, items:  _):

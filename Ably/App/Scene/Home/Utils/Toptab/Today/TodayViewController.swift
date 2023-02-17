@@ -68,6 +68,17 @@ extension TodayViewController{
             }
             .disposed(by: bag)
         
+        //Item Click Event
+        collectionView.rx.itemSelected
+            .bind{
+                if $0.section > 2{
+               
+                    self.navigationController?.pushViewController(DetailController(), animated: true)
+                }
+                    
+            }
+            .disposed(by: bag)
+        
         output.cellData
             .drive(collectionView.rx.items(dataSource:dataSource))
             .disposed(by: bag)
@@ -77,7 +88,7 @@ extension TodayViewController{
     
     private func attribute(){
         //CollectionView
-        
+        self.title = "aa"
     }
     
     private func layout(){
@@ -104,7 +115,7 @@ extension TodayViewController{
                     return cell
                 case .PagerViewItem(_):
                     let cell = collectionView.dequeue(CellReusable.commonCollectionCell, for: indexPath)
-                    
+                    cell.backgroundColor = .blue
                     return cell
                 case .MenuViewItem(_,_):
                     let cell = collectionView.dequeue(CellReusable.commonCollectionCell, for: indexPath)

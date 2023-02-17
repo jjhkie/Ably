@@ -12,10 +12,10 @@ extension UINavigationController{
         self.navigationBar.topItem?.title = title
         //self.navigationBar.topItem?.title = title
         
-        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil) // title 부분 수정
-        backBarButtonItem.tintColor = .black
+        //let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil) // title 부분 수정
+        //backBarButtonItem.tintColor = .black
         //self.navigationBar.topItem?.backButtonTitle = ""
-        self.navigationBar.topItem?.backBarButtonItem = backBarButtonItem
+        //self.navigationBar.topItem?.backBarButtonItem = backBarButtonItem
         //self.navigationItem.backBarButtonItem = backBarButtonItem
         //leading Button
         let menuButton = self.makeSymbolButton(self,

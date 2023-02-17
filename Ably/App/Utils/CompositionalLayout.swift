@@ -7,6 +7,86 @@
 
 import UIKit
 
+func detailLayout() -> UICollectionViewCompositionalLayout{
+    UICollectionViewCompositionalLayout{(section, env) ->
+        NSCollectionLayoutSection? in
+        switch section{
+        case 0:
+
+            let itemInset: CGFloat = 2.5
+            
+            // Item
+            let itemSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: .zero, bottom: itemInset, trailing: .zero)
+            
+            // Group
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1.0 / 2.0)
+            )
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            
+            // Section
+            let section = NSCollectionLayoutSection(group: group)
+            
+            section.contentInsets = NSDirectionalEdgeInsets(top: .zero, leading: .zero, bottom: .zero, trailing: .zero)
+            return section
+        case 1:
+
+            let itemInset: CGFloat = 2.5
+            
+            // Item
+            let itemSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: .zero, bottom: itemInset, trailing: .zero)
+            
+            // Group
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1.0 / 10.0)
+            )
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            
+            // Section
+            let section = NSCollectionLayoutSection(group: group)
+            
+            section.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
+            return section
+        default:
+            let itemInset: CGFloat = 2.5
+            
+            // Item
+            let itemSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: .zero, bottom: itemInset, trailing: .zero)
+            
+            // Group
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1.0 / 2.0)
+            )
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            
+            // Section
+            let section = NSCollectionLayoutSection(group: group)
+            
+            section.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
+            return section
+        }
+        
+    }
+}
+
 func todayLayout() -> UICollectionViewCompositionalLayout {
     UICollectionViewCompositionalLayout { (section, env) -> NSCollectionLayoutSection? in
         switch section {
@@ -30,7 +110,7 @@ func todayLayout() -> UICollectionViewCompositionalLayout {
             
             // Section
             let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .paging
+            
             section.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
             return section
         case 1:

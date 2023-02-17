@@ -13,23 +13,14 @@ final class MarketCell:UITableViewCell{
     
     static let imageViewSize = 50.0
     
-    let marketInfoView = UIStackView().then{
-        $0.axis = .vertical
-    }
-    
-    let buttonInfoView = UIStackView().then{
-        $0.axis = .horizontal
-    }
+    let marketInfoView = UIStackView()
     
     //랭킹 텍스트
     let rankingText = UILabel()
     
     //프로필 이미지
     let profileImage = UIImageView().then{
-        $0.backgroundColor = .black
-        $0.contentMode = .scaleAspectFill
-        $0.layer.masksToBounds = true
-        $0.layer.cornerRadius = CGFloat(imageViewSize / 2.0)
+        $0.roundImageView(imageViewSize)
     }
     
     //마켓 이름
@@ -68,28 +59,13 @@ extension MarketCell{
             rankingText.textColor = .red
         }
         rankingText.text = "\(index + 1)"
-        
-        marketTitle.text = data.title
-        
-        var tagString = ""
-        for tag in data.tag{
-            tagString.isEmpty ? tagString.append("#\(tag)") :  tagString.append(" #\(tag)")
-            
-        }
-        marketTag.text = tagString
-        marketTag.textColor = .gray
-        marketTag.font = .systemFont(ofSize: 12, weight: .bold)
+        marketInfoView.verticalDoubleLine(data.title, data.tag)
     }
     
     private func attribute(){
     }
     
     private func layout(){
-        
-        //스택 [텍스트 뷰 추가]
-        [marketTitle,marketTag].forEach{
-            marketInfoView.addArrangedSubview($0)
-        }
 
         //뷰 추가
         [rankingText,profileImage, marketInfoView, favoriteButton].forEach{
@@ -105,8 +81,7 @@ extension MarketCell{
             $0.centerY.equalTo(contentView.safeAreaLayoutGuide)
             $0.leading.equalTo(rankingText.snp.trailing).offset(15)
 
-            $0.width.equalTo(MarketCell.imageViewSize)
-            $0.height.equalTo(MarketCell.imageViewSize)
+            $0.width.height.equalTo(MarketCell.imageViewSize)
         }
         
         marketInfoView.snp.makeConstraints{

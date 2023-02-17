@@ -83,6 +83,12 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
         attribute()
         layout()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = true
+    }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
@@ -115,6 +121,11 @@ extension MainViewController{
         rankingLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         popularLabel.backgroundColor = .black
         popularLabel.textColor = .white
+        
+        //push 후 뒤로가기 버튼
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .black
+        self.navigationItem.backBarButtonItem = backBarButtonItem
 
     }
     
