@@ -31,7 +31,7 @@ extension UIButton.Configuration{
                 
             case .basic:
                 return nil
-            case .image(title: let title):
+            case .image(title: _):
                 return nil
             case .favorite:
                 return "2번쨰"
@@ -55,7 +55,6 @@ extension UIButton.Configuration{
         
         //TODO // RemoveSetting
         configuration.subtitle = style.title
-        //
         
         configuration.imagePadding = 10
         configuration.imagePlacement = .top

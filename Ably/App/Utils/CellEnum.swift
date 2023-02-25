@@ -28,6 +28,7 @@ enum CellReusable{
     
     
     //Detail
-    static let MarketInfoCell = ReusableCell<MarketInfoCell>()
+    static let ProductInfoCell = ReusableCell<ProductInfoCell>()
+    static let DeliveryInfoCell = ReusableCell<DeliveryCell>()
     
 }

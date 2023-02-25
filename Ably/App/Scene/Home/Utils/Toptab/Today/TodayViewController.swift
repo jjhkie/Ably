@@ -72,8 +72,9 @@ extension TodayViewController{
         collectionView.rx.itemSelected
             .bind{
                 if $0.section > 2{
-               
-                    self.navigationController?.pushViewController(DetailController(), animated: true)
+                    let vc = DetailController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
                     
             }
@@ -159,7 +160,6 @@ extension TodayViewController{
                     print("aaa")
                     fatalError()
                 }
-                
             }
         )
     }

@@ -11,10 +11,14 @@ import RxSwift
 import RxDataSources
 import RxCocoa
 import Then
+import FSPagerView
 
 final class DetailController: UIViewController{
+
+    let imageArrays = ["1.jpg","2.jpg","3.jpg"]
     
     let bag = DisposeBag()
+    
     
 
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: detailLayout()).then{
@@ -26,7 +30,8 @@ final class DetailController: UIViewController{
         $0.backgroundColor = .clear
         $0.clipsToBounds = true
         $0.register(CellReusable.commonCollectionCell)
-        $0.register(CellReusable.MarketInfoCell)
+        $0.register(CellReusable.ProductInfoCell)
+        $0.register(CellReusable.DeliveryInfoCell)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -34,7 +39,9 @@ final class DetailController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        
+        view.backgroundColor = .lightGray
+        
         bind(DetailViewModel())
         attribute()
         layout()
@@ -57,8 +64,9 @@ extension DetailController{
     }
     
     private func attribute(){
+        collectionView.contentInsetAdjustmentBehavior = .never
         self.title = "상품정보"
-        
+
         navigationController?.isNavigationBarHidden = false
     }
     
@@ -67,9 +75,9 @@ extension DetailController{
             view.addSubview($0)
         }
 
-
         collectionView.snp.makeConstraints{
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalToSuperview()
+            $0.trailing.leading.bottom.equalToSuperview()
         }
     }
 }
@@ -78,22 +86,21 @@ extension DetailController{
     func dataSource() ->
     RxCollectionViewSectionedReloadDataSource<DetailModel>{
         return RxCollectionViewSectionedReloadDataSource<DetailModel>(configureCell: {
-            dataSource, collectionView, indexPath, item in
+            dataSource, collectionView, indexPath, _ in
             switch dataSource[indexPath]{
-            case .ProductImageItem(_):
+            case let .ProductImageItem(image, marketName, marketStyle, marketFavorites, productName, price, sale):
                 
-                let cell = collectionView.dequeue(CellReusable.commonCollectionCell,for: indexPath)
-                var content = cell.defaultBackgroundConfiguration()
+                let cell = collectionView.dequeue(CellReusable.ProductInfoCell, for: indexPath)
                 
+                cell.setData(count: price, sale: sale)
+                cell.setText(marketImage: image,marketName: marketName, marketStyle: marketStyle, marketFavorites: marketFavorites, productName: productName)
                 
                 cell.backgroundColor = .blue
+
                 return cell
-            case let .MarketInfoItem(logo: logo, marketName: marketName, marketStyle: marketStyle, marketFavorites: marketFavorites):
-                let cell = collectionView.dequeue(CellReusable.MarketInfoCell, for: indexPath) as! MarketInfoCell
                 
-                cell.setData(marketName,marketStyle)
-                
-                
+            case .DeliveryInfoItem(syag: let syag):
+                let cell = collectionView.dequeue(CellReusable.DeliveryInfoCell, for: indexPath)
                 
                 return cell
             }
