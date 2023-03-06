@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>635050795653-bbnbiljha88u11n1oboq5amed90u7tv8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.635050795653-bbnbiljha88u11n1oboq5amed90u7tv8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB0gs22vRNETmRQP2wAjlW0ymcDI6rKKZE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>635050795653</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hylee.Ably</string>
+	<key>PROJECT_ID</key>
+	<string>ablyapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ablyapp.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:635050795653:ios:a4580c3aa4ae68fed5bfec</string>
+</dict>
+</plist>

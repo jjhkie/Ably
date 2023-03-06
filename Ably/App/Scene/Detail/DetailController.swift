@@ -11,15 +11,13 @@ import RxSwift
 import RxDataSources
 import RxCocoa
 import Then
-import FSPagerView
+import XLPagerTabStrip
 
-final class DetailController: UIViewController{
+final class DetailController: ButtonBarPagerTabStripViewController{
 
     let imageArrays = ["1.jpg","2.jpg","3.jpg"]
     
     let bag = DisposeBag()
-    
-    
 
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: detailLayout()).then{
         $0.isScrollEnabled = true
@@ -32,19 +30,27 @@ final class DetailController: UIViewController{
         $0.register(CellReusable.commonCollectionCell)
         $0.register(CellReusable.ProductInfoCell)
         $0.register(CellReusable.DeliveryInfoCell)
+        $0.register(CellReusable.ProductDetailInfoCell)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
+   
+
 
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
+        super.viewDidLoad()
         view.backgroundColor = .lightGray
         
         bind(DetailViewModel())
         attribute()
         layout()
+        containerView.backgroundColor = .black
+    }
+    
+    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        return [ProductInfo(),ProductReview()]
     }
 }
 
@@ -74,11 +80,23 @@ extension DetailController{
         [collectionView].forEach{
             view.addSubview($0)
         }
-
+        collectionView.addSubview(buttonBarView)
         collectionView.snp.makeConstraints{
             $0.top.equalToSuperview()
             $0.trailing.leading.bottom.equalToSuperview()
         }
+        
+//        containerView.snp.makeConstraints{
+//            $0.top.equalTo(collectionView.snp.bottom)
+//            $0.trailing.leading.equalToSuperview()
+//            $0.bottom.equalTo(view.safeAreaInsets)
+//        }
+//        testView.snp.makeConstraints{
+//            $0.edges.equalToSuperview()
+//        }
+
+
+        
     }
 }
 
@@ -102,6 +120,12 @@ extension DetailController{
             case .DeliveryInfoItem(syag: let syag):
                 let cell = collectionView.dequeue(CellReusable.DeliveryInfoCell, for: indexPath)
                 
+                return cell
+            case .ProductInfoItem(text: let text):
+                let cell = collectionView.dequeue(CellReusable.ProductDetailInfoCell, for: indexPath)
+                cell.addSubview(self.buttonBarView)
+                cell.addSubview(self.containerView)
+                //cell.backgroundColor = .blue
                 return cell
             }
         })

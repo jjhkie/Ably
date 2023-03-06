@@ -13,9 +13,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-protocol ChangeTopBarDelegate: AnyObject{
-    func changeTopSetting(_ scrollValue: Double )
-}
 
 final class TodayViewController: UIViewController,IndicatorInfoProvider{
     func indicatorInfo(for pagerTabStripController: XLPagerTabStrip.PagerTabStripViewController) -> XLPagerTabStrip.IndicatorInfo {
@@ -24,18 +21,18 @@ final class TodayViewController: UIViewController,IndicatorInfoProvider{
     
     var bag = DisposeBag()
     
-    weak var delegate: ChangeTopBarDelegate?
     
     
     private var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: todayLayout()).then{
         $0.isScrollEnabled = true
         $0.showsHorizontalScrollIndicator = false
         $0.showsVerticalScrollIndicator = true
-        $0.scrollIndicatorInsets = UIEdgeInsets(top: -2, left: 0, bottom: 0, right: 4)
+        //$0.scrollIndicatorInsets = UIEdgeInsets(top: -2, left: 0, bottom: 0, right: 0)
         $0.contentInset = .zero
         $0.backgroundColor = .clear
         $0.clipsToBounds = true
         $0.register(CellReusable.commonCollectionCell)
+        $0.register(CellReusable.bannerCell)
         $0.register(ZzimHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -58,16 +55,20 @@ extension TodayViewController{
         let input = TodayViewModel.Input()
         
         let output = VM.transform(input: input)
+//        if let scrollView = view.subviews.first as? UICollectionView {
+//                    scrollView.rx.contentOffset
+//                        .subscribe(onNext: { contentOffset in
+//                            // Handle contentOffset change here
+//                            print("Content offset: \(contentOffset)")
+//                        })
+//                        .disposed(by: bag)
+//                }
         
-        
-        //scroll Event
-        collectionView.rx.todayScrollDid.asObservable()
-            .bind{
-                print($0)
-                print("rxDouble")
-            }
-            .disposed(by: bag)
-        
+//        collectionView.rx.contentOffset
+//            .subscribe(onNext: {data in
+//                print(data)
+//            })
+//            .disposed(by: bag)
         //Item Click Event
         collectionView.rx.itemSelected
             .bind{
@@ -96,10 +97,10 @@ extension TodayViewController{
         [collectionView].forEach{
             view.addSubview($0)
         }
-        
+       
         //collectionView
         collectionView.snp.makeConstraints{
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.edges.equalToSuperview()
         }
         
     }
@@ -115,7 +116,7 @@ extension TodayViewController{
                     cell.backgroundColor = .blue
                     return cell
                 case .PagerViewItem(_):
-                    let cell = collectionView.dequeue(CellReusable.commonCollectionCell, for: indexPath)
+                    let cell = collectionView.dequeue(CellReusable.bannerCell, for: indexPath)
                     cell.backgroundColor = .blue
                     return cell
                 case .MenuViewItem(_,_):
@@ -165,34 +166,3 @@ extension TodayViewController{
     }
 }
 
-////collectionView DataSource
-//extension TodayViewController: UICollectionViewDataSource{
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        20
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-//        
-//        cell.backgroundColor = .black
-//        return cell
-//    }
-//    
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        4
-//    }
-//}
-
-extension Reactive where Base: UICollectionView{
-    var rxDelegate : DelegateProxy<UICollectionView, UICollectionViewDelegate>{
-        return RxCollectionViewDelegateProxy.proxy(for: self.base)
-    }
-    
-    
-    var todayScrollDid: Observable<Double>{
-        return rxDelegate.methodInvoked(#selector(UICollectionViewDelegate.scrollViewDidScroll(_:)))
-            .map{
-                return $0 as? Double ?? 0.0
-            }
-    }
-}

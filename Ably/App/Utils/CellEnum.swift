@@ -14,6 +14,7 @@ enum CellReusable{
     static let commonCell = ReusableCell<UITableViewCell>()
     static let commonCollectionCell = ReusableCell<UICollectionViewCell>()
     //Main
+    static let bannerCell = ReusableCell<BannerCell>()
     
     //Market
     static let marketCell = ReusableCell<MarketCell>()
@@ -30,5 +31,7 @@ enum CellReusable{
     //Detail
     static let ProductInfoCell = ReusableCell<ProductInfoCell>()
     static let DeliveryInfoCell = ReusableCell<DeliveryCell>()
+    static let ProductDetailInfoCell = ReusableCell<ProductDetailInfoCell>()
+
     
 }

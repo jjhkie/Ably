@@ -7,30 +7,38 @@
 
 import XLPagerTabStrip
 import SnapKit
+import SnapKit
 
 extension ButtonBarPagerTabStripViewController{
+    
     func tabBarCustom(){
-        //buttonBarView.backgroundColor = .white
+
+        
         settings.style.buttonBarBackgroundColor = .white
         settings.style.buttonBarItemBackgroundColor = .white
 
-        settings.style.buttonBarItemFont = UIFont(name: "Helvetica", size: 17.0)!
-        settings.style.buttonBarItemTitleColor = .gray
-        settings.style.buttonBarMinimumLineSpacing = 20
-        settings.style.buttonBarMinimumInteritemSpacing = 20
-        settings.style.buttonBarItemsShouldFillAvailableWidth = true
-        settings.style.buttonBarLeftContentInset = 0
-        settings.style.buttonBarRightContentInset = 0
+        settings.style.buttonBarItemFont = UIFont(name: "Helvetica", size: 16.0)!
         settings.style.buttonBarItemLeftRightMargin = 0
+        //settings.style.buttonBarItemTitleColor = .gray
+        settings.style.buttonBarLeftContentInset = 10
+        settings.style.buttonBarRightContentInset = 10
+        settings.style.buttonBarMinimumLineSpacing = 500
+        settings.style.buttonBarMinimumInteritemSpacing = 20 //Button Item Spacing
+        settings.style.buttonBarItemsShouldFillAvailableWidth = false
         settings.style.selectedBarHeight = 3.0
-        settings.style.selectedBarBackgroundColor = .purple
+        settings.style.selectedBarBackgroundColor = .black
         
         // Changing item text color on swipe
         changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = .gray
             newCell?.label.textColor = .black
+            
+            
         }
+        
+
+  
     }
     
     

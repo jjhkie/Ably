@@ -10,11 +10,15 @@ import UIKit
 
 final class CollectionController: UIViewController{
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hidesBottomBarWhenPushed = true
-        view.backgroundColor = .white
+        //self.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.topItem?.title = "모아보기"
+        view.backgroundColor = .blue
         
         attribute()
         layout()
@@ -23,7 +27,7 @@ final class CollectionController: UIViewController{
 
 extension CollectionController{
     private func attribute(){
-        title = "모아보기"
+       
     }
     
     private func layout(){

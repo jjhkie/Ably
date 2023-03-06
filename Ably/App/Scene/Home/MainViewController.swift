@@ -11,12 +11,16 @@ import XLPagerTabStrip
 import Then
 import RxSwift
 import RxCocoa
+import FirebaseDatabase
 
 final class MainViewController: ButtonBarPagerTabStripViewController {
-    
+    //firebase
+    var firebaseDB: DatabaseReference = Database.database().reference()
     private let menuBar = UIStackView().then{
         $0.axis = .horizontal
     }
+    
+
     
     private let menuButton = UIButton().then{
         $0.configuration = .buttonStyle(style: .image(title: "text.justify"))
@@ -33,7 +37,9 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     private let basketButton = UIButton().then{
         $0.configuration = .buttonStyle(style: .image(title:"basket"))
     }
-    
+    let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
+
+
     
     private let rankingBar = UIStackView().then{
         $0.axis = .horizontal
@@ -56,7 +62,17 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     private let bag = DisposeBag()
     
 
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if let scrollView = view.subviews.first(where: { $0 is UIScrollView}) as? UIScrollView{
+            scrollView.rx.contentOffset
+                .subscribe(onNext: {ab in
+                    print(ab)
+                })
+                .disposed(by: bag)
+        }
+    }
     
     var scrollDifference: Double = 0.0
     var contentHeight = 50
@@ -65,18 +81,33 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
         self.tabBarCustom()
 
         super.viewDidLoad()
-        
+        var viewControllers = viewControllers
+
+        for viewController in viewControllers {
+            if let scrollView = viewController.scrollView {
+                scrollView.rx.contentOffset
+                    .subscribe(onNext: { [weak self] contentOffset in
+                        // Handle contentOffset change here
+                        print("Content offset: \(contentOffset) from viewController: \(viewController.title ?? "")")
+                    })
+                    .disposed(by: bag)
+            }
+        }
+      
+        self.navigationController?.navigationBar.backgroundColor = .green
         view.backgroundColor = .white
         bind()
         attribute()
         layout()
+        //containerView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationController?.isNavigationBarHidden = true
+        //self.navigationController?.setNavigationBarHidden(true, animated: true)
+
     }
+    
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
@@ -89,19 +120,62 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
 extension MainViewController{
 
     func bind(){
+        
+        
         //menuButton 클릭 시 화면 이동
         menuButton.rx.tap
             .bind{
                 //self.navigationController?.show(CollectionController(), sender: nil)
                 let vc = CollectionController()
+                vc.navigationController?.navigationBar.isHidden = false
                 vc.hidesBottomBarWhenPushed = true
+                
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: bag)
+//
+//        buttonBarView.contentScrollView.rx.contentOffset
+//            .map{
+//                $0.y
+//            }.bind{
+//
+//                print($0)
+//            }
+//            .disposed(by: bag)
+  
+        
+        //firebaseTest
+        alertButton.rx.tap
+            .bind{
+                //self.firebaseDB = Database.database().reference()
+                self.firebaseDB.child("test").setValue(["name":"ABC","price":36000])
+            }
+            .disposed(by: bag)
+        
+        self.firebaseDB.observeSingleEvent(of: .value){snap in
+            guard let data = snap.value as? [String:Any] else {return}
+            print(data)
+            /***
+             ["test": {
+                 name = ABC;
+                 price = 36000;
+             }]
+             */
+            let value = try! JSONSerialization.data(withJSONObject: Array(data.values), options: [])
+            print(value)//30bytes
+            do{
+                let finalValue = try JSONDecoder().decode([Test].self, from: value)
+                print("final")
+                print(finalValue[0].name)
+            }catch let error{
+                print("error")
+            }
+           
+        }
     }
     
     private func attribute(){
-        navigationController?.isNavigationBarHidden = true
+        //navigationController?.isNavigationBarHidden = true
         rankingBar.layoutMargins = UIEdgeInsets(top: .zero, left: 10, bottom: .zero, right: 10)
         rankingBar.isLayoutMarginsRelativeArrangement = true
         popularLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -120,8 +194,14 @@ extension MainViewController{
     private func layout(){
         
         //TabBar Container Auto Layout
-        self.containerLayout()
-        
+        //self.containerLayout()
+        customView.backgroundColor = .red
+
+        //navigationController?.navigationBar.addSubview(customView)
+//        customView.snp.makeConstraints{
+//            $0.top.equalToSuperview().inset(30)
+//            $0.centerX.equalToSuperview()
+//        }
         [menuButton,searchController,alertButton,basketButton].forEach{
             menuBar.addArrangedSubview($0)
         }
@@ -130,60 +210,81 @@ extension MainViewController{
             rankingBar.addArrangedSubview($0)
         }
         
-        [menuBar,rankingBar].forEach{
-            view.addSubview($0)
-        }
-        
-        menuBar.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(50)
+//        [menuBar,rankingBar].forEach{
+//            view.addSubview($0)
+//        }
+        [rankingBar,buttonBarView].forEach{
+            navigationController?.navigationBar.addSubview($0)
         }
         
         rankingBar.snp.makeConstraints{
-            $0.top.equalTo(menuBar.snp.top).offset(contentHeight)
+            $0.top.equalToSuperview().offset(self.navigationController?.navigationBar.frame.height ?? 0)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(50)
+            $0.height.equalTo(self.navigationController?.navigationBar.frame.height ?? 0)
         }
         
+
+        
+//        menuBar.snp.makeConstraints{
+//            $0.top.equalTo(view.safeAreaLayoutGuide).offset(-(self.navigationController?.navigationBar.frame.height ?? 0))
+//            $0.leading.trailing.equalToSuperview()
+//            $0.height.equalTo(50)
+//        }
+        
+//        rankingBar.snp.makeConstraints{
+//            $0.top.equalTo(menuBar.snp.top).offset(contentHeight)
+//            $0.leading.trailing.equalToSuperview()
+//            $0.height.equalTo(50)
+//        }
+        
         buttonBarView.snp.makeConstraints{
-            $0.top.equalTo(rankingBar.snp.top).offset(contentHeight)
-            $0.leading.trailing.equalToSuperview().inset(5)
-            $0.height.equalTo(20)
+            //$0.top.equalTo(rankingBar.snp.top).offset(contentHeight)
+            $0.top.equalTo(rankingBar.snp.top).offset((self.navigationController?.navigationBar.frame.height ?? 0))
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(self.navigationController?.navigationBar.frame.height ?? 0)
         }
-        self.view.bringSubviewToFront(buttonBarView)
+        containerView.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset((self.navigationController?.navigationBar.frame.height ?? 0) * 2)
+            $0.trailing.leading.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
     }
 }
 
-extension MainViewController: ChangeTopBarDelegate{
-    
-    func changeTopSetting(_ scrollValue: Double) {
-        if(scrollValue > scrollDifference && scrollValue - scrollDifference > 10){
-            UIView.animate(withDuration: 0.1, delay: 0,options: .curveEaseOut, animations: {
-                self.rankingBar.snp.updateConstraints{
-                    $0.top.equalTo(self.menuBar.snp.top).offset(0)
-                }
-                self.rankingBar.superview?.layoutIfNeeded()
-                self.buttonBarView.snp.updateConstraints{
-                    $0.top.equalTo(self.rankingBar.snp.top).offset(0)
-                }
-                self.buttonBarView.superview?.layoutIfNeeded()
-            })
-        }else if (scrollValue < scrollDifference && scrollDifference - scrollValue > 10){
-            UIView.animate(withDuration: 0.1, delay: 0,options: .curveEaseOut, animations: { [self] in
-                self.rankingBar.snp.updateConstraints{
-                    $0.top.equalTo(self.menuBar.snp.top).offset(contentHeight)
-                }
-                self.rankingBar.superview?.layoutIfNeeded()
-                self.buttonBarView.snp.updateConstraints{
-                    $0.top.equalTo(self.rankingBar.snp.top).offset(contentHeight)
-                }
-                self.buttonBarView.superview?.layoutIfNeeded()
-            })
-        }
-        scrollDifference = scrollValue
-        print("aaa")
-    }
+//extension MainViewController: ChangeTopBarDelegate{
+//    
+//    func changeTopSetting(_ scrollValue: Double) {
+//        if(scrollValue > scrollDifference && scrollValue - scrollDifference > 10){
+//            UIView.animate(withDuration: 0.1, delay: 0,options: .curveEaseOut, animations: {
+//                self.rankingBar.snp.updateConstraints{
+//                    $0.top.equalTo(self.menuBar.snp.top).offset(0)
+//                }
+//                self.rankingBar.superview?.layoutIfNeeded()
+//                self.buttonBarView.snp.updateConstraints{
+//                    $0.top.equalTo(self.rankingBar.snp.top).offset(0)
+//                }
+//                self.buttonBarView.superview?.layoutIfNeeded()
+//            })
+//        }else if (scrollValue < scrollDifference && scrollDifference - scrollValue > 10){
+//            UIView.animate(withDuration: 0.1, delay: 0,options: .curveEaseOut, animations: { [self] in
+//                self.rankingBar.snp.updateConstraints{
+//                    $0.top.equalTo(self.menuBar.snp.top).offset(contentHeight)
+//                }
+//                self.rankingBar.superview?.layoutIfNeeded()
+//                self.buttonBarView.snp.updateConstraints{
+//                    $0.top.equalTo(self.rankingBar.snp.top).offset(contentHeight)
+//                }
+//                self.buttonBarView.superview?.layoutIfNeeded()
+//            })
+//        }
+//        scrollDifference = scrollValue
+//        print("aaa")
+//    }
+//}
+
+
+struct Test: Codable{
+    let name: String
+    let price: Int
 }
-
-

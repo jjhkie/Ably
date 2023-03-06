@@ -11,16 +11,14 @@ import UIKit
 
 enum DetailModel{
     case ProductImage(title: String, items: [Item])
-    //case MarketInfo(title: String, items: [Item])
-    //case ProductInfo(title: String, items: [Item])
     case DeliveryInfo(title: String, itmes:[Item])
+    case ProductInfo(title: String, items:[Item])
 }
 
 enum DetailItemData{
     case ProductImageItem(image: UIImage,marketName: String, marketStyle: [String], marketFavorites: Int,productName: String,price: Int, sale: Int)
-    //case MarketInfoItem(logo: UIImage, marketName: String, marketStyle: [String], marketFavorites: Int)
-   // case ProductInfoItem(name: String,price : Int, sale: Int)
     case DeliveryInfoItem(syag: Bool)
+    case ProductInfoItem(text: String)
 }
 
 extension DetailModel: SectionModelType{
@@ -38,6 +36,8 @@ extension DetailModel: SectionModelType{
             //return items.map{$0}
         case .DeliveryInfo(title: _, itmes: let itmes):
             return itmes.map{$0}
+        case .ProductInfo(title: _ , items: let items):
+            return items
         }
     }
     
@@ -51,6 +51,8 @@ extension DetailModel: SectionModelType{
             //self = .ProductInfo(title: title, items: items)
         case let .DeliveryInfo(title: title, itmes: _):
             self = .DeliveryInfo(title: title, itmes: items)
+        case let .ProductInfo(title: title, items: _):
+            self = .ProductInfo(title: title, items: items)
         }
         
         
