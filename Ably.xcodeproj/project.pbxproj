@@ -45,7 +45,6 @@
 		B946E1452967B3E300BF71F3 /* CodiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946E1442967B3E300BF71F3 /* CodiController.swift */; };
 		B946E1482967B44A00BF71F3 /* BestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946E1472967B44A00BF71F3 /* BestController.swift */; };
 		B946E14A2967B47300BF71F3 /* HotDealController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946E1492967B47300BF71F3 /* HotDealController.swift */; };
-		B94CB27B2977878700AE81BA /* RxCollectionViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94CB27A2977878700AE81BA /* RxCollectionViewDelegateProxy.swift */; };
 		B95218E8293C8FD500018DAF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218E7293C8FD500018DAF /* MainViewController.swift */; };
 		B95218EC293C941600018DAF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B95218EB293C941600018DAF /* SnapKit */; };
 		B95218EE293CA14300018DAF /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218ED293CA14300018DAF /* TabController.swift */; };
@@ -67,6 +66,7 @@
 		B9683C8629A49E8800AA9CBE /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B9683C8329A49E8800AA9CBE /* 1.jpg */; };
 		B968E6542988DA7300209AF3 /* MarketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B968E6532988DA7300209AF3 /* MarketModel.swift */; };
 		B96950AC2940292F000520A8 /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96950AB2940292F000520A8 /* enum.swift */; };
+		B96A1D6029B6DE010033A760 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96A1D5F29B6DE010033A760 /* MainViewModel.swift */; };
 		B96CFB8C298E424500AD16F4 /* CompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CFB8B298E424500AD16F4 /* CompositionalLayout.swift */; };
 		B96F3ED429A091520001F138 /* ProductInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96F3ED329A091520001F138 /* ProductInfoCell.swift */; };
 		B96F3ED829A31AE70001F138 /* DeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96F3ED729A31AE70001F138 /* DeliveryCell.swift */; };
@@ -131,7 +131,6 @@
 		B946E1442967B3E300BF71F3 /* CodiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodiController.swift; sourceTree = "<group>"; };
 		B946E1472967B44A00BF71F3 /* BestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestController.swift; sourceTree = "<group>"; };
 		B946E1492967B47300BF71F3 /* HotDealController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotDealController.swift; sourceTree = "<group>"; };
-		B94CB27A2977878700AE81BA /* RxCollectionViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxCollectionViewDelegateProxy.swift; sourceTree = "<group>"; };
 		B95218E7293C8FD500018DAF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B95218ED293CA14300018DAF /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		B95218F0293CA4C100018DAF /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +151,7 @@
 		B9683C8329A49E8800AA9CBE /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		B968E6532988DA7300209AF3 /* MarketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketModel.swift; sourceTree = "<group>"; };
 		B96950AB2940292F000520A8 /* enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enum.swift; sourceTree = "<group>"; };
+		B96A1D5F29B6DE010033A760 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		B96CFB8B298E424500AD16F4 /* CompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionalLayout.swift; sourceTree = "<group>"; };
 		B96F3ED329A091520001F138 /* ProductInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoCell.swift; sourceTree = "<group>"; };
 		B96F3ED729A31AE70001F138 /* DeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryCell.swift; sourceTree = "<group>"; };
@@ -334,7 +334,6 @@
 			isa = PBXGroup;
 			children = (
 				B93E790D293DF6830061201F /* Toptab */,
-				B94CB27A2977878700AE81BA /* RxCollectionViewDelegateProxy.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -439,6 +438,7 @@
 			children = (
 				B93E790A293DE8280061201F /* Utils */,
 				B95218E7293C8FD500018DAF /* MainViewController.swift */,
+				B96A1D5F29B6DE010033A760 /* MainViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -697,7 +697,6 @@
 				B96950AC2940292F000520A8 /* enum.swift in Sources */,
 				B96F3ED829A31AE70001F138 /* DeliveryCell.swift in Sources */,
 				B9CED5CD29553E6100FDD60C /* ZzimModel.swift in Sources */,
-				B94CB27B2977878700AE81BA /* RxCollectionViewDelegateProxy.swift in Sources */,
 				B9243344296F9307006B7DE8 /* MarketCell.swift in Sources */,
 				B972C2B9298F9457006F03B8 /* UIButton+.swift in Sources */,
 				B95218F6293CA4EB00018DAF /* ZzimViewController.swift in Sources */,
@@ -738,6 +737,7 @@
 				B966B2D429B072240020054C /* BannerCell.swift in Sources */,
 				B930F459296BEA6A005493C8 /* BenefitController.swift in Sources */,
 				B972EBED29A9F19D00061E0E /* ProductDetailInfoCell.swift in Sources */,
+				B96A1D6029B6DE010033A760 /* MainViewModel.swift in Sources */,
 				B963F7FD299FE6820048D4C4 /* UIStackView+.swift in Sources */,
 				B95BAB2029507D2E004D6306 /* UINavigationItem+.swift in Sources */,
 				B93FEA68299B346500668F60 /* DetailController.swift in Sources */,

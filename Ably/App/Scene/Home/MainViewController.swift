@@ -16,10 +16,6 @@ import FirebaseDatabase
 final class MainViewController: ButtonBarPagerTabStripViewController {
     //firebase
     var firebaseDB: DatabaseReference = Database.database().reference()
-    private let menuBar = UIStackView().then{
-        $0.axis = .horizontal
-    }
-    
 
     
     private let menuButton = UIButton().then{
@@ -81,22 +77,9 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
         self.tabBarCustom()
 
         super.viewDidLoad()
-        var viewControllers = viewControllers
-
-        for viewController in viewControllers {
-            if let scrollView = viewController.scrollView {
-                scrollView.rx.contentOffset
-                    .subscribe(onNext: { [weak self] contentOffset in
-                        // Handle contentOffset change here
-                        print("Content offset: \(contentOffset) from viewController: \(viewController.title ?? "")")
-                    })
-                    .disposed(by: bag)
-            }
-        }
-      
-        self.navigationController?.navigationBar.backgroundColor = .green
+        
         view.backgroundColor = .white
-        bind()
+        bind(MainViewModel())
         attribute()
         layout()
         //containerView.delegate = self
@@ -112,38 +95,34 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
         let todayCo = TodayViewController(nibName: nil  , bundle:nil)
-
+        
         return [todayCo, ShoppingMallViewController(),BrandController(),BeautyController(),PhoneCaseController(),CodiController(),BestController(),HotDealController()]
     }
 }
 
 extension MainViewController{
 
-    func bind(){
+    func bind(_ VM: MainViewModel){
         
+        let input = MainViewModel.Input(menuButtonTapped: menuButton.rx.tap.asObservable())
         
-        //menuButton 클릭 시 화면 이동
-        menuButton.rx.tap
-            .bind{
-                //self.navigationController?.show(CollectionController(), sender: nil)
+        let output = VM.transform(input: input)
+        
+        //menuButton Tap
+        output.menuTapSign
+            .emit(onNext: {
                 let vc = CollectionController()
                 vc.navigationController?.navigationBar.isHidden = false
                 vc.hidesBottomBarWhenPushed = true
-                
+
                 self.navigationController?.pushViewController(vc, animated: true)
-            }
+
+                }
+            )
             .disposed(by: bag)
-//
-//        buttonBarView.contentScrollView.rx.contentOffset
-//            .map{
-//                $0.y
-//            }.bind{
-//
-//                print($0)
-//            }
-//            .disposed(by: bag)
-  
         
+
+       
         //firebaseTest
         alertButton.rx.tap
             .bind{
@@ -175,6 +154,7 @@ extension MainViewController{
     }
     
     private func attribute(){
+        navigationController?.setCommonBar("abc")
         //navigationController?.isNavigationBarHidden = true
         rankingBar.layoutMargins = UIEdgeInsets(top: .zero, left: 10, bottom: .zero, right: 10)
         rankingBar.isLayoutMarginsRelativeArrangement = true
@@ -197,45 +177,22 @@ extension MainViewController{
         //self.containerLayout()
         customView.backgroundColor = .red
 
-        //navigationController?.navigationBar.addSubview(customView)
-//        customView.snp.makeConstraints{
-//            $0.top.equalToSuperview().inset(30)
-//            $0.centerX.equalToSuperview()
-//        }
-        [menuButton,searchController,alertButton,basketButton].forEach{
-            menuBar.addArrangedSubview($0)
-        }
         
         [popularLabel,rankingLabel,totalRanking].forEach{
             rankingBar.addArrangedSubview($0)
         }
         
-//        [menuBar,rankingBar].forEach{
-//            view.addSubview($0)
-//        }
+
         [rankingBar,buttonBarView].forEach{
-            navigationController?.navigationBar.addSubview($0)
+            view.addSubview($0)
         }
         
         rankingBar.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(self.navigationController?.navigationBar.frame.height ?? 0)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(-35)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(self.navigationController?.navigationBar.frame.height ?? 0)
         }
         
-
-        
-//        menuBar.snp.makeConstraints{
-//            $0.top.equalTo(view.safeAreaLayoutGuide).offset(-(self.navigationController?.navigationBar.frame.height ?? 0))
-//            $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(50)
-//        }
-        
-//        rankingBar.snp.makeConstraints{
-//            $0.top.equalTo(menuBar.snp.top).offset(contentHeight)
-//            $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(50)
-//        }
         
         buttonBarView.snp.makeConstraints{
             //$0.top.equalTo(rankingBar.snp.top).offset(contentHeight)

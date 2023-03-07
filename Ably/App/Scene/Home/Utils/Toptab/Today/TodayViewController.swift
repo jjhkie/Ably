@@ -52,7 +52,7 @@ extension TodayViewController{
     
     func bind(_ VM: TodayViewModel){
         let dataSource = dataSource()
-        let input = TodayViewModel.Input()
+        let input = TodayViewModel.Input(scrollEvent: collectionView.rx.contentOffset.asObservable())
         
         let output = VM.transform(input: input)
 //        if let scrollView = view.subviews.first as? UICollectionView {
@@ -63,7 +63,7 @@ extension TodayViewController{
 //                        })
 //                        .disposed(by: bag)
 //                }
-        
+//        
 //        collectionView.rx.contentOffset
 //            .subscribe(onNext: {data in
 //                print(data)

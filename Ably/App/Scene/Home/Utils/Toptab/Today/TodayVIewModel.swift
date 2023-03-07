@@ -111,16 +111,30 @@ final class TodayViewModel: VM{
     
     private let sectionData = BehaviorRelay(value: [TodayModel]())
     
+    var scrollData = BehaviorSubject<Bool>(value: false)
+    
     struct Input{
-        
+        let scrollEvent :  Observable<CGPoint>
     }
     
     struct Output{
         let cellData: Driver<[TodayModel]>
     }
     
+    
+    var _isScrolledEvent = PublishRelay<CGPoint>()
 
     func transform(input: Input) -> Output {
+        
+        input.scrollEvent
+            .bind(to: _isScrolledEvent)
+            .disposed(by: bag)
+        
+        _isScrolledEvent
+            .bind(onNext: {_ in 
+                print("aaa")
+            })
+            .disposed(by: bag)
         
         sectionData.accept(sections)
         return Output(cellData: sectionData.asDriver(onErrorJustReturn: []))
