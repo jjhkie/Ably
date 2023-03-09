@@ -52,7 +52,6 @@
 		B95218F6293CA4EB00018DAF /* ZzimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218F5293CA4EB00018DAF /* ZzimViewController.swift */; };
 		B95218F9293CA51C00018DAF /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95218F8293CA51C00018DAF /* MypageViewController.swift */; };
 		B957AF79298B95F4005A2987 /* MarketTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957AF78298B95F4005A2987 /* MarketTableDelegate.swift */; };
-		B95BAB2029507D2E004D6306 /* UINavigationItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95BAB1F29507D2E004D6306 /* UINavigationItem+.swift */; };
 		B95BAB2229507E26004D6306 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95BAB2129507E26004D6306 /* UINavigationController+.swift */; };
 		B95F09BA298CC284006F3B11 /* CollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F09B9298CC284006F3B11 /* CollectionController.swift */; };
 		B9607A36299C8E0C00CACF63 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9607A35299C8E0C00CACF63 /* DetailModel.swift */; };
@@ -83,6 +82,7 @@
 		B972EBF429AA2C8200061E0E /* ProductReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B972EBF329AA2C8200061E0E /* ProductReview.swift */; };
 		B98450BF29AE377C00151EA3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B98450BE29AE377C00151EA3 /* GoogleService-Info.plist */; };
 		B98450C229AE38CC00151EA3 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B98450C129AE38CC00151EA3 /* FirebaseDatabase */; };
+		B985AD5A29BA06420088BE41 /* MainFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B985AD5929BA06420088BE41 /* MainFunc.swift */; };
 		B9BE11C02962CA0500C6BFD4 /* ZzimBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BE11BF2962CA0500C6BFD4 /* ZzimBoxCell.swift */; };
 		B9CED5CB29553C9700FDD60C /* ZzimViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */; };
 		B9CED5CD29553E6100FDD60C /* ZzimModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CED5CC29553E6100FDD60C /* ZzimModel.swift */; };
@@ -137,7 +137,6 @@
 		B95218F5293CA4EB00018DAF /* ZzimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimViewController.swift; sourceTree = "<group>"; };
 		B95218F8293CA51C00018DAF /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		B957AF78298B95F4005A2987 /* MarketTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketTableDelegate.swift; sourceTree = "<group>"; };
-		B95BAB1F29507D2E004D6306 /* UINavigationItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+.swift"; sourceTree = "<group>"; };
 		B95BAB2129507E26004D6306 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		B95F09B9298CC284006F3B11 /* CollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionController.swift; sourceTree = "<group>"; };
 		B9607A35299C8E0C00CACF63 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
@@ -167,6 +166,7 @@
 		B972EBF029AA2C6F00061E0E /* ProductInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfo.swift; sourceTree = "<group>"; };
 		B972EBF329AA2C8200061E0E /* ProductReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReview.swift; sourceTree = "<group>"; };
 		B98450BE29AE377C00151EA3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B985AD5929BA06420088BE41 /* MainFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFunc.swift; sourceTree = "<group>"; };
 		B9BE11BF2962CA0500C6BFD4 /* ZzimBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimBoxCell.swift; sourceTree = "<group>"; };
 		B9CED5CA29553C9700FDD60C /* ZzimViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimViewModel.swift; sourceTree = "<group>"; };
 		B9CED5CC29553E6100FDD60C /* ZzimModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZzimModel.swift; sourceTree = "<group>"; };
@@ -334,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				B93E790D293DF6830061201F /* Toptab */,
+				B985AD5929BA06420088BE41 /* MainFunc.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -531,7 +532,6 @@
 			isa = PBXGroup;
 			children = (
 				B96950AB2940292F000520A8 /* enum.swift */,
-				B95BAB1F29507D2E004D6306 /* UINavigationItem+.swift */,
 				B95BAB2129507E26004D6306 /* UINavigationController+.swift */,
 				B946E1422967ADAF00BF71F3 /* ButtonBarPagerTab+.swift */,
 				B9FECC302953E5EE001AF759 /* ViewModel.swift */,
@@ -725,6 +725,7 @@
 				B921BD5B299B96E1005BED18 /* DetailViewModel.swift in Sources */,
 				B95218EE293CA14300018DAF /* TabController.swift in Sources */,
 				B932A30F2973EA82007D22C1 /* SyagController.swift in Sources */,
+				B985AD5A29BA06420088BE41 /* MainFunc.swift in Sources */,
 				B972EBF429AA2C8200061E0E /* ProductReview.swift in Sources */,
 				B946E1482967B44A00BF71F3 /* BestController.swift in Sources */,
 				B968E6542988DA7300209AF3 /* MarketModel.swift in Sources */,
@@ -739,7 +740,6 @@
 				B972EBED29A9F19D00061E0E /* ProductDetailInfoCell.swift in Sources */,
 				B96A1D6029B6DE010033A760 /* MainViewModel.swift in Sources */,
 				B963F7FD299FE6820048D4C4 /* UIStackView+.swift in Sources */,
-				B95BAB2029507D2E004D6306 /* UINavigationItem+.swift in Sources */,
 				B93FEA68299B346500668F60 /* DetailController.swift in Sources */,
 				B931D1522952B422002B3F1D /* TableHeader.swift in Sources */,
 				B914D9DF296E4C0A0035B5EF /* CenterController.swift in Sources */,

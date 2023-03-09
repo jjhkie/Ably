@@ -13,26 +13,22 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
-final class TodayViewController: UIViewController,IndicatorInfoProvider{
+extension TodayViewController:IndicatorInfoProvider{
     func indicatorInfo(for pagerTabStripController: XLPagerTabStrip.PagerTabStripViewController) -> XLPagerTabStrip.IndicatorInfo {
         return IndicatorInfo(title: "투데이")
     }
-    
+}
+
+final class TodayViewController: UIViewController{
+
     let bag = DisposeBag()
     
     var parentViewModel: MainViewModel? = nil
-    let scrollObservable = PublishSubject<CGPoint>()
-    
-    
-    
-    
     
     private var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: todayLayout()).then{
         $0.isScrollEnabled = true
         $0.showsHorizontalScrollIndicator = false
         $0.showsVerticalScrollIndicator = true
-        //$0.scrollIndicatorInsets = UIEdgeInsets(top: -2, left: 0, bottom: 0, right: 0)
         $0.contentInset = .zero
         $0.backgroundColor = .clear
         $0.clipsToBounds = true
@@ -45,7 +41,6 @@ final class TodayViewController: UIViewController,IndicatorInfoProvider{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //collectionView.dataSource = self
         bind(TodayViewModel())
         attribute()
         layout()
@@ -57,34 +52,22 @@ extension TodayViewController{
     
     func bind(_ VM: TodayViewModel){
         let dataSource = dataSource()
-        let input = TodayViewModel.Input(scrollEvent: collectionView.rx.contentOffset.asObservable())
         
+        //Input
+        let input = TodayViewModel.Input(scrollEvent: collectionView.rx.didScroll.map{self.collectionView.contentOffset.y}.asObservable())
+        
+        //Output
         let output = VM.transform(input: input)
-//        if let scrollView = view.subviews.first as? UICollectionView {
-//                    scrollView.rx.contentOffset
-//                        .subscribe(onNext: { contentOffset in
-//                            // Handle contentOffset change here
-//                            print("Content offset: \(contentOffset)")
-//                        })
-//                        .disposed(by: bag)
-//                }
-//        
-//        collectionView.rx.contentOffset
-//            .subscribe(onNext: {data in
-//                print(data)
-//            })
-//            .disposed(by: bag)
-        //Item Click Event
         
-        collectionView.rx.contentOffset
-            .bind(to: scrollObservable)
+        //스크롤차이에 따른 mainViewModel의 값 변경 코드
+        output.differenceValue
+            .asObservable()
+            .subscribe(onNext: {
+                self.parentViewModel?.menuTapHidden($0)
+            })
             .disposed(by: bag)
         
-        scrollObservable.subscribe(onNext: {
-            self.parentViewModel?.menuTapHidden($0)
-        })
-        .disposed(by: bag)
-        
+        //Item Click Event
         collectionView.rx.itemSelected
             .bind{
                 if $0.section > 2{
@@ -180,4 +163,13 @@ extension TodayViewController{
         )
     }
 }
+
+//extension Reactive where Base: UIScrollView {
+//    var didScroll: ControlEvent<Void> {
+//        let source = self.delegate.methodInvoked(#selector(UIScrollViewDelegate.scrollViewDidScroll(_:)))
+//            .map { _ in () }
+//        return ControlEvent(events: source)
+//    }
+//}
+
 

@@ -14,12 +14,7 @@ final class CollectionController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // NavigationBar에 추가된 view 숨기기
-        let addViews = self.navigationController?.navigationBar.subviews.filter({$0.tag == 100})
-        print(addViews)
-        addViews?.forEach{
-            print("hidden 작동")
-            $0.isHidden = true
-        }
+
     }
     
     override func viewDidLoad() {

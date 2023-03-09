@@ -114,24 +114,45 @@ final class TodayViewModel: VM{
     var scrollData = BehaviorSubject<Bool>(value: false)
     
     struct Input{
-        let scrollEvent :  Observable<CGPoint>
+        // scrollOffSet값 변경될 때 값 감지
+        let scrollEvent : Observable<CGFloat>
     }
     
     struct Output{
+        //셀 기본 데이터
         let cellData: Driver<[TodayModel]>
+        //스크롤 차이값에 따른 bool값
+        let differenceValue: Observable<Bool>
+        
     }
     
+    //마지막 스크롤 위치
+    var lastContentOffset: CGFloat = .zero
     
-    var _isScrolledEvent = PublishSubject<CGPoint>()
 
     func transform(input: Input) -> Output {
         
         input.scrollEvent
-            .bind(to: _isScrolledEvent)
+            .subscribe(onNext: { currentValue in
+                let scrollDifference = currentValue - self.lastContentOffset
+                self.lastContentOffset = currentValue
+                
+                if(scrollDifference > 5){
+                    self.scrollData.onNext(true)
+                }else if scrollDifference < -5{
+                    self.scrollData.onNext(false)
+                }
+                //print(self.scrollData)
+                //print(scrollDifference)
+            })
             .disposed(by: bag)
+//        input.scrollEvent
+//            .bind(to: _isScrolledEvent)
+//            .disposed(by: bag)
         
         
         sectionData.accept(sections)
-        return Output(cellData: sectionData.asDriver(onErrorJustReturn: []))
+        return Output(cellData: sectionData.asDriver(onErrorJustReturn: []),
+                      differenceValue: scrollData.asObservable())
     }
 }

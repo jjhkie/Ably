@@ -128,9 +128,9 @@ extension MarketViewController{
     
     func attribute(){
         //NavigationBar
-        navigationController?.setCommonBar("마켓")
+        //navigationController?.setCommonBar("마켓")
         navigationController?.trailingButton("abc")
-        title = "마켓"
+        //title = "마켓"
         
         
         //segMentControl

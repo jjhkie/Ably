@@ -29,16 +29,25 @@ extension TabController{
         rx.didSelect
             .subscribe(onNext: {viewController in
                 if let view = viewController as? UINavigationController{
-                    if let mainView = view.topViewController as? MainViewController{
-                        print("main")
-                    }else if let marketView = view.topViewController as? MarketViewController{
+
+                    if view.topViewController is MainViewController{
+                        view.navigationBar.topItem?.title = "test"
+                    }else if view.topViewController is MarketViewController{
                         
+                        view.navigationBar.topItem?.title = TabBarItem.market.title
+                    }else if view.topViewController is SyagController{
+                        view.navigationBar.topItem?.title = TabBarItem.syag.title
                     }
                 }
             })
             .disposed(by: bag)
+        
+
     }
-    
+    @objc func leadingButtonAction() {
+        // Leading Button Action 실행
+        print("Leading Button Tapped")
+    }
     private func attribute(){
         tabBar.backgroundColor = .white
         tabBar.tintColor = .red

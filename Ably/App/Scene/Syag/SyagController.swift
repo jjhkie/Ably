@@ -84,7 +84,7 @@ extension SyagController{
     }
     
     private func attribute(){
-        navigationController?.setCommonBar("샥-출발")
+        //navigationController?.setCommonBar("샥-출발")
         navigationController?.trailingButton("magnifyingglass")
 
     }
