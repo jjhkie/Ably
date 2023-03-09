@@ -6,17 +6,45 @@
 //
 
 import UIKit
+import RxSwift
 
 
 final class TabController: UITabBarController{
+    
+    let bag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tabLayout()
+        bind()
         attribute()
     }
+    
+
 }
 
 extension TabController{
+
+    func bind(){
+        rx.didSelect
+            .subscribe(onNext: {viewController in
+                if let view = viewController as? UINavigationController{
+                    if let mainView = view.topViewController as? MainViewController{
+                        print("main")
+                    }else if let marketView = view.topViewController as? MarketViewController{
+                        
+                    }
+                }
+            })
+            .disposed(by: bag)
+    }
+    
+    private func attribute(){
+        tabBar.backgroundColor = .white
+        tabBar.tintColor = .red
+        
+    }
+    
     private func tabLayout(){
         let tabControllers: [UIViewController] = TabBarItem.allCases
             .map{
@@ -28,12 +56,6 @@ extension TabController{
             }
         
         self.viewControllers = tabControllers
-    }
-    
-    private func attribute(){
-        tabBar.backgroundColor = .white
-        tabBar.tintColor = .red
-        
     }
 }
 

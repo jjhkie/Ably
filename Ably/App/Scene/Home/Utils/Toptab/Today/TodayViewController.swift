@@ -19,7 +19,12 @@ final class TodayViewController: UIViewController,IndicatorInfoProvider{
         return IndicatorInfo(title: "투데이")
     }
     
-    var bag = DisposeBag()
+    let bag = DisposeBag()
+    
+    var parentViewModel: MainViewModel? = nil
+    let scrollObservable = PublishSubject<CGPoint>()
+    
+    
     
     
     
@@ -70,6 +75,16 @@ extension TodayViewController{
 //            })
 //            .disposed(by: bag)
         //Item Click Event
+        
+        collectionView.rx.contentOffset
+            .bind(to: scrollObservable)
+            .disposed(by: bag)
+        
+        scrollObservable.subscribe(onNext: {
+            self.parentViewModel?.menuTapHidden($0)
+        })
+        .disposed(by: bag)
+        
         collectionView.rx.itemSelected
             .bind{
                 if $0.section > 2{

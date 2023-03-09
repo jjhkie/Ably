@@ -18,14 +18,6 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     var firebaseDB: DatabaseReference = Database.database().reference()
 
     
-    private let menuButton = UIButton().then{
-        $0.configuration = .buttonStyle(style: .image(title: "text.justify"))
-    }
-    
-    private let searchController = UISearchBar().then{
-        $0.placeholder = "밸런타인 준비했나요?"
-    }
-    
     private let alertButton = UIButton().then{
         $0.configuration = .buttonStyle(style: .image(title: "bell"))
     }
@@ -33,8 +25,6 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     private let basketButton = UIButton().then{
         $0.configuration = .buttonStyle(style: .image(title:"basket"))
     }
-    let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
-
 
     
     private let rankingBar = UIStackView().then{
@@ -42,6 +32,7 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
         $0.distribution = .fill
         $0.alignment = .center
         $0.spacing = 10
+        $0.tag = 100
     }
     
     private let popularLabel = UILabel().then{
@@ -57,19 +48,8 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     }
     private let bag = DisposeBag()
     
+    var viewModel = MainViewModel()
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        if let scrollView = view.subviews.first(where: { $0 is UIScrollView}) as? UIScrollView{
-            scrollView.rx.contentOffset
-                .subscribe(onNext: {ab in
-                    print(ab)
-                })
-                .disposed(by: bag)
-        }
-    }
-    
     var scrollDifference: Double = 0.0
     var contentHeight = 50
 
@@ -77,9 +57,9 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
         self.tabBarCustom()
 
         super.viewDidLoad()
-        
+
         view.backgroundColor = .white
-        bind(MainViewModel())
+        bind(viewModel)
         attribute()
         layout()
         //containerView.delegate = self
@@ -88,13 +68,20 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //self.navigationController?.setNavigationBarHidden(true, animated: true)
+        let addViews = self.navigationController?.navigationBar.subviews.filter({$0.tag == 100})
+        print(addViews)
+        addViews?.forEach{
+            print("hidden 작동")
+            $0.isHidden = false
+        }
 
     }
     
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        let todayCo = TodayViewController()
+        todayCo.parentViewModel = viewModel
         
-        let todayCo = TodayViewController(nibName: nil  , bundle:nil)
         
         return [todayCo, ShoppingMallViewController(),BrandController(),BeautyController(),PhoneCaseController(),CodiController(),BestController(),HotDealController()]
     }
@@ -104,25 +91,28 @@ extension MainViewController{
 
     func bind(_ VM: MainViewModel){
         
-        let input = MainViewModel.Input(menuButtonTapped: menuButton.rx.tap.asObservable())
+        let input = MainViewModel.Input()
         
         let output = VM.transform(input: input)
         
-        //menuButton Tap
-        output.menuTapSign
-            .emit(onNext: {
-                let vc = CollectionController()
-                vc.navigationController?.navigationBar.isHidden = false
-                vc.hidesBottomBarWhenPushed = true
-
-                self.navigationController?.pushViewController(vc, animated: true)
-
-                }
-            )
-            .disposed(by: bag)
+//        VM.topViewHidden
+//            .subscribe(onNext: { value in
+//                if(value){
+//                    UIView.animate(withDuration: 0.1, delay: 0,options: .curveEaseOut, animations: {
+//                                    self.rankingBar.snp.updateConstraints{
+//                                        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(0)
+//
+//                                    }
+//                                    self.rankingBar.superview?.layoutIfNeeded()
+////                                    self.buttonBarView.snp.updateConstraints{
+////                                        $0.top.equalTo(self.rankingBar.snp.top).offset(0)
+////                                    }
+////                                    self.buttonBarView.superview?.layoutIfNeeded()
+//                                })
+//                }
+//            })
+//            .disposed(by: bag)
         
-
-       
         //firebaseTest
         alertButton.rx.tap
             .bind{
@@ -163,6 +153,7 @@ extension MainViewController{
         rankingLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         popularLabel.backgroundColor = .black
         popularLabel.textColor = .white
+        buttonBarView.tag = 100
         
         //push 후 뒤로가기 버튼
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
@@ -173,30 +164,26 @@ extension MainViewController{
     
     private func layout(){
         
-        //TabBar Container Auto Layout
-        //self.containerLayout()
-        customView.backgroundColor = .red
-
-        
+        ///랭킹 스택뷰
         [popularLabel,rankingLabel,totalRanking].forEach{
             rankingBar.addArrangedSubview($0)
         }
         
-
         [rankingBar,buttonBarView].forEach{
-            view.addSubview($0)
+            self.navigationController?.navigationBar.addSubview($0)
         }
         
         rankingBar.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(-35)
+            $0.top.equalToSuperview().offset(self.navigationController?.navigationBar.frame.height ?? 0)
+            //$0.center.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(self.navigationController?.navigationBar.frame.height ?? 0)
         }
         
         
         buttonBarView.snp.makeConstraints{
-            //$0.top.equalTo(rankingBar.snp.top).offset(contentHeight)
-            $0.top.equalTo(rankingBar.snp.top).offset((self.navigationController?.navigationBar.frame.height ?? 0))
+            $0.top.equalToSuperview().offset((self.navigationController?.navigationBar.frame.height ?? 0) * 2)
+            //$0.center.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(self.navigationController?.navigationBar.frame.height ?? 0)
         }
@@ -205,7 +192,7 @@ extension MainViewController{
             $0.trailing.leading.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
-        
+
     }
 }
 

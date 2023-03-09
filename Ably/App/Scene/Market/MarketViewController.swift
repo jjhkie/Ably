@@ -56,6 +56,15 @@ final class MarketViewController: UIViewController{
         collectionView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let nav = navigationController{
+            navigationController
+        }
+        
+    }
+    
     var shouldHideFirstView: Bool? {
       didSet {
         guard let shouldHideFirstView = self.shouldHideFirstView else { return }

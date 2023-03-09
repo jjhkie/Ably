@@ -122,7 +122,7 @@ final class TodayViewModel: VM{
     }
     
     
-    var _isScrolledEvent = PublishRelay<CGPoint>()
+    var _isScrolledEvent = PublishSubject<CGPoint>()
 
     func transform(input: Input) -> Output {
         
@@ -130,11 +130,6 @@ final class TodayViewModel: VM{
             .bind(to: _isScrolledEvent)
             .disposed(by: bag)
         
-        _isScrolledEvent
-            .bind(onNext: {_ in 
-                print("aaa")
-            })
-            .disposed(by: bag)
         
         sectionData.accept(sections)
         return Output(cellData: sectionData.asDriver(onErrorJustReturn: []))

@@ -10,14 +10,7 @@ import UIKit
 extension UINavigationController{
     func setCommonBar(_ title: String){
         self.navigationBar.topItem?.title = title
-        //self.navigationBar.topItem?.title = title
         
-        //let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil) // title 부분 수정
-        //backBarButtonItem.tintColor = .black
-        //self.navigationBar.topItem?.backButtonTitle = ""
-        //self.navigationBar.topItem?.backBarButtonItem = backBarButtonItem
-        //self.navigationItem.backBarButtonItem = backBarButtonItem
-        //leading Button
         let menuButton = self.makeSymbolButton(self,
                                                action: Selector("menuPush"),
                                                symbolName: "text.justify")
@@ -28,6 +21,8 @@ extension UINavigationController{
     }
     
     @objc private func menuPush(){
+        print("메뉴 버튼 클릭")
+
         let vc = CollectionController()
         vc.hidesBottomBarWhenPushed = true
         self.pushViewController(vc, animated: true)
