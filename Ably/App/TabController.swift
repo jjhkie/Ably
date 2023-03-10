@@ -13,14 +13,22 @@ final class TabController: UITabBarController{
     
     let bag = DisposeBag()
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        print("abcd")
+        tabBar.backgroundColor = .white
+        tabBar.tintColor = .red
+        self.navigationController?.navigationBar.backgroundColor = .red
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tabLayout()
         bind()
         attribute()
     }
-    
-
 }
 
 extension TabController{
@@ -29,7 +37,7 @@ extension TabController{
         rx.didSelect
             .subscribe(onNext: {viewController in
                 if let view = viewController as? UINavigationController{
-
+                    
                     if view.topViewController is MainViewController{
                         view.navigationBar.topItem?.title = "test"
                     }else if view.topViewController is MarketViewController{
@@ -49,8 +57,7 @@ extension TabController{
         print("Leading Button Tapped")
     }
     private func attribute(){
-        tabBar.backgroundColor = .white
-        tabBar.tintColor = .red
+
         
     }
     
@@ -65,6 +72,17 @@ extension TabController{
             }
         
         self.viewControllers = tabControllers
+        
+        //navigationBar 설정
+        for viewController in tabControllers{
+            if let navigationController = viewController as? UINavigationController{
+                //NavigaionBar leading Button
+                let menuButton = UIBarButtonItem(image: UIImage(systemName: "text.justify"), style: .plain, target: .none, action: nil)
+                menuButton.tintColor = .black
+                navigationController.navigationBar.topItem?.leftBarButtonItem = menuButton
+
+            }
+        }
     }
 }
 

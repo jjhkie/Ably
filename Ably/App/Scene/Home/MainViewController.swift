@@ -27,7 +27,7 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
         $0.tag = 100
     }
     
-    private let popularLabel = UILabel().then{
+    private let popularLabel = BasePaddingLabel(padding: UIEdgeInsets(top: 3, left: 5, bottom: 3, right: 5)).then{
         $0.text = "인기"
         $0.font = UIFont.boldSystemFont(ofSize: 14)
         $0.backgroundColor = .black
@@ -119,6 +119,38 @@ extension MainViewController{
     }
     
     private func attribute(){
+        
+        //navigationBar에 searchBar 추가
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "검색"
+        navigationController?.navigationBar.topItem?.titleView = searchBar
+        
+
+       
+        //NavigationBar trailing Button
+        let image = UIImage(systemName: "bell")?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5), resizingMode: .stretch)
+        //let alertButton = UIBarButtonItem(image: image, style: .plain, target: .none, action: nil)
+        let alertButton = UIButton().then{
+            $0.setImage(image, for: .normal)
+        }
+        //let basketButton = UIBarButtonItem(image: image, style: .plain, target: .none, action: nil)
+        let basketButton = UIButton().then{
+            $0.setImage(image, for: .normal)
+        }
+        
+        alertButton.tintColor = .black
+        basketButton.tintColor = .black
+        
+        let barButtonItemStack = UIStackView(arrangedSubviews: [alertButton,basketButton]).then{
+            $0.axis = .horizontal
+            $0.distribution = .equalSpacing
+            $0.spacing = 10
+        }
+        
+        
+        let barButton = UIBarButtonItem(customView: barButtonItemStack)
+        navigationItem.rightBarButtonItem = barButton
+        
         popularLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         totalRanking.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         rankingLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
@@ -129,7 +161,6 @@ extension MainViewController{
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         backBarButtonItem.tintColor = .black
         self.navigationItem.backBarButtonItem = backBarButtonItem
-        
     }
     
     private func layout(){
@@ -149,11 +180,8 @@ extension MainViewController{
             $0.leading.trailing.equalToSuperview().inset(15)
             $0.height.equalTo(self.navigationController?.navigationBar.frame.height ?? 0)
         }
-        
-        
         buttonBarView.snp.makeConstraints{
             $0.top.equalToSuperview().offset((self.navigationController?.navigationBar.frame.height ?? 0) * 2)
-            //$0.center.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(self.navigationController?.navigationBar.frame.height ?? 0)
         }

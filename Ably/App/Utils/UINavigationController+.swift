@@ -16,7 +16,7 @@ extension UINavigationController{
                                                symbolName: "text.justify")
         self.navigationBar.topItem?.leftBarButtonItem = menuButton
         
-        navigationBar.backgroundColor = .white
+        //navigationBar.backgroundColor = .white
         navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
     

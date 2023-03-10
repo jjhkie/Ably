@@ -36,17 +36,6 @@ extension ButtonBarPagerTabStripViewController{
             
             
         }
-        
+    }
 
-  
-    }
-    
-    
-    func containerLayout(){
-        containerView.snp.makeConstraints {
-            $0.top.equalTo(buttonBarView.snp.bottom)
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-    }
 }
