@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import RxSwift
+import RxCocoa
 import SnapKit
 
 final class MarketViewController: UIViewController{
@@ -15,7 +16,6 @@ final class MarketViewController: UIViewController{
     let bag = DisposeBag()
     
     private let segmentControl = UISegmentedControl(items: ["랭킹","즐겨찾기"]).then{
-        
         $0.translatesAutoresizingMaskIntoConstraints = false
         
     }
@@ -24,6 +24,19 @@ final class MarketViewController: UIViewController{
         $0.backgroundColor = .white
         $0.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         $0.register(CellReusable.marketCell)
+    }
+
+    
+    private lazy var buttonCollectionView = UICollectionView(frame: .zero,collectionViewLayout: UICollectionViewFlowLayout()).then{
+        //$0.isScrollEnabled = false
+        
+        $0.register(CellReusable.topButtonCell)
+    }
+    
+    private let customFlowLayout = UICollectionViewFlowLayout().then{
+        $0.scrollDirection = .horizontal
+        $0.minimumLineSpacing = 1
+        $0.minimumInteritemSpacing = 10
     }
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: favoriteLayout()).then{
@@ -35,7 +48,7 @@ final class MarketViewController: UIViewController{
         $0.contentInset = .zero
         $0.backgroundColor = .clear
         $0.clipsToBounds = true
-        $0.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        $0.register(CellReusable.commonCollectionCell)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -54,15 +67,6 @@ final class MarketViewController: UIViewController{
         layout()
         
         collectionView.dataSource = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let nav = navigationController{
-            navigationController
-        }
-        
     }
     
     var shouldHideFirstView: Bool? {
@@ -94,8 +98,7 @@ extension MarketViewController:UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! UICollectionViewCell
-        
+        let cell = collectionView.dequeue(CellReusable.commonCollectionCell, for: indexPath)
         cell.backgroundColor = .blue
             return cell
         
@@ -105,7 +108,11 @@ extension MarketViewController:UICollectionViewDataSource{
 }
 
 extension MarketViewController{
+    
+
     func bind(_ VM: MarketViewModel){
+        
+        
         
         let input = MarketViewModel.Input()
         
@@ -119,6 +126,24 @@ extension MarketViewController{
             }
             .disposed(by: bag)
         
+        output.buttonCellData
+            .drive(buttonCollectionView.rx.items(cellIdentifier: "MarketButtonCell",cellType: TopButtonCell.self)){index,data,cell in
+                if index == 0{
+                    cell.buttonName.textColor = .black
+                }
+                cell.setData(data)
+            }
+            .disposed(by: bag)
+        
+
+        
+        buttonCollectionView.rx.itemSelected
+            .bind(onNext: {_ in
+               
+            })
+            .disposed(by: bag)
+        
+        
         tableView.rx.setDelegate(self)
             .disposed(by: bag)
         
@@ -127,6 +152,7 @@ extension MarketViewController{
 
     
     func attribute(){
+        buttonCollectionView.collectionViewLayout = customFlowLayout
         //NavigationBar
         //navigationController?.setCommonBar("마켓")
         navigationController?.trailingButton("abc")
@@ -148,7 +174,7 @@ extension MarketViewController{
     }
     
     func layout(){
-        [segmentControl,tableView,collectionView].forEach{
+        [segmentControl,tableView,buttonCollectionView,collectionView].forEach{
             view.addSubview($0)
         }
         segmentControl.snp.makeConstraints{
@@ -156,8 +182,14 @@ extension MarketViewController{
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
         
-        tableView.snp.makeConstraints{
+        buttonCollectionView.snp.makeConstraints{
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
             $0.top.equalTo(segmentControl.snp.bottom)
+            $0.height.equalTo(100)
+        }
+        
+        tableView.snp.makeConstraints{
+            $0.top.equalTo(buttonCollectionView.snp.bottom)
             $0.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         

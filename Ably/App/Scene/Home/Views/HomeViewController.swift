@@ -11,21 +11,11 @@ import XLPagerTabStrip
 import Then
 import RxSwift
 import RxCocoa
-import FirebaseDatabase
 
-final class MainViewController: ButtonBarPagerTabStripViewController {
-    //firebase
-    var firebaseDB: DatabaseReference = Database.database().reference()
-    
+
+final class HomeViewController: ButtonBarPagerTabStripViewController {
+
     private let bag = DisposeBag()
-    
-    let rankingBar = UIStackView().then{
-        $0.axis = .horizontal
-        $0.distribution = .fill
-        $0.alignment = .center
-        $0.spacing = 10
-        $0.tag = 100
-    }
     
     private let popularLabel = BasePaddingLabel(padding: UIEdgeInsets(top: 3, left: 5, bottom: 3, right: 5)).then{
         $0.text = "인기"
@@ -35,13 +25,30 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
         $0.layer.cornerRadius = 3
         $0.clipsToBounds = true // 경계선을 넘어가는 부분은 숨김 처리
     }
+    
     private let rankingLabel = UILabel().then{
         $0.text = " 1 룩북"
+        $0.textColor = .black
     }
     private let totalRanking = UILabel().then{
         $0.text = "전체랭킹 >"
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .lightGray
+    }
+    
+    let rankingBar = UIStackView().then{
+        $0.axis = .horizontal
+        $0.distribution = .fill
+        $0.alignment = .center
+        $0.spacing = 10
+        $0.tag = 100
+    }
+    
+    private let fixedBottomView = UIButton(type: .system).then{
+        $0.backgroundColor = .systemPink
+        $0.setTitle("신규회원 딱 3일만! 인기상품 990원", for: .normal)
+        $0.setImage(UIImage(systemName:"right_arrow"), for: .normal)
+        $0.semanticContentAttribute = .forceRightToLeft
     }
 
     var viewModel = MainViewModel()
@@ -54,6 +61,7 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        //navigationController?.navigationBar = MainCustomNavigationBar()
         view.backgroundColor = .white
         attribute()
         layout()
@@ -80,7 +88,7 @@ final class MainViewController: ButtonBarPagerTabStripViewController {
     }
 }
 
-extension MainViewController{
+extension HomeViewController{
     
     func bind(_ VM: MainViewModel){
         
@@ -95,38 +103,18 @@ extension MainViewController{
             })
             .disposed(by: bag)
         
+
         
-        self.firebaseDB.observeSingleEvent(of: .value){snap in
-            guard let data = snap.value as? [String:Any] else {return}
-            print(data)
-            /***
-             ["test": {
-             name = ABC;
-             price = 36000;
-             }]
-             */
-            let value = try! JSONSerialization.data(withJSONObject: Array(data.values), options: [])
-            print(value)//30bytes
-            do{
-                //let finalValue = try JSONDecoder().decode([Test].self, from: value)
-                print("final")
-                //print(finalValue[0].name)
-            }catch let error{
-                print("error")
-            }
-            
-        }
+
     }
     
     private func attribute(){
-        
+
         //navigationBar에 searchBar 추가
         let searchBar = UISearchBar()
         searchBar.placeholder = "검색"
         navigationController?.navigationBar.topItem?.titleView = searchBar
         
-
-       
         //NavigationBar trailing Button
         let image = UIImage(systemName: "bell")?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5), resizingMode: .stretch)
         //let alertButton = UIBarButtonItem(image: image, style: .plain, target: .none, action: nil)
@@ -174,6 +162,15 @@ extension MainViewController{
             self.navigationController?.navigationBar.addSubview($0)
         }
         
+        view.addSubview(fixedBottomView)
+        let height = tabBarController?.tabBar.subviews.filter({ $0 is UIControl }) as? [UIControl]
+        let tabbarHeight = height?.first?.frame.height ?? 0
+        fixedBottomView.snp.makeConstraints{
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(tabbarHeight)
+        }
+        
         rankingBar.snp.makeConstraints{
             $0.top.equalToSuperview().offset(self.navigationController?.navigationBar.frame.height ?? 0)
             //$0.center.equalToSuperview()
@@ -185,6 +182,7 @@ extension MainViewController{
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(self.navigationController?.navigationBar.frame.height ?? 0)
         }
+        
         containerView.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset((self.navigationController?.navigationBar.frame.height ?? 0) * 2)
             $0.trailing.leading.equalToSuperview()

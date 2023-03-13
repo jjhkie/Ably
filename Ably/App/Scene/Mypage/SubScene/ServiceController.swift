@@ -20,7 +20,7 @@ final class ServiceController : UIViewController{
 extension ServiceController{
     
     private func attribute(){
-        self.navigationController?.setCommonBar("서비스 이용약관")
+        
     }
     
     

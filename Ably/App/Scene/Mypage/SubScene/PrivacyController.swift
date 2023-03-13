@@ -20,7 +20,7 @@ final class PrivacyController : UIViewController{
 extension PrivacyController{
     
     private func attribute(){
-        self.navigationController?.setCommonBar("개인정보 처리방침")
+        
     }
     
     

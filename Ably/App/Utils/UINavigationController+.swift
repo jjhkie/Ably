@@ -8,12 +8,10 @@
 import UIKit
 
 extension UINavigationController{
-    func setCommonBar(_ title: String){
-        self.navigationBar.topItem?.title = title
-        
+    func setCommonBar(){
         let menuButton = self.makeSymbolButton(self,
                                                action: Selector("menuPush"),
-                                               symbolName: "text.justify")
+                                               symbolName: "line.3.horizontal")
         self.navigationBar.topItem?.leftBarButtonItem = menuButton
         
         //navigationBar.backgroundColor = .white
@@ -21,8 +19,6 @@ extension UINavigationController{
     }
     
     @objc private func menuPush(){
-        print("메뉴 버튼 클릭")
-
         let vc = CollectionController()
         vc.hidesBottomBarWhenPushed = true
         self.pushViewController(vc, animated: true)
@@ -42,9 +38,7 @@ extension UINavigationController{
             
         let barButtonItem = UIBarButtonItem(customView: button)
         barButtonItem.customView?.translatesAutoresizingMaskIntoConstraints = false
-        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
-            
+        barButtonItem.customView?.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return barButtonItem
     }
     

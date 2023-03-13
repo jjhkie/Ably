@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension MainViewController{
+extension HomeViewController{
     
     //화면전환 시 navigationBar에 추가된 view의 유무
     func hiddenNavigationView(_ hidden: Bool){

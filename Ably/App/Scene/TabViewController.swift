@@ -9,19 +9,9 @@ import UIKit
 import RxSwift
 
 
-final class TabController: UITabBarController{
+final class TabViewController: UITabBarController{
     
     let bag = DisposeBag()
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        print("abcd")
-        tabBar.backgroundColor = .white
-        tabBar.tintColor = .red
-        self.navigationController?.navigationBar.backgroundColor = .red
-        
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,17 +21,17 @@ final class TabController: UITabBarController{
     }
 }
 
-extension TabController{
+extension TabViewController{
 
+    //function
     func bind(){
+        //Tabbar 클릭했을 때 실행되는 코드
         rx.didSelect
             .subscribe(onNext: {viewController in
                 if let view = viewController as? UINavigationController{
-                    
-                    if view.topViewController is MainViewController{
-                        view.navigationBar.topItem?.title = "test"
-                    }else if view.topViewController is MarketViewController{
+                    if view.topViewController is HomeViewController{
                         
+                    }else if view.topViewController is MarketViewController{
                         view.navigationBar.topItem?.title = TabBarItem.market.title
                     }else if view.topViewController is SyagController{
                         view.navigationBar.topItem?.title = TabBarItem.syag.title
@@ -49,16 +39,12 @@ extension TabController{
                 }
             })
             .disposed(by: bag)
-        
-
     }
-    @objc func leadingButtonAction() {
-        // Leading Button Action 실행
-        print("Leading Button Tapped")
-    }
+    
+    //design
     private func attribute(){
-
-        
+        tabBar.backgroundColor = .white
+        tabBar.tintColor = .red
     }
     
     private func tabLayout(){
@@ -72,15 +58,13 @@ extension TabController{
             }
         
         self.viewControllers = tabControllers
+
         
         //navigationBar 설정
         for viewController in tabControllers{
             if let navigationController = viewController as? UINavigationController{
                 //NavigaionBar leading Button
-                let menuButton = UIBarButtonItem(image: UIImage(systemName: "text.justify"), style: .plain, target: .none, action: nil)
-                menuButton.tintColor = .black
-                navigationController.navigationBar.topItem?.leftBarButtonItem = menuButton
-
+                navigationController.setCommonBar()
             }
         }
     }

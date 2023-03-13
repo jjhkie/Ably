@@ -12,12 +12,13 @@ import UIKit
 enum CellReusable{
     
     static let commonCell = ReusableCell<UITableViewCell>()
-    static let commonCollectionCell = ReusableCell<UICollectionViewCell>()
+    static let commonCollectionCell = ReusableCell<UICollectionViewCell>(identifier: "CommonCell")
     //Main
     static let bannerCell = ReusableCell<BannerCell>()
     
     //Market
     static let marketCell = ReusableCell<MarketCell>()
+    static let topButtonCell = ReusableCell<TopButtonCell>(identifier: "MarketButtonCell")
     
     //Zzim
     static let ZzimRoundCell = ReusableCell<ZzimRoundCell>()

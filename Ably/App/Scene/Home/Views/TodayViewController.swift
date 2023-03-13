@@ -13,6 +13,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+
 extension TodayViewController:IndicatorInfoProvider{
     func indicatorInfo(for pagerTabStripController: XLPagerTabStrip.PagerTabStripViewController) -> XLPagerTabStrip.IndicatorInfo {
         return IndicatorInfo(title: "투데이")
@@ -37,6 +38,8 @@ final class TodayViewController: UIViewController{
         $0.register(ZzimHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+
  
     
     override func viewDidLoad() {
@@ -87,8 +90,10 @@ extension TodayViewController{
     
     
     private func attribute(){
-        //CollectionView
-        self.title = "aa"
+
+
+        
+        
     }
     
     private func layout(){
@@ -100,6 +105,8 @@ extension TodayViewController{
         collectionView.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
+
+        
         
     }
 }
@@ -164,12 +171,6 @@ extension TodayViewController{
     }
 }
 
-//extension Reactive where Base: UIScrollView {
-//    var didScroll: ControlEvent<Void> {
-//        let source = self.delegate.methodInvoked(#selector(UIScrollViewDelegate.scrollViewDidScroll(_:)))
-//            .map { _ in () }
-//        return ControlEvent(events: source)
-//    }
-//}
+
 
 
