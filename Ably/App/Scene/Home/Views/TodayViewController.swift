@@ -21,12 +21,12 @@ extension TodayViewController:IndicatorInfoProvider{
 }
 
 final class TodayViewController: UIViewController{
-
+    
     let bag = DisposeBag()
     
     var parentViewModel: MainViewModel? = nil
     
-    private var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: todayLayout()).then{
+    private lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: todayLayout()).then{
         $0.isScrollEnabled = true
         $0.showsHorizontalScrollIndicator = false
         $0.showsVerticalScrollIndicator = true
@@ -35,12 +35,10 @@ final class TodayViewController: UIViewController{
         $0.clipsToBounds = true
         $0.register(CellReusable.commonCollectionCell)
         $0.register(CellReusable.bannerCell)
-        $0.register(ZzimHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
+        $0.register(CellReusable.productCell)
+        $0.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    
-
- 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +76,7 @@ extension TodayViewController{
                     vc.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
-                    
+                
             }
             .disposed(by: bag)
         
@@ -86,90 +84,29 @@ extension TodayViewController{
             .drive(collectionView.rx.items(dataSource:dataSource))
             .disposed(by: bag)
         
-        }
+    }
+}
+
+extension TodayViewController: ViewLayout{
     
     
-    private func attribute(){
-
-
-        
-        
+    
+    func attribute(){
     }
     
-    private func layout(){
+    func layout(){
         [collectionView].forEach{
             view.addSubview($0)
         }
-       
+        
         //collectionView
         collectionView.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
-
-        
-        
     }
 }
 
-extension TodayViewController{
-    func dataSource() -> RxCollectionViewSectionedReloadDataSource<TodayModel>{
-        return RxCollectionViewSectionedReloadDataSource<TodayModel>(
-            configureCell:{ dataSource, collectionView, indexPath, item in
-                switch dataSource[indexPath]{
-                case .NewYearSaleItem(_):
-                    let cell = collectionView.dequeue(CellReusable.commonCollectionCell, for: indexPath)
-                    cell.backgroundColor = .blue
-                    return cell
-                case .PagerViewItem(_):
-                    let cell = collectionView.dequeue(CellReusable.bannerCell, for: indexPath)
-                    cell.backgroundColor = .blue
-                    return cell
-                case .MenuViewItem(_,_):
-                    let cell = collectionView.dequeue(CellReusable.commonCollectionCell, for: indexPath)
-                    cell.backgroundColor = .blue
-                    return cell
-                case .FirstOrderBenefitsItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
-                    let cell = collectionView.dequeue(CellReusable.commonCollectionCell, for: indexPath)
-                    cell.backgroundColor = .blue
-                    
-                    return cell
-                case .RecommendProductItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
-                    let cell = collectionView.dequeue(CellReusable.commonCollectionCell, for: indexPath)
-                    cell.backgroundColor = .blue
-                    return cell
-                case .HotTenItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName, totalSale: let totalSale):
-                    let cell = collectionView.dequeue(CellReusable.commonCollectionCell, for: indexPath)
-                    cell.backgroundColor = .blue
-                    return cell
-                case .SyagRecommendProductItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName):
-                    let cell = collectionView.dequeue(CellReusable.commonCollectionCell, for: indexPath)
-                    cell.backgroundColor = .blue
-                    return cell
-                case .PlusItem(sale: let sale, price: let price, syagCheck: let syagCheck, marketName: let marketName, ProductName: let ProductName, totalSale: let totalSale):
-                    let cell = collectionView.dequeue(CellReusable.commonCollectionCell, for: indexPath)
-                    cell.backgroundColor = .blue
-                    return cell
-                }
-            }
-            ,configureSupplementaryView: {(dataSource, collectionView,kind, IndexPath) -> UICollectionReusableView in
-                
-                switch kind{
-                case UICollectionView.elementKindSectionHeader:
-                    let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: IndexPath) as! ZzimHeaderView
-                    
-                    let headerText = dataSource.sectionModels[IndexPath.section].title
-                    print(headerText)
-                    header.setText(headerText)
-                    return header
-                    
-                default:
-                    print("aaa")
-                    fatalError()
-                }
-            }
-        )
-    }
-}
+
 
 
 

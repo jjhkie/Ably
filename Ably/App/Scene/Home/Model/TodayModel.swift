@@ -9,7 +9,6 @@ import UIKit
 import RxDataSources
 
 enum TodayModel{
-    case NewYearSection(title: String, items: [TodayItemData])
     case PagerViewSection(title: String,items: [TodayItemData])
     case MenuViewSection(title: String,items: [TodayItemData])
     case FirstOrderBenefitsSection(title: String, items: [TodayItemData])
@@ -20,14 +19,13 @@ enum TodayModel{
 }
 
 enum TodayItemData{
-    case NewYearSaleItem(image: UIColor)
     case PagerViewItem(image: UIColor)
     case MenuViewItem(image: UIImage, title: String)
-    case FirstOrderBenefitsItem(sale: String, price: String, syagCheck: Bool, marketName: String, ProductName: String)
-    case RecommendProductItem(sale: String, price: String, syagCheck: Bool, marketName: String, ProductName: String)
-    case HotTenItem(sale: String, price: String, syagCheck: Bool, marketName: String, ProductName: String, totalSale: Int)
-    case SyagRecommendProductItem(sale: String, price: String, syagCheck: Bool, marketName: String, ProductName: String)
-    case PlusItem(sale: String, price: String, syagCheck: Bool, marketName: String, ProductName: String, totalSale: Int)
+    case FirstOrderBenefitsItem(sale: String, price: Int, syagCheck: Bool, marketName: String, productName: String)
+    case RecommendProductItem(sale: String, price: Int, syagCheck: Bool, marketName: String, ProductName: String)
+    case HotTenItem(sale: String, price: Int, syagCheck: Bool, marketName: String, ProductName: String, totalSale: Int)
+    case SyagRecommendProductItem(sale: String, price: Int, syagCheck: Bool, marketName: String, ProductName: String)
+    case PlusItem(sale: String, price: Int, syagCheck: Bool, marketName: String, ProductName: String, totalSale: Int)
 }
 
 extension TodayModel: SectionModelType{
@@ -36,8 +34,6 @@ extension TodayModel: SectionModelType{
     
     var items: [Item] {
         switch self{
-        case .NewYearSection(title: _ ,items: let items):
-            return items.map{$0}
         case .PagerViewSection(title: _, items: let items):
             return items.map{$0}
         case .MenuViewSection(title: _ ,items: let items):
@@ -57,9 +53,6 @@ extension TodayModel: SectionModelType{
     
     var title: String{
         switch self{
-            
-        case .NewYearSection(title: let title, items: _):
-            return title
         case .PagerViewSection(title: let title,items: _):
             return title
         case .MenuViewSection(title: let title,items: _):
@@ -79,8 +72,6 @@ extension TodayModel: SectionModelType{
     
     init(original: TodayModel, items: [Item]) {
         switch original{
-        case let .NewYearSection(title: title, items: _):
-            self = .NewYearSection(title: title, items: items)
         case let .PagerViewSection(title: title, items:  _):
             self = .PagerViewSection(title: title, items: items)
         case let .MenuViewSection(title:  title, items: _):

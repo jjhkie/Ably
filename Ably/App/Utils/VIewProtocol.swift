@@ -16,3 +16,9 @@ protocol VM {
     
     func transform(input: Input) -> Output
 }
+
+//View 필수 함수 
+protocol ViewLayout{
+    func attribute()
+    func layout()
+}

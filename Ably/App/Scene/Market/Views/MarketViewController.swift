@@ -39,7 +39,7 @@ final class MarketViewController: UIViewController{
         $0.minimumInteritemSpacing = 10
     }
     
-    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: favoriteLayout()).then{
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: favoriteLayout()).then{
         $0.isHidden = true
         $0.isScrollEnabled = true
         $0.showsHorizontalScrollIndicator = false

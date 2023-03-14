@@ -15,7 +15,7 @@ final class BrandController: UIViewController,IndicatorInfoProvider{
     func indicatorInfo(for pagerTabStripController: XLPagerTabStrip.PagerTabStripViewController) -> XLPagerTabStrip.IndicatorInfo {
         return IndicatorInfo(title: "브랜드")
     }
-    private var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: todayLayout()).then{
+    private var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: zzimLayout()).then{
         $0.isScrollEnabled = true
         $0.showsHorizontalScrollIndicator = false
         $0.showsVerticalScrollIndicator = true

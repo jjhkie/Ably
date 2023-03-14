@@ -18,7 +18,6 @@ final class TodayViewModel: VM{
     init(){
         
         self.sections = [
-            .NewYearSection(title: "", items: [.NewYearSaleItem(image: UIColor.blue)]),
             .PagerViewSection(title: "",items: [.PagerViewItem(image: UIColor.red),.PagerViewItem(image: UIColor.black),.PagerViewItem(image: UIColor.blue),.PagerViewItem(image: UIColor.yellow)]),
             .MenuViewSection(title: "",
                              items: [.MenuViewItem(image: UIImage(systemName: "bell")!, title: "전체보기"),
@@ -54,57 +53,57 @@ final class TodayViewModel: VM{
                                      .MenuViewItem(image: UIImage(systemName: "bell")!, title: "선물하기"),
                                      .MenuViewItem(image: UIImage(systemName: "bell")!, title: "네일"),]),
             .FirstOrderBenefitsSection(title: "가입 후 3일간 첫 주문 990원", items: [
-                .FirstOrderBenefitsItem(sale: "99%", price: "990", syagCheck: true, marketName: "마켓이름", ProductName: "[첫 구매 990원] 상품 이름 "),
-                .FirstOrderBenefitsItem(sale: "99%", price: "990", syagCheck: true, marketName: "마켓이름", ProductName: "[첫 구매 990원] 상품 이름 "),
-                .FirstOrderBenefitsItem(sale: "99%", price: "990", syagCheck: true, marketName: "마켓이름", ProductName: "[첫 구매 990원] 상품 이름 ")
-                ,.FirstOrderBenefitsItem(sale: "99%", price: "990", syagCheck: true, marketName: "마켓이름", ProductName: "[첫 구매 990원] 상품 이름 ")
-                ,.FirstOrderBenefitsItem(sale: "99%", price: "990", syagCheck: true, marketName: "마켓이름", ProductName: "[첫 구매 990원] 상품 이름 ")
-                ,.FirstOrderBenefitsItem(sale: "99%", price: "990", syagCheck: true, marketName: "마켓이름", ProductName: "[첫 구매 990원] 상품 이름 ")
-                ,.FirstOrderBenefitsItem(sale: "99%", price: "990", syagCheck: true, marketName: "마켓이름", ProductName: "[첫 구매 990원] 상품 이름 ")
-                ,.FirstOrderBenefitsItem(sale: "99%", price: "990", syagCheck: true, marketName: "마켓이름", ProductName: "[첫 구매 990원] 상품 이름 ")
-                ,.FirstOrderBenefitsItem(sale: "99%", price: "990", syagCheck: true, marketName: "마켓이름", ProductName: "[첫 구매 990원] 상품 이름 ")
+                .FirstOrderBenefitsItem(sale: "99%", price: 990, syagCheck: true, marketName: "마켓이름", productName: "[첫 구매 990원] 상품 이름 "),
+                .FirstOrderBenefitsItem(sale: "99%", price: 990, syagCheck: true, marketName: "마켓이름", productName: "[첫 구매 990원] 상품 이름 "),
+                .FirstOrderBenefitsItem(sale: "99%", price: 990, syagCheck: true, marketName: "마켓이름", productName: "[첫 구매 990원] 상품 이름 ")
+                ,.FirstOrderBenefitsItem(sale: "99%", price: 990, syagCheck: true, marketName: "마켓이름", productName: "[첫 구매 990원] 상품 이름 ")
+                ,.FirstOrderBenefitsItem(sale: "99%", price: 990, syagCheck: true, marketName: "마켓이름", productName: "[첫 구매 990원] 상품 이름 ")
+                ,.FirstOrderBenefitsItem(sale: "99%", price: 990, syagCheck: true, marketName: "마켓이름", productName: "[첫 구매 990원] 상품 이름 ")
+                ,.FirstOrderBenefitsItem(sale: "99%", price: 990, syagCheck: true, marketName: "마켓이름", productName: "[첫 구매 990원] 상품 이름 ")
+                ,.FirstOrderBenefitsItem(sale: "99%", price: 990, syagCheck: true, marketName: "마켓이름", productName: "[첫 구매 990원] 상품 이름 ")
+                ,.FirstOrderBenefitsItem(sale: "99%", price: 990, syagCheck: true, marketName: "마켓이름", productName: "[첫 구매 990원] 상품 이름 ")
             ]),
             .RecommendProductSection(title: "회원님을 위한 추천상품", items: [
-                .RecommendProductItem(sale: "40%", price: "7,900", syagCheck: false, marketName: "마켓이름", ProductName: "[빠른출고] 상품 이름 "),
-                .RecommendProductItem(sale: "40%", price: "7,900", syagCheck: false, marketName: "마켓이름", ProductName: "[빠른출고] 상품 이름 "),
-                .RecommendProductItem(sale: "40%", price: "7,900", syagCheck: false, marketName: "마켓이름", ProductName: "[빠른출고] 상품 이름 ")
+                .RecommendProductItem(sale: "40%", price: 7900, syagCheck: false, marketName: "마켓이름", ProductName: "[빠른출고] 상품 이름 "),
+                .RecommendProductItem(sale: "40%", price: 7900, syagCheck: false, marketName: "마켓이름", ProductName: "[빠른출고] 상품 이름 "),
+                .RecommendProductItem(sale: "40%", price: 7900, syagCheck: false, marketName: "마켓이름", ProductName: "[빠른출고] 상품 이름 ")
             ]),
             .HotTenSection(title: "",items: [
-                .HotTenItem(sale: "25%", price: "21,150", syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
-                .HotTenItem(sale: "25%", price: "21,150", syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
-                .HotTenItem(sale: "25%", price: "21,150", syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
-                .HotTenItem(sale: "25%", price: "21,150", syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
-                .HotTenItem(sale: "25%", price: "21,150", syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
-                .HotTenItem(sale: "25%", price: "21,150", syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
-                .HotTenItem(sale: "25%", price: "21,150", syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
-                .HotTenItem(sale: "25%", price: "21,150", syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
-                .HotTenItem(sale: "25%", price: "21,150", syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
-                .HotTenItem(sale: "25%", price: "21,150", syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
-                .HotTenItem(sale: "25%", price: "21,150", syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
+                .HotTenItem(sale: "25%", price: 21150, syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
+                .HotTenItem(sale: "25%", price: 21150, syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
+                .HotTenItem(sale: "25%", price: 21150, syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
+                .HotTenItem(sale: "25%", price: 21150, syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
+                .HotTenItem(sale: "25%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
+                .HotTenItem(sale: "25%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
+                .HotTenItem(sale: "25%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
+                .HotTenItem(sale: "25%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
+                .HotTenItem(sale: "25%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
+                .HotTenItem(sale: "25%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
+                .HotTenItem(sale: "25%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "[sns반응최고] 상품 이름", totalSale: 3945),
             ]),
             .SyagRecommendProductSection(title: "눈 깜짝할 사이, 샥-출발 상품", items: [
-                .SyagRecommendProductItem(sale: "30%", price: "19,500", syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
-                .SyagRecommendProductItem(sale: "30%", price: "19,500", syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
-                .SyagRecommendProductItem(sale: "30%", price: "19,500", syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
-                .SyagRecommendProductItem(sale: "30%", price: "19,500", syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
-                .SyagRecommendProductItem(sale: "30%", price: "19,500", syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
-                .SyagRecommendProductItem(sale: "30%", price: "19,500", syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
-                .SyagRecommendProductItem(sale: "30%", price: "19,500", syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
-                .SyagRecommendProductItem(sale: "30%", price: "19,500", syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
-                .SyagRecommendProductItem(sale: "30%", price: "19,500", syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름")
+                .SyagRecommendProductItem(sale: "30%", price: 19500, syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
+                .SyagRecommendProductItem(sale: "30%", price: 19500, syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
+                .SyagRecommendProductItem(sale: "30%", price: 19500, syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
+                .SyagRecommendProductItem(sale: "30%", price: 19500, syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
+                .SyagRecommendProductItem(sale: "30%", price: 19500, syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
+                .SyagRecommendProductItem(sale: "30%", price: 19500, syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
+                .SyagRecommendProductItem(sale: "30%", price: 19500, syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
+                .SyagRecommendProductItem(sale: "30%", price: 19500, syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름"),
+                .SyagRecommendProductItem(sale: "30%", price: 19500, syagCheck: true, marketName: "마켓이름", ProductName: "[샥 출발 가능] 상품 이름")
             ]),
             .PlusSection(title: "",items: [
-                .PlusItem(sale: "40%", price: "21,500", syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
-                .PlusItem(sale: "40%", price: "21,500", syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
-                .PlusItem(sale: "40%", price: "21,500", syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
-                .PlusItem(sale: "40%", price: "21,500", syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
-                .PlusItem(sale: "40%", price: "21,500", syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
-                .PlusItem(sale: "40%", price: "21,500", syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
-                .PlusItem(sale: "40%", price: "21,500", syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
-                .PlusItem(sale: "40%", price: "21,500", syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
-                .PlusItem(sale: "40%", price: "21,500", syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
-                .PlusItem(sale: "40%", price: "21,500", syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
-                .PlusItem(sale: "40%", price: "21,500", syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500)
+                .PlusItem(sale: "40%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
+                .PlusItem(sale: "40%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
+                .PlusItem(sale: "40%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
+                .PlusItem(sale: "40%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
+                .PlusItem(sale: "40%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
+                .PlusItem(sale: "40%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
+                .PlusItem(sale: "40%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
+                .PlusItem(sale: "40%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
+                .PlusItem(sale: "40%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
+                .PlusItem(sale: "40%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500),
+                .PlusItem(sale: "40%", price: 21500, syagCheck: true, marketName: "마켓이름", ProductName: "상품이름", totalSale: 16500)
             ])
         ]
     }
